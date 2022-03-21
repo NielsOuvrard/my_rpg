@@ -21,4 +21,5 @@ void creat_main (void)
     infos.window = sfRenderWindow_create(mode, "RPG", sfResize | sfClose, NULL);
     infos.level = 0;
     infos.quit_main = 0;
+    return;
 }

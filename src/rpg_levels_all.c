@@ -8,22 +8,6 @@
 #include "my.h"
 #include "rpg_header.h"
 
-main_screen anim_dog_idle (main_screen my_main)
-{
-    sfTime dog_time =  sfClock_getElapsedTime(my_main.dog_clock);
-    float rect_dog = dog_time.microseconds / 2500000.0;
-    if (rect_dog > 0.09) {
-        if (my_main.rect.left < 192 - 48) {
-            my_main.rect.left += 48;
-        } else {
-            my_main.rect.left = 0;
-        }
-        sfSprite_setTextureRect(my_main.sprite_dog, my_main.rect);
-        sfClock_restart(my_main.dog_clock);
-    }
-    return my_main;
-}
-
 // all_time()[0].ok  vaut true toutes les 1 secondes
 // all_time()[1].ok  vaut true toutes les 1/10 secondes
 // all_time()[2].ok  vaut true toutes les 1/100 secondes
@@ -49,28 +33,31 @@ void while_it_is_open (void)
 {
     sfEvent event;
     // sfMusic_play(my_main.music);
-    sfRenderWindow_setFramerateLimit(my_main.window, 60);
-    while (sfRenderWindow_isOpen(my_main.window)) {
+    sfRenderWindow_setFramerateLimit(all_infos().window, 60);
+    while (sfRenderWindow_isOpen(all_infos().window)) {
         in_time();
-        sfRenderWindow_drawSprite(my_main.window, all_sprites()[0].sprite, NULL);
-        if (my_main.level == 0)
-            my_main = level_0(my_main, event);
-        if (my_main.level == 1)
-            my_main = level_1(my_main, event);
-        if (my_main.quit_main) {
-            my_main = destroy_main(my_main);
+        sfRenderWindow_drawSprite(all_infos().window, all_sprites()[0].sprite, NULL);
+        if (all_infos().level == 0)
+            level_0(event);
+        if (all_infos().level == 1)
+            level_1(event);
+        if (all_infos().quit_main) {
             return;
         }
-        sfRenderWindow_display(my_main.window);
+        sfRenderWindow_display(all_infos().window);
     }
 }
 
 int all_levels_game (void)
 {
+    // srand(time(NULL));
     full_list_sprites();
     full_time();
     creat_main();
-    // srand(time(NULL));
+
+    // game
     while_it_is_open();
+
+    // free here
     return 0;
 }
