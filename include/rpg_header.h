@@ -22,6 +22,7 @@
 #include <SFML/OpenGL.h>
 
 #define GROUND 5
+#define GHOST 2
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -33,6 +34,7 @@ typedef struct sprite_pictures {
     sfVector2f pos;
     sfVector2i origin;
     sfIntRect rect;
+    bool anim;
 } sprite_pictures;
 
 typedef struct times_clock {
@@ -50,6 +52,8 @@ typedef struct main_screen {
     int quit_main;
 
     char **map;
+    sfVector2f pos_player;
+    float zoom;
 
     // sound
     sfMusic *music;

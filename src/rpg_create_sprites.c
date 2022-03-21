@@ -12,9 +12,24 @@ static sprite_pictures *value;
 
 void full_list_sprites_next (void)
 {
-    value[GROUND].scale.x = 50;
-    value[GROUND].scale.y = 50;
-    // value[GROUND].
+    value[GROUND].scale.x = 0.50;
+    value[GROUND].scale.y = 0.50;
+    sfSprite_setScale(value[GROUND].sprite, value[GROUND].scale);
+    value[4].scale.x = 0.50;
+    value[4].scale.y = 0.50;
+    sfSprite_setScale(value[4].sprite, value[4].scale);
+    value[GHOST].scale.x = 2.50;
+    value[GHOST].scale.y = 2.50;
+    sfSprite_setScale(value[GHOST].sprite, value[GHOST].scale);
+    value[GHOST].pos.y = 1080 / 2;
+    value[GHOST].pos.x = 1920 / 2;
+    value[GHOST].anim = false;
+    sfSprite_setPosition(value[GHOST].sprite, value[GHOST].pos);
+    value[GHOST].rect.top = (16 * random_int(0, 3));
+    value[GHOST].rect.left = 0;
+    value[GHOST].rect.width = 15;
+    value[GHOST].rect.height = 15;
+    sfSprite_setTextureRect(value[GHOST].sprite, value[GHOST].rect);
 }
 
 void full_list_sprites (void)

@@ -23,6 +23,10 @@ void creat_main (void)
     sfResize | sfClose, NULL);
     infos->level = 0;
     infos->quit_main = 0;
+    infos->score = 0;
     infos->map = filepath_to_arr("map/map1.txt");
+    infos->pos_player.x = 0;
+    infos->pos_player.y = 0;
+    infos->zoom = 1;
     return;
 }
