@@ -9,23 +9,23 @@
 #include "rpg_header.h"
 
 
-main_screen event_level_1 (main_screen my_main, sfEvent event)
+void event_level_1 (sfEvent event)
 {
-    while (sfRenderWindow_pollEvent(my_main.window, &event)) {
+    while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
         if (event.type == sfEvtClosed) {
-            my_main.quit_main = 1;
-            return my_main;
+            all_infos()->quit_main = 1;
+            return;
         }
     }
-    return my_main;
+    return;
 }
 
-main_screen level_1 (main_screen my_main, sfEvent event)
+void level_1 (sfEvent event)
 {
-    my_main = event_level_1(my_main, event);
-    if (my_main.quit_main == 1) {
-        return my_main;
+    event_level_1(event);
+    if (all_infos()->quit_main == 1) {
+        return;
     }
-    // sfRenderWindow_drawSprite(my_main.window, my_main.sprite_difficulty, NULL);
-    return my_main;
+    // sfRenderWindow_drawSprite(all_infos()->window, all_infos()->sprite_difficulty, NULL);
+    return;
 }

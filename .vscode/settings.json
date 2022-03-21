@@ -4,5 +4,6 @@
         "my.h": "c",
         "df_header.h": "c",
         "math.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

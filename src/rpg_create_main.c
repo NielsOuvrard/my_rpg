@@ -8,18 +8,20 @@
 #include "my.h"
 #include "rpg_header.h"
 
-static main_screen infos;
+static main_screen *infos;
 
-main_screen all_infos (void)
+main_screen *all_infos (void)
 {
     return infos;
 }
 
 void creat_main (void)
 {
+    infos = malloc(sizeof(main_screen));
     sfVideoMode mode = {SCREEN_MAX_X, SCREEN_MAX_Y, 60};
-    infos.window = sfRenderWindow_create(mode, "RPG", sfResize | sfClose, NULL);
-    infos.level = 0;
-    infos.quit_main = 0;
+    infos->window = sfRenderWindow_create(mode, "RPG",
+    sfResize | sfClose, NULL);
+    infos->level = 0;
+    infos->quit_main = 0;
     return;
 }

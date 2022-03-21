@@ -64,7 +64,7 @@ typedef struct main_screen {
 
 // create main
 
-main_screen all_infos (void);
+main_screen *all_infos (void);
 
 void creat_main (void);
 
@@ -73,6 +73,18 @@ void creat_main (void);
 void full_time (void);
 
 times_clock *all_time (void);
+
+// level 0
+
+void level_0 (sfEvent event);
+
+// level 1
+
+void level_1 (sfEvent event);
+
+// level 2
+
+void level_2 (sfEvent event);
 
 // create sprite
 

@@ -22,9 +22,9 @@
 
 void event_level_0 (sfEvent event)
 {
-    while (sfRenderWindow_pollEvent(all_infos().window, &event)) {
+    while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
         if (event.type == sfEvtClosed) {
-            all_infos().quit_main = 1;
+            all_infos()->quit_main = 1;
             return;
         }
     }
@@ -34,9 +34,9 @@ void event_level_0 (sfEvent event)
 void level_0 (sfEvent event)
 {
     event_level_0(event);
-    if (all_infos().quit_main == 1) {
+    if (all_infos()->quit_main == 1) {
         return;
     }
-    sfRenderWindow_drawSprite(all_infos().window, all_sprites()[2].sprite, NULL);
+    // sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[2].sprite, NULL);
     return;
 }
