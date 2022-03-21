@@ -18,15 +18,12 @@ void full_list_sprites_next (void)
     value[4].scale.x = 0.50;
     value[4].scale.y = 0.50;
     sfSprite_setScale(value[4].sprite, value[4].scale);
-
     value[6].scale.x = 0.50;
     value[6].scale.y = 0.50;
     sfSprite_setScale(value[6].sprite, value[6].scale);
-
     value[7].scale.x = 0.50;
     value[7].scale.y = 0.50;
     sfSprite_setScale(value[7].sprite, value[7].scale);
-
 
     value[GHOST].scale.x = 2.50;
     value[GHOST].scale.y = 2.50;

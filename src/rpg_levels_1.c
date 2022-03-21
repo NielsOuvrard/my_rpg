@@ -22,27 +22,35 @@ void anim_perso (void)
 
 void move_perso (sfEvent event)
 {
-    if (event.key.code == sfKeyZ) {
-        all_sprites()[GHOST].rect.left = 4 * 16;
-        all_sprites()[GHOST].anim = false;
+    if (event.key.code == sfKeyUp) {
+        if (!all_sprites()[GHOST].anim)
+            all_sprites()[GHOST].rect.left = 4 * 16;
+        else
+            all_sprites()[GHOST].rect.left = 5 * 16;
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
         all_infos()->pos_player.y += 10;
     }
-    if (event.key.code == sfKeyQ) {
-        all_sprites()[GHOST].rect.left = 2 * 16;
-        all_sprites()[GHOST].anim = false;
+    if (event.key.code == sfKeyLeft) {
+        if (!all_sprites()[GHOST].anim)
+            all_sprites()[GHOST].rect.left = 2 * 16;
+        else
+            all_sprites()[GHOST].rect.left = 3 * 16;
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
         all_infos()->pos_player.x += 10;
     }
-    if (event.key.code == sfKeyS) {
-        all_sprites()[GHOST].rect.left = 6 * 16;
-        all_sprites()[GHOST].anim = false;
+    if (event.key.code == sfKeyDown) {
+        if (!all_sprites()[GHOST].anim)
+            all_sprites()[GHOST].rect.left = 6 * 16;
+        else
+            all_sprites()[GHOST].rect.left = 7 * 16;
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
         all_infos()->pos_player.y -= 10;
     }
-    if (event.key.code == sfKeyD) {
-        all_sprites()[GHOST].rect.left = 0;
-        all_sprites()[GHOST].anim = false;
+    if (event.key.code == sfKeyRight) {
+        if (!all_sprites()[GHOST].anim)
+            all_sprites()[GHOST].rect.left = 0;
+        else
+            all_sprites()[GHOST].rect.left = 16;
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
         all_infos()->pos_player.x -= 10;
     }
@@ -55,12 +63,30 @@ void change_scale (sfEvent event)
         all_sprites()[GROUND].scale.x += 0.01;
         all_sprites()[GROUND].scale.y += 0.01;
         sfSprite_setScale(all_sprites()[GROUND].sprite, all_sprites()[GROUND].scale);
+        all_sprites()[4].scale.x += 0.01;
+        all_sprites()[4].scale.y += 0.01;
+        sfSprite_setScale(all_sprites()[4].sprite, all_sprites()[4].scale);
+        all_sprites()[6].scale.x += 0.01;
+        all_sprites()[6].scale.y += 0.01;
+        sfSprite_setScale(all_sprites()[6].sprite, all_sprites()[6].scale);
+        all_sprites()[7].scale.x += 0.01;
+        all_sprites()[7].scale.y += 0.01;
+        sfSprite_setScale(all_sprites()[7].sprite, all_sprites()[7].scale);
     }
-    if (event.key.code == sfKeyE) {
+    if (event.key.code == sfKeyE) { //  sfKeyboard_isKeyPressed()
         all_infos()->zoom -= 0.01;
         all_sprites()[GROUND].scale.x -= 0.01;
         all_sprites()[GROUND].scale.y -= 0.01;
         sfSprite_setScale(all_sprites()[GROUND].sprite, all_sprites()[GROUND].scale);
+        all_sprites()[4].scale.x -= 0.01;
+        all_sprites()[4].scale.y -= 0.01;
+        sfSprite_setScale(all_sprites()[4].sprite, all_sprites()[4].scale);
+        all_sprites()[6].scale.x -= 0.01;
+        all_sprites()[6].scale.y -= 0.01;
+        sfSprite_setScale(all_sprites()[6].sprite, all_sprites()[6].scale);
+        all_sprites()[7].scale.x -= 0.01;
+        all_sprites()[7].scale.y -= 0.01;
+        sfSprite_setScale(all_sprites()[7].sprite, all_sprites()[7].scale);
     }
 }
 
@@ -84,26 +110,26 @@ void event_level_1 (sfEvent event)
 void disp_map_next (int i, int j)
 {
     if (all_infos()->map[i][j] == 'g') {
-        all_sprites()[GROUND].pos.x = all_infos()->pos_player.x + 50 * all_infos()->zoom * j;
-        all_sprites()[GROUND].pos.y = all_infos()->pos_player.y + 50 * all_infos()->zoom * i;
+        all_sprites()[GROUND].pos.x = all_infos()->pos_player.x + all_sprites()[GROUND].scale.x * 100 * all_infos()->zoom * j;
+        all_sprites()[GROUND].pos.y = all_infos()->pos_player.y + all_sprites()[GROUND].scale.x * 100 * all_infos()->zoom * i;
         sfSprite_setPosition(all_sprites()[GROUND].sprite, all_sprites()[GROUND].pos);
         sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[GROUND].sprite, NULL);
     } else if (all_infos()->map[i][j] == 's') {
-        all_sprites()[4].pos.x = all_infos()->pos_player.x + 50 * all_infos()->zoom * j;
-        all_sprites()[4].pos.y = all_infos()->pos_player.y + 50 * all_infos()->zoom * i;
+        all_sprites()[4].pos.x = all_infos()->pos_player.x + all_sprites()[GROUND].scale.x * 100 * all_infos()->zoom * j;
+        all_sprites()[4].pos.y = all_infos()->pos_player.y + all_sprites()[GROUND].scale.x * 100 * all_infos()->zoom * i;
         sfSprite_setPosition(all_sprites()[4].sprite, all_sprites()[4].pos);
         sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[4].sprite, NULL);
     }
     if (all_infos()->map[i][j] == 'w') {
-        all_sprites()[6].pos.x = all_infos()->pos_player.x + 50 * all_infos()->zoom * j;
-        all_sprites()[6].pos.y = all_infos()->pos_player.y + 50 * all_infos()->zoom * i;
+        all_sprites()[6].pos.x = all_infos()->pos_player.x + all_sprites()[GROUND].scale.x * 100 * all_infos()->zoom * j;
+        all_sprites()[6].pos.y = all_infos()->pos_player.y + all_sprites()[GROUND].scale.x * 100 * all_infos()->zoom * i;
         sfSprite_setPosition(all_sprites()[6].sprite, all_sprites()[6].pos);
         sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[6].sprite, NULL);
     } else if (all_infos()->map[i][j] == 'd') {
-        all_sprites()[6].pos.x = all_infos()->pos_player.x + 50 * all_infos()->zoom * j;
-        all_sprites()[6].pos.y = all_infos()->pos_player.y + 50 * all_infos()->zoom * i;
-        sfSprite_setPosition(all_sprites()[6].sprite, all_sprites()[6].pos);
-        sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[6].sprite, NULL);
+        all_sprites()[7].pos.x = all_infos()->pos_player.x + all_sprites()[GROUND].scale.x * 100 * all_infos()->zoom * j;
+        all_sprites()[7].pos.y = all_infos()->pos_player.y + all_sprites()[GROUND].scale.x * 100 * all_infos()->zoom * i;
+        sfSprite_setPosition(all_sprites()[7].sprite, all_sprites()[7].pos);
+        sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[7].sprite, NULL);
     }
 }
 
