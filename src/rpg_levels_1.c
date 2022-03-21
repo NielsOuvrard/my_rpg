@@ -85,7 +85,7 @@ void change_scale (sfEvent event)
         all_sprites()[7].scale.y += 0.01;
         sfSprite_setScale(all_sprites()[7].sprite, all_sprites()[7].scale);
     }
-    if (event.key.code == sfKeyE) { //  sfKeyboard_isKeyPressed()
+    if (event.key.code == sfKeyE) {
         all_infos()->zoom -= 0.01;
         all_sprites()[GROUND].scale.x -= 0.01;
         all_sprites()[GROUND].scale.y -= 0.01;
