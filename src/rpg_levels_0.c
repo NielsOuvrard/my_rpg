@@ -61,7 +61,7 @@ main_screen level_0 (main_screen my_main, sfEvent event)
     if (my_main.quit_main == 1) {
         return my_main;
     }
-    sfRenderWindow_drawSprite(my_main.window, all_sprites()[4].sprite, NULL);
+    sfRenderWindow_drawSprite(my_main.window, all_sprites()[2].sprite, NULL);
     // sfRenderWindow_drawText(my_main.window, my_main.text, NULL);
     // sfRenderWindow_drawText(my_main.window, my_main.text_qt, NULL);
     return my_main;

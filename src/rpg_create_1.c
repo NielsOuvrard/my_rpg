@@ -50,7 +50,10 @@
 //     // sfSound_play(my_main.coin_sound);
 //     return my_main;
 // }
+
 static sprite_pictures *value;
+
+static times_clock *time;
 
 void full_list_sprites (void)
 {
@@ -74,6 +77,20 @@ void full_list_sprites (void)
     }
 }
 
+void full_time (void)
+{
+    times_clock *time = malloc(sizeof(times_clock) * 4);
+    for (int i = 0; i < 4; i++) {
+        time->clock = sfClock_create();
+        time->ok = false;
+    }
+}
+
+times_clock *all_time (void)
+{
+    return time;
+}
+
 sprite_pictures *all_sprites (void)
 {
     return value;
@@ -87,7 +104,8 @@ main_screen creat_main (void)
     my_main.level = 0;
     my_main.quit_main = 0;
     full_list_sprites();
-    my_printf("%d\n", 4);
-    my_printf("%d\n", all_sprites()[1].origin);
+    full_time();
+    // my_printf("%d\n", 4);
+    // my_printf("%d\n", all_sprites()[1].origin);
     return my_main;
 }

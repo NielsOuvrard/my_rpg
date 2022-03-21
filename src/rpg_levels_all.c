@@ -24,6 +24,21 @@ main_screen anim_dog_idle (main_screen my_main)
     return my_main;
 }
 
+void in_time (void)
+{
+    int seconds = 0;
+    for (int i = 0; i < 4; i++) {
+        sfTime time_anim = sfClock_getElapsedTime(all_time()[i].clock);
+        float rect_anim = time_anim.microseconds;
+        if (rect_anim > 200000 && !all_time()[i].ok) {
+            all_time()[i].ok = true;
+            sfClock_restart(all_time()[i].clock);
+        } else {
+            all_time()[i].ok = false;
+        }
+    }
+}
+
 void while_it_is_open (main_screen my_main)
 {
     sfEvent event;

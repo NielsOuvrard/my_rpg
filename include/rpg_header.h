@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <math.h>
+#include <stdbool.h>
 
 #include <SFML/Audio.h>
 #include <SFML/Graphics.h>
@@ -32,6 +33,10 @@ typedef struct sprite_pictures {
     sfIntRect rect;
 } sprite_pictures;
 
+typedef struct times_clock {
+    sfClock *clock;
+    bool ok;
+} times_clock;
 
 typedef struct main_screen {
     // score
@@ -144,6 +149,8 @@ int help (void);
 // create
 
 sprite_pictures *all_sprites (void);
+
+times_clock *all_time (void);
 
 // open file
 

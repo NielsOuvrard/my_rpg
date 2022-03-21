@@ -1,6 +1,6 @@
 pictures/bg.png
 pictures/menu.png
-pictures/sand1.jpg
 pictures/perso/famtom.png
 pictures/perso/space_sprite.png
+pictures/tiles/sand1.jpg
 pictures/tiles/tile1.png
