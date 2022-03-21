@@ -21,6 +21,8 @@
 #include <SFML/GPUPreference.h>
 #include <SFML/OpenGL.h>
 
+#define GROUND 5
+
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
 
@@ -28,7 +30,7 @@ typedef struct sprite_pictures {
     sfSprite *sprite;
     sfTexture *texture;
     sfVector2f scale;
-    sfVector2i pos;
+    sfVector2f pos;
     sfVector2i origin;
     sfIntRect rect;
 } sprite_pictures;
@@ -41,24 +43,21 @@ typedef struct times_clock {
 typedef struct main_screen {
     // score
     int score;
-    sfText *score_txt;
 
     // window
-    sfMusic *music;
     sfRenderWindow* window;
     int level;
     int quit_main;
 
-    // hurt
+    char **map;
+
+    // sound
+    sfMusic *music;
     sfSoundBuffer *hurt_sound_buffer;
     sfSound *hurt_sound;
 
-    // coins
-    sfSoundBuffer *coin_sound_buffer;
-    sfSound *coin_sound;
-    sfClock *coin_clock;
-
-    // Menu
+    // text
+    sfText *score_txt;
     sfFont *font;
 } main_screen;
 
@@ -102,10 +101,4 @@ char **filepath_to_arr (char *filepath);
 
 // tools 1
 
-main_screen quit_game (main_screen my_main);
-
 int random_int (int min, int max);
-
-int error_args (void);
-
-int help (void);

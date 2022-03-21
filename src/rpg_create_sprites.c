@@ -10,6 +10,13 @@
 
 static sprite_pictures *value;
 
+void full_list_sprites_next (void)
+{
+    value[GROUND].scale.x = 50;
+    value[GROUND].scale.y = 50;
+    // value[GROUND].
+}
+
 void full_list_sprites (void)
 {
     char **arr = filepath_to_arr("pictures/pictures.txt");
@@ -30,6 +37,7 @@ void full_list_sprites (void)
         value[i].pos.x = 0;
         value[i].pos.x = 0;
     }
+    full_list_sprites_next();
 }
 
 sprite_pictures *all_sprites (void)

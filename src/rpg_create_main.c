@@ -23,5 +23,6 @@ void creat_main (void)
     sfResize | sfClose, NULL);
     infos->level = 0;
     infos->quit_main = 0;
+    infos->map = filepath_to_arr("map/map1.txt");
     return;
 }

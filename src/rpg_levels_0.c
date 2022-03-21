@@ -27,6 +27,12 @@ void event_level_0 (sfEvent event)
             all_infos()->quit_main = 1;
             return;
         }
+        if (event.type == sfEvtKeyPressed) {
+            if (event.key.code == sfKeySpace) {
+                all_infos()->level = 1;
+                my_putstr("level 1\n");
+            }
+        }
     }
     return;
 }
