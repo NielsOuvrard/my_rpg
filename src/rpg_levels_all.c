@@ -56,7 +56,8 @@ int all_levels_game (void)
     creat_main();
     // game
     while_it_is_open();
-
+    free_my_arr(all_infos()->map);
+    free(all_infos());
     // free here
     return 0;
 }

@@ -60,6 +60,7 @@ void full_list_sprites (void)
         value[i].pos.x = 0;
     }
     full_list_sprites_next();
+    free_my_arr(arr);
 }
 
 sprite_pictures *all_sprites (void)

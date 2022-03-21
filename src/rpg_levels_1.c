@@ -20,9 +20,6 @@ void anim_perso (void)
     sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
 }
 
-
-
-
 void direction_perso (sfEvent event)
 {
     if (event.key.code == sfKeyUp)
@@ -118,7 +115,9 @@ void event_level_1 (sfEvent event)
             change_scale(event);
             direction_perso(event);
         }
-        if (event.type == sfEvtKeyReleased)
+        if (event.type == sfEvtKeyReleased && !sfKeyboard_isKeyPressed(sfKeyLeft)
+        && !sfKeyboard_isKeyPressed(sfKeyRight) && !sfKeyboard_isKeyPressed(sfKeyUp)
+        && !sfKeyboard_isKeyPressed(sfKeyDown))
             all_infos()->move = '\0';
     }
     return;
