@@ -14,8 +14,8 @@ void full_time (void)
 {
     time_static_val = malloc(sizeof(times_clock) * 4);
     for (int i = 0; i < 4; i++) {
-        time_static_val->clock = sfClock_create();
-        time_static_val->ok = false;
+        time_static_val[i].clock = sfClock_create();
+        time_static_val[i].ok = false;
     }
 }
 
