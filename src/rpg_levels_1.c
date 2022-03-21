@@ -20,9 +20,24 @@ void anim_perso (void)
     sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
 }
 
-void move_perso (sfEvent event)
+
+
+
+void direction_perso (sfEvent event)
 {
-    if (event.key.code == sfKeyUp) {
+    if (event.key.code == sfKeyUp)
+        all_infos()->move = 'u';
+    if (event.key.code == sfKeyLeft)
+        all_infos()->move = 'l';
+    if (event.key.code == sfKeyDown)
+        all_infos()->move = 'd';
+    if (event.key.code == sfKeyRight)
+        all_infos()->move = 'r';
+}
+
+void move_perso (void)
+{
+    if (all_infos()->move == 'u') {
         if (!all_sprites()[GHOST].anim)
             all_sprites()[GHOST].rect.left = 4 * 16;
         else
@@ -30,7 +45,7 @@ void move_perso (sfEvent event)
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
         all_infos()->pos_player.y += 10;
     }
-    if (event.key.code == sfKeyLeft) {
+    if (all_infos()->move == 'l') {
         if (!all_sprites()[GHOST].anim)
             all_sprites()[GHOST].rect.left = 2 * 16;
         else
@@ -38,7 +53,7 @@ void move_perso (sfEvent event)
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
         all_infos()->pos_player.x += 10;
     }
-    if (event.key.code == sfKeyDown) {
+    if (all_infos()->move == 'd') {
         if (!all_sprites()[GHOST].anim)
             all_sprites()[GHOST].rect.left = 6 * 16;
         else
@@ -46,7 +61,7 @@ void move_perso (sfEvent event)
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
         all_infos()->pos_player.y -= 10;
     }
-    if (event.key.code == sfKeyRight) {
+    if (all_infos()->move == 'r') {
         if (!all_sprites()[GHOST].anim)
             all_sprites()[GHOST].rect.left = 0;
         else
@@ -101,8 +116,10 @@ void event_level_1 (sfEvent event)
             if (event.key.code == sfKeySpace)
                 all_infos()->level = 0;
             change_scale(event);
-            move_perso(event);
+            direction_perso(event);
         }
+        if (event.type == sfEvtKeyReleased)
+            all_infos()->move = '\0';
     }
     return;
 }
@@ -146,9 +163,10 @@ void level_1 (sfEvent event)
     if (all_infos()->quit_main == 1) {
         return;
     }
-    if (all_time()[0].ok) {
+    if (all_time()[0].ok)
         anim_perso();
-    }
+    if (all_infos()->move && all_time()[2].ok)
+        move_perso();
     disp_map();
     sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[GHOST].sprite, NULL);
     // sfRenderWindow_drawSprite(all_infos()->window, all_infos()->sprite_difficulty, NULL);

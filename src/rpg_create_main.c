@@ -28,5 +28,6 @@ void creat_main (void)
     infos->pos_player.x = 0;
     infos->pos_player.y = 0;
     infos->zoom = 1;
+    infos->move = '\0';
     return;
 }

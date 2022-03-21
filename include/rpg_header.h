@@ -53,6 +53,7 @@ typedef struct main_screen {
 
     char **map;
     sfVector2f pos_player;
+    char move;
     float zoom;
 
     // sound
