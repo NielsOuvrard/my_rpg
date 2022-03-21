@@ -83,16 +83,27 @@ void event_level_1 (sfEvent event)
 
 void disp_map_next (int i, int j)
 {
-    if (all_infos()->map[i][j] == 'c') {
+    if (all_infos()->map[i][j] == 'g') {
         all_sprites()[GROUND].pos.x = all_infos()->pos_player.x + 50 * all_infos()->zoom * j;
         all_sprites()[GROUND].pos.y = all_infos()->pos_player.y + 50 * all_infos()->zoom * i;
         sfSprite_setPosition(all_sprites()[GROUND].sprite, all_sprites()[GROUND].pos);
         sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[GROUND].sprite, NULL);
-    } else if (all_infos()->map[i][j] == 'e') {
+    } else if (all_infos()->map[i][j] == 's') {
         all_sprites()[4].pos.x = all_infos()->pos_player.x + 50 * all_infos()->zoom * j;
         all_sprites()[4].pos.y = all_infos()->pos_player.y + 50 * all_infos()->zoom * i;
         sfSprite_setPosition(all_sprites()[4].sprite, all_sprites()[4].pos);
         sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[4].sprite, NULL);
+    }
+    if (all_infos()->map[i][j] == 'w') {
+        all_sprites()[6].pos.x = all_infos()->pos_player.x + 50 * all_infos()->zoom * j;
+        all_sprites()[6].pos.y = all_infos()->pos_player.y + 50 * all_infos()->zoom * i;
+        sfSprite_setPosition(all_sprites()[6].sprite, all_sprites()[6].pos);
+        sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[6].sprite, NULL);
+    } else if (all_infos()->map[i][j] == 'd') {
+        all_sprites()[6].pos.x = all_infos()->pos_player.x + 50 * all_infos()->zoom * j;
+        all_sprites()[6].pos.y = all_infos()->pos_player.y + 50 * all_infos()->zoom * i;
+        sfSprite_setPosition(all_sprites()[6].sprite, all_sprites()[6].pos);
+        sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[6].sprite, NULL);
     }
 }
 
