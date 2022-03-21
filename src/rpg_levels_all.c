@@ -30,7 +30,7 @@ void while_it_is_open (main_screen my_main)
     // sfMusic_play(my_main.music);
     sfRenderWindow_setFramerateLimit(my_main.window, 60);
     while (sfRenderWindow_isOpen(my_main.window)) {
-        sfRenderWindow_drawSprite(my_main.window, my_main.bg_sprite, NULL);
+        sfRenderWindow_drawSprite(my_main.window, all_sprites()[0].sprite, NULL);
         if (my_main.level == 0)
             my_main = level_0(my_main, event);
         if (my_main.level == 1)
@@ -39,9 +39,8 @@ void while_it_is_open (main_screen my_main)
             my_main = destroy_main(my_main);
             return;
         }
-        my_main = anim_dog_idle(my_main);
-        sfRenderWindow_drawSprite(my_main.window, my_main.sprite_dog, NULL);
-        sfRenderWindow_drawText(my_main.window, my_main.score_txt, NULL);
+        // sfRenderWindow_drawSprite(my_main.window, my_main.sprite_dog, NULL);
+        // sfRenderWindow_drawText(my_main.window, my_main.score_txt, NULL);
         sfRenderWindow_display(my_main.window);
     }
 }
