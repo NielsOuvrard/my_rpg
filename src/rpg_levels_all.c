@@ -24,27 +24,34 @@ main_screen anim_dog_idle (main_screen my_main)
     return my_main;
 }
 
+// all_time()[0].ok  vaut true toutes les 1 secondes
+// all_time()[1].ok  vaut true toutes les 1/10 secondes
+// all_time()[2].ok  vaut true toutes les 1/100 secondes
+// ...
+
 void in_time (void)
 {
-    int seconds = 0;
+    int seconds = 1000000;
     for (int i = 0; i < 4; i++) {
         sfTime time_anim = sfClock_getElapsedTime(all_time()[i].clock);
         float rect_anim = time_anim.microseconds;
-        if (rect_anim > 200000 && !all_time()[i].ok) {
+        if (rect_anim > seconds && !all_time()[i].ok) {
             all_time()[i].ok = true;
             sfClock_restart(all_time()[i].clock);
         } else {
             all_time()[i].ok = false;
         }
+        seconds /= 10;
     }
 }
 
-void while_it_is_open (main_screen my_main)
+void while_it_is_open (void)
 {
     sfEvent event;
     // sfMusic_play(my_main.music);
     sfRenderWindow_setFramerateLimit(my_main.window, 60);
     while (sfRenderWindow_isOpen(my_main.window)) {
+        in_time();
         sfRenderWindow_drawSprite(my_main.window, all_sprites()[0].sprite, NULL);
         if (my_main.level == 0)
             my_main = level_0(my_main, event);
@@ -54,16 +61,16 @@ void while_it_is_open (main_screen my_main)
             my_main = destroy_main(my_main);
             return;
         }
-        // sfRenderWindow_drawSprite(my_main.window, my_main.sprite_dog, NULL);
-        // sfRenderWindow_drawText(my_main.window, my_main.score_txt, NULL);
         sfRenderWindow_display(my_main.window);
     }
 }
 
 int all_levels_game (void)
 {
+    full_list_sprites();
+    full_time();
+    creat_main();
     // srand(time(NULL));
-    main_screen my_main = creat_main();
-    while_it_is_open(my_main);
+    while_it_is_open();
     return 0;
 }

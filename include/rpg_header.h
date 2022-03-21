@@ -49,12 +49,6 @@ typedef struct main_screen {
     int level;
     int quit_main;
 
-    // cactus
-    sfSprite* sprite_cac;
-    sfVector2f sprite_cac_pos;
-    sfClock *cac_clock;
-    sfVector2f scale_cac;
-
     // hurt
     sfSoundBuffer *hurt_sound_buffer;
     sfSound *hurt_sound;
@@ -62,78 +56,37 @@ typedef struct main_screen {
     // coins
     sfSoundBuffer *coin_sound_buffer;
     sfSound *coin_sound;
-    sfSprite* sprite_coin;
-    sfVector2f sprite_coin_pos;
     sfClock *coin_clock;
-    sfVector2f scale_coin;
-
-    // dirt
-    sfSprite* sprite_dirt;
-    sfVector2f sprite_dirt_pos;
-    sfClock *dirt_clock;
-    sfVector2f scale_dirt;
-
-    // menu
-    sfSprite* sprite_menu;
-    sfVector2f sprite_menu_pos;
-
-    // menu
-    sfSprite* sprite_difficulty;
-    sfVector2f sprite_difficulty_pos;
-
-    // dog
-    char *idle;
-    sfIntRect rect;
-    sfSprite* sprite_dog;
-    sfVector2f sprite_dog_pos;
-    sfClock *dog_clock;
-    sfClock *dog_clock_jump;
-
-    // background
-    sfTexture* texture_bg;
-    sfSprite* bg_sprite;
 
     // Menu
     sfFont *font;
 } main_screen;
 
-// create 2
+// create main
 
-main_screen creat_dog_init_variables (main_screen my_main);
+main_screen all_infos (void);
 
-main_screen creat_dog (main_screen my_main);
+void creat_main (void);
 
-main_screen creat_bg (main_screen my_main);
+// create time
 
-// create 1
+void full_time (void);
 
-main_screen creat_txt_score (main_screen my_main);
+times_clock *all_time (void);
 
-main_screen creat_menu (main_screen my_main);
+// create sprite
 
-main_screen creat_difficulty (main_screen my_main);
+void full_list_sprites (void);
 
-main_screen initialise_variables_music (main_screen my_main);
+sprite_pictures *all_sprites (void);
 
-main_screen creat_main (void);
-
-// level 0
-
-main_screen destroy_main (main_screen my_main);
-
-main_screen event_level_0 (main_screen my_main, sfEvent event);
-
-main_screen level_0 (main_screen my_main, sfEvent event);
-
-// level 1
-
-main_screen event_level_1 (main_screen my_main, sfEvent event);
-
-main_screen level_1 (main_screen my_main, sfEvent event);
-
-// levels all
+// all
 
 int all_levels_game (void);
+
+// open file
+
+char **filepath_to_arr (char *filepath);
 
 // tools 1
 
@@ -144,14 +97,3 @@ int random_int (int min, int max);
 int error_args (void);
 
 int help (void);
-
-
-// create
-
-sprite_pictures *all_sprites (void);
-
-times_clock *all_time (void);
-
-// open file
-
-char **filepath_to_arr (char *filepath);

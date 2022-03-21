@@ -2,6 +2,7 @@
     "files.associations": {
         "rpg_header.h": "c",
         "my.h": "c",
-        "df_header.h": "c"
+        "df_header.h": "c",
+        "math.h": "c"
     }
 }
