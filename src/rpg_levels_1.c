@@ -40,12 +40,15 @@ void modify_var_move(sfEvent event)
 
 void change_look_ghost(void)
 {
+    all_infos()->pos_player = sfSprite_getPosition(all_sprites()[GHOST].sprite);
     if (all_infos()->move == 'u') {
         if (!all_sprites()[GHOST].anim)
             all_sprites()[GHOST].rect.left = 4 * 16;
         else
             all_sprites()[GHOST].rect.left = 5 * 16;
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
+        all_infos()->pos_player.y -= 10;
+        sfView_move(all_infos()->view, (sfVector2f) {0, -10});
     }
     if (all_infos()->move == 'l') {
         if (!all_sprites()[GHOST].anim)
@@ -53,6 +56,8 @@ void change_look_ghost(void)
         else
             all_sprites()[GHOST].rect.left = 3 * 16;
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
+        all_infos()->pos_player.x -= 10;
+        sfView_move(all_infos()->view, (sfVector2f) {-10, 0});
     }
     if (all_infos()->move == 'd') {
         if (!all_sprites()[GHOST].anim)
@@ -60,6 +65,8 @@ void change_look_ghost(void)
         else
             all_sprites()[GHOST].rect.left = 7 * 16;
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
+        all_infos()->pos_player.y += 10;
+        sfView_move(all_infos()->view, (sfVector2f) {0, 10});
     }
     if (all_infos()->move == 'r') {
         if (!all_sprites()[GHOST].anim)
@@ -67,7 +74,11 @@ void change_look_ghost(void)
         else
             all_sprites()[GHOST].rect.left = 16;
         sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
+        all_infos()->pos_player.x += 10;
+        sfView_move(all_infos()->view, (sfVector2f) {10, 0});
     }
+    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
+    sfSprite_setPosition(all_sprites()[GHOST].sprite, all_infos()->pos_player);
 }
 
 void move_pos_player(void)
@@ -85,34 +96,10 @@ void move_pos_player(void)
 void change_scale(sfEvent event)
 {
     if (event.key.code == sfKeyA) {
-        all_infos()->zoom += 0.01;
-        all_sprites()[GRASS].scale.x += 0.01;
-        all_sprites()[GRASS].scale.y += 0.01;
-        sfSprite_setScale(all_sprites()[GRASS].sprite, all_sprites()[GRASS].scale);
-        all_sprites()[4].scale.x += 0.01;
-        all_sprites()[4].scale.y += 0.01;
-        sfSprite_setScale(all_sprites()[4].sprite, all_sprites()[4].scale);
-        all_sprites()[6].scale.x += 0.01;
-        all_sprites()[6].scale.y += 0.01;
-        sfSprite_setScale(all_sprites()[6].sprite, all_sprites()[6].scale);
-        all_sprites()[7].scale.x += 0.01;
-        all_sprites()[7].scale.y += 0.01;
-        sfSprite_setScale(all_sprites()[7].sprite, all_sprites()[7].scale);
+        sfView_zoom(all_infos()->view, 0.5);
     }
     if (event.key.code == sfKeyE) {
-        all_infos()->zoom -= 0.01;
-        all_sprites()[GRASS].scale.x -= 0.01;
-        all_sprites()[GRASS].scale.y -= 0.01;
-        sfSprite_setScale(all_sprites()[GRASS].sprite, all_sprites()[GRASS].scale);
-        all_sprites()[4].scale.x -= 0.01;
-        all_sprites()[4].scale.y -= 0.01;
-        sfSprite_setScale(all_sprites()[4].sprite, all_sprites()[4].scale);
-        all_sprites()[6].scale.x -= 0.01;
-        all_sprites()[6].scale.y -= 0.01;
-        sfSprite_setScale(all_sprites()[6].sprite, all_sprites()[6].scale);
-        all_sprites()[7].scale.x -= 0.01;
-        all_sprites()[7].scale.y -= 0.01;
-        sfSprite_setScale(all_sprites()[7].sprite, all_sprites()[7].scale);
+        sfView_zoom(all_infos()->view, 2);
     }
 }
 

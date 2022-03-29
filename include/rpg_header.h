@@ -55,7 +55,7 @@ typedef struct main_screen {
     int clock_val;
     bool clock_bool;
 
-    // editor
+    // edito
     sfVector2u size_edit;
     bool is_writing;
     char **map_editor;
@@ -65,7 +65,11 @@ typedef struct main_screen {
     sfVector2f pos_player;
     char move;
     float zoom;
+    sfVector2f view_position;
     sfVector2u size_window;
+
+    //view
+    sfView *view;
 
     // sound
     sfMusic *music;
@@ -108,6 +112,16 @@ void level_1 (sfEvent event);
 void level_2 (sfEvent event);
 
 // map editor
+
+int round_sup (float a);
+
+void change_tile_to_print(sfEvent event);
+
+void change_map_size(sfEvent event);
+
+void le_bon_click_editor (sfEvent event);
+
+void la_bonne_touche_editor (sfEvent event);
 
 void level_map_editor_clock(sfEvent event);
 

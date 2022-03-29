@@ -34,5 +34,12 @@ push:
 		git commit -m "push automatique"
 		git push
 
-.PHONY: all clean fclean re push
-# le %p c'est un hexadecimal avec un long
+mac_del:
+		rm -R *.dSYM
+		rm -R .vscode
+		rm -R .DS_Store
+
+vg_del:
+		rm vgcore.*
+
+.PHONY: all clean fclean re push mac_del vg_del

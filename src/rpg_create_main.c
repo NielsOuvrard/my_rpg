@@ -27,6 +27,13 @@ char **editor_create_map (int x, int y)
     return map;
 }
 
+void initialize_main_vals(void)
+{
+    sfView_setCenter(infos->view, (sfVector2f) {960, 540});
+    sfView_setSize(infos->view, (sfVector2f) {1920, 1080});
+    sfRenderWindow_setView(infos->window, infos->view);
+}
+
 void creat_main (void)
 {
     infos = malloc(sizeof(main_screen));
@@ -58,5 +65,11 @@ void creat_main (void)
     infos->size_edit.x = 30;
     infos->size_edit.y = 30;
     infos->is_writing = false;
+
+
+    infos->view_position.x = 960;
+    infos->view_position.y = 540;
+    infos->view = sfView_create();
+    initialize_main_vals();
     return;
 }

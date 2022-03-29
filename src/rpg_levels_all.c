@@ -8,11 +8,6 @@
 #include "my.h"
 #include "rpg_header.h"
 
-// all_time()[0].ok  vaut true toutes les 1 secondes
-// all_time()[1].ok  vaut true toutes les 1/10 secondes
-// all_time()[2].ok  vaut true toutes les 1/100 secondes
-// ...
-
 bool if_in_time (void)
 {
     sfTime time_anim = sfClock_getElapsedTime(all_infos()->clock);
@@ -31,6 +26,7 @@ void while_it_is_open (void)
     sfRenderWindow_setFramerateLimit(all_infos()->window, 60);
     while (sfRenderWindow_isOpen(all_infos()->window)) {
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
+        sfRenderWindow_clear(all_infos()->window, sfBlack);
         bool anim = if_in_time();
         sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[0].sprite, NULL);
         // anim

@@ -10,10 +10,13 @@
 
 void disp_tile(int i, int j, int type)
 {
-    all_sprites()[type].pos.x = all_infos()->pos_player.x + (all_sprites()[type].scale.x * 100) * all_infos()->zoom * j;
-    all_sprites()[type].pos.y = all_infos()->pos_player.y + (all_sprites()[type].scale.x * 100) * all_infos()->zoom * i;
+    all_sprites()[type].pos.x = (all_sprites()[type].scale.x * 100) *
+    all_infos()->zoom * j;
+    all_sprites()[type].pos.y = (all_sprites()[type].scale.x * 100) *
+    all_infos()->zoom * i;
     sfSprite_setPosition(all_sprites()[type].sprite, all_sprites()[type].pos);
-    sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[type].sprite, NULL);
+    sfRenderWindow_drawSprite(all_infos()->window,
+    all_sprites()[type].sprite, NULL);
 }
 
 void disp_map_next(int i, int j)
