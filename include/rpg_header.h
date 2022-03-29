@@ -21,8 +21,14 @@
 #include <SFML/GPUPreference.h>
 #include <SFML/OpenGL.h>
 
-#define GROUND 5
+#define GRASS 5
 #define GHOST 2
+#define MAP_EDITOR 2
+
+#define GRASS 5
+#define SAND 4
+#define WATHER 6
+#define DIRT 7
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -37,11 +43,6 @@ typedef struct sprite_pictures {
     bool anim;
 } sprite_pictures;
 
-typedef struct times_clock {
-    sfClock *clock;
-    bool ok;
-} times_clock;
-
 typedef struct main_screen {
     // score
     int score;
@@ -50,11 +51,21 @@ typedef struct main_screen {
     sfRenderWindow* window;
     int level;
     int quit_main;
+    sfClock *clock;
+    int clock_val;
+    bool clock_bool;
+
+    // editor
+    sfVector2u size_edit;
+    bool is_writing;
+    char **map_editor;
+    char value_to_print;
 
     char **map;
     sfVector2f pos_player;
     char move;
     float zoom;
+    sfVector2u size_window;
 
     // sound
     sfMusic *music;
@@ -62,33 +73,45 @@ typedef struct main_screen {
     sfSound *hurt_sound;
 
     // text
-    sfText *score_txt;
+    sfText *editor_text;
     sfFont *font;
 } main_screen;
 
 // create main
 
+char **editor_create_map (int x, int y);
+
 main_screen *all_infos (void);
 
 void creat_main (void);
-
-// create time
-
-void full_time (void);
-
-times_clock *all_time (void);
 
 // level 0
 
 void level_0 (sfEvent event);
 
+// disp map
+
+void disp_map(void);
+
 // level 1
+
+void level_1_clock(sfEvent event);
+
+void modify_var_move(sfEvent event);
+
+void move_pos_player(void);
 
 void level_1 (sfEvent event);
 
 // level 2
 
 void level_2 (sfEvent event);
+
+// map editor
+
+void level_map_editor_clock(sfEvent event);
+
+void level_map_editor (sfEvent event);
 
 // create sprite
 

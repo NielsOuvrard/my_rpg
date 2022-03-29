@@ -30,6 +30,10 @@ void event_level_0 (sfEvent event)
         if (event.type == sfEvtKeyPressed) {
             if (event.key.code == sfKeySpace) {
                 all_infos()->level = 1;
+                my_printf("%d\n", all_infos()->clock_val);
+            }
+            if (event.key.code == sfKeyE) {
+                all_infos()->level = MAP_EDITOR;
             }
         }
     }

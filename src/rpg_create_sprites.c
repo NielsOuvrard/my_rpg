@@ -12,18 +12,18 @@ static sprite_pictures *value;
 
 void full_list_sprites_next (void)
 {
-    value[GROUND].scale.x = 0.50;
-    value[GROUND].scale.y = 0.50;
-    sfSprite_setScale(value[GROUND].sprite, value[GROUND].scale);
-    value[4].scale.x = 0.50;
-    value[4].scale.y = 0.50;
-    sfSprite_setScale(value[4].sprite, value[4].scale);
-    value[6].scale.x = 0.50;
-    value[6].scale.y = 0.50;
-    sfSprite_setScale(value[6].sprite, value[6].scale);
-    value[7].scale.x = 0.50;
-    value[7].scale.y = 0.50;
-    sfSprite_setScale(value[7].sprite, value[7].scale);
+    value[GRASS].scale.x = 0.50;
+    value[GRASS].scale.y = 0.50;
+    sfSprite_setScale(value[GRASS].sprite, value[GRASS].scale);
+    value[SAND].scale.x = 0.50;
+    value[SAND].scale.y = 0.50;
+    sfSprite_setScale(value[SAND].sprite, value[SAND].scale);
+    value[WATHER].scale.x = 0.50;
+    value[WATHER].scale.y = 0.50;
+    sfSprite_setScale(value[WATHER].sprite, value[WATHER].scale);
+    value[DIRT].scale.x = 0.50;
+    value[DIRT].scale.y = 0.50;
+    sfSprite_setScale(value[DIRT].sprite, value[DIRT].scale);
 
     value[GHOST].scale.x = 2.50;
     value[GHOST].scale.y = 2.50;

@@ -15,6 +15,18 @@ main_screen *all_infos (void)
     return infos;
 }
 
+char **editor_create_map (int x, int y)
+{
+    char **map = malloc(sizeof(char *) * (y + 1));
+    for (int i = 0; i < y; i++) {
+        map[i] = malloc(sizeof(char) * (x + 1));
+        my_memset(map[i], x, 'g');
+        map[i][x] = '\0';
+    }
+    map[y] = NULL;
+    return map;
+}
+
 void creat_main (void)
 {
     infos = malloc(sizeof(main_screen));
@@ -29,5 +41,22 @@ void creat_main (void)
     infos->pos_player.y = 0;
     infos->zoom = 1;
     infos->move = '\0';
+    infos->clock = sfClock_create();
+    infos->clock_val = 0;
+    infos->clock_bool = true;
+    //text
+    infos->editor_text = sfText_create();
+    infos->font = sfFont_createFromFile("font/coolvetica_rg.ttf");
+    sfText_setFont(infos->editor_text, infos->font);
+    sfText_setColor(infos->editor_text, sfWhite);
+    sfText_setCharacterSize(infos->editor_text, 60);
+    // sfText_setString(infos->editor_text, "str");
+    // sfText_setPosition(infos->editor_text, (sfVector2f){50, 0});
+    // editor
+    infos->map_editor = NULL;
+    infos->value_to_print = 'w';
+    infos->size_edit.x = 30;
+    infos->size_edit.y = 30;
+    infos->is_writing = false;
     return;
 }
