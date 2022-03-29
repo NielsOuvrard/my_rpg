@@ -96,10 +96,10 @@ void move_pos_player(void)
 void change_scale(sfEvent event)
 {
     if (event.key.code == sfKeyA) {
-        sfView_zoom(all_infos()->view, 0.5);
+        sfView_zoom(all_infos()->view, 0.8);
     }
     if (event.key.code == sfKeyE) {
-        sfView_zoom(all_infos()->view, 2);
+        sfView_zoom(all_infos()->view, 1.2);
     }
 }
 

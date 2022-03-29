@@ -74,16 +74,14 @@ void disp_value_to_print_next(int type)
 
 void disp_value_to_print(void)
 {
-    if (all_infos()->value_to_print == 'g') {
+    if (all_infos()->value_to_print == 'g')
         disp_value_to_print_next(GRASS);
-    } else if (all_infos()->value_to_print == 's') {
+    if (all_infos()->value_to_print == 's')
         disp_value_to_print_next(SAND);
-    }
-    if (all_infos()->value_to_print == 'w') {
+    if (all_infos()->value_to_print == 'w')
         disp_value_to_print_next(WATHER);
-    } else if (all_infos()->value_to_print == 'd') {
+    if (all_infos()->value_to_print == 'd')
         disp_value_to_print_next(DIRT);
-    }
 }
 
 void level_map_editor_clock(sfEvent event)

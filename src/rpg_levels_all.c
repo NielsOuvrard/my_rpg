@@ -19,6 +19,15 @@ bool if_in_time (void)
     return false;
 }
 
+void animation (sfEvent event)
+{
+    bool anim = if_in_time();
+    if (anim && all_infos()->level == 1)
+        level_1_clock(event);
+    if (anim && all_infos()->level == MAP_EDITOR)
+        level_map_editor_clock(event);
+}
+
 void while_it_is_open (void)
 {
     sfEvent event;
@@ -27,14 +36,8 @@ void while_it_is_open (void)
     while (sfRenderWindow_isOpen(all_infos()->window)) {
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
         sfRenderWindow_clear(all_infos()->window, sfBlack);
-        bool anim = if_in_time();
         sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[0].sprite, NULL);
-        // anim
-        if (anim && all_infos()->level == 1)
-            level_1_clock(event);
-        if (anim && all_infos()->level == MAP_EDITOR)
-            level_map_editor_clock(event);
-        // else
+        animation(event);
         if (all_infos()->level == 0)
             level_0(event);
         if (all_infos()->level == 1)

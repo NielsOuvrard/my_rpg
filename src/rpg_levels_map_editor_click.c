@@ -45,35 +45,32 @@ void change_map_size(sfEvent event)
 
 void le_bon_click_editor (sfEvent event)
 {
-    if (event.type == sfEvtMouseButtonPressed) {
+    if (event.type == sfEvtMouseButtonPressed)
         if (event.mouseButton.button == sfMouseLeft)
             all_infos()->is_writing = true;
+    if (event.type == sfEvtMouseButtonReleased)
         if (event.mouseButton.button == sfMouseLeft)
             all_infos()->is_writing = false;
-    }
-    sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(
-        all_infos()->window);
+    sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(all_infos()->window);
     if (all_infos()->is_writing) {
-        int val_y = (pos_mouse.y / 50) -
-        round_sup(all_infos()->pos_player.y / 50);
-        int val_x = (pos_mouse.x / 50) -
-        round_sup(all_infos()->pos_player.x / 50);
-        if (all_infos()->map_editor && val_x >= 0 && val_y >= 0 &&
-        val_y < my_arraylen(all_infos()->map_editor) && val_x <
+        int y = (pos_mouse.y / 50) - round_sup(all_infos()->pos_player.y / 50);
+        int x = (pos_mouse.x / 50) - round_sup(all_infos()->pos_player.x / 50);
+        if (all_infos()->map_editor && x >= 0 && y >= 0 &&
+        y < my_arraylen(all_infos()->map_editor) && x <
         my_strlen(all_infos()->map_editor[0])) {
-            all_infos()->map_editor[val_y][val_x] =
-            all_infos()->value_to_print;
+            all_infos()->map_editor[y][x] = all_infos()->value_to_print;
         }
     }
 }
 
 void la_bonne_touche_editor (sfEvent event)
 {
-    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyEscape) {
+    if (!(event.type == sfEvtKeyPressed))
+        return;
+    if (event.key.code == sfKeyEscape)
         all_infos()->level = 0;
-    }
     change_tile_to_print(event);
-    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyN) {
+    if (event.key.code == sfKeyN) {
         if (all_infos()->map_editor)
             free_my_arr(all_infos()->map_editor);
         all_infos()->map_editor = editor_create_map(
