@@ -100,13 +100,6 @@ void disp_map_editor(void)
             disp_map_editor_next(all_infos()->map_editor, i, j);
 }
 
-void disp_value_to_print_next(int type)
-{
-    sfSprite_setPosition(all_sprites()[type].sprite, (sfVector2f){0, 0});
-    sfRenderWindow_drawSprite(all_infos()->window,
-    all_sprites()[type].sprite, NULL);
-}
-
 void disp_value_to_print(void)
 {
     // sfSprite_setScale(all_sprites()[SPRITE_SHEET].sprite, (sfVector2f){2, 2});
@@ -114,14 +107,6 @@ void disp_value_to_print(void)
     sfSprite_setPosition(all_sprites()[SPRITE_SHEET].sprite, (sfVector2f){0, 0});
     sfRenderWindow_drawSprite(all_infos()->window,
     all_sprites()[SPRITE_SHEET].sprite, NULL);
-    // if (all_infos()->value_to_print == 'g')
-    //     disp_value_to_print_next(GRASS);
-    // if (all_infos()->value_to_print == 's')
-    //     disp_value_to_print_next(SAND);
-    // if (all_infos()->value_to_print == 'w')
-    //     disp_value_to_print_next(WATHER);
-    // if (all_infos()->value_to_print == 'd')
-    //     disp_value_to_print_next(DIRT);
 }
 
 void level_map_editor_clock(sfEvent event)

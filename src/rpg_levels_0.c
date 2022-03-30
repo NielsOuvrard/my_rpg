@@ -30,9 +30,11 @@ void event_level_0 (sfEvent event)
         if (event.type == sfEvtKeyPressed) {
             if (event.key.code == sfKeySpace) {
                 all_infos()->level = 1;
-                my_printf("%d\n", all_infos()->clock_val);
             }
             if (event.key.code == sfKeyE) {
+                sfView_setCenter(all_infos()->view, (sfVector2f) {960, 540});
+                sfView_setSize(all_infos()->view, (sfVector2f) {1920, 1080});
+                sfRenderWindow_setView(all_infos()->window, all_infos()->view);
                 all_infos()->level = MAP_EDITOR;
             }
         }

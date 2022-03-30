@@ -1,8 +1,4 @@
-pictures/bg.png
+pictures/Characters/Hunter/Hunter.png
 pictures/SpriteSheet.png
 pictures/perso/famtom.png
 pictures/perso/space_sprite.png
-pictures/tiles/sand1.jpg
-pictures/tiles/tile1.png
-pictures/tiles/tile2.png
-pictures/tiles/tile3.png

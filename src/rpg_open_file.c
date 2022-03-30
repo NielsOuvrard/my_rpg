@@ -36,7 +36,7 @@ char **filepath_to_arr (char *filepath)
             a++;
     char **map = malloc(sizeof(char *) * (a + 2));
     for (i = 0; a > i; i++) {
-        map[i] = malloc(sizeof(char) * (offset / a + 2));
+        map[i] = malloc(sizeof(char) * (offset));
         for (k = 0; buff[j] != '\n'; k++)
             map[i][k] = buff[j++];
         j++;

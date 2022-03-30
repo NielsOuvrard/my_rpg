@@ -51,22 +51,22 @@ void le_bon_click_editor (sfEvent event)
     if (event.type == sfEvtMouseButtonReleased)
         if (event.mouseButton.button == sfMouseLeft)
             all_infos()->is_writing = false;
+    if (!all_infos()->is_writing)
+        return;
     sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(all_infos()->window);
-    if (all_infos()->is_writing) {
-        if (pos_mouse.x <= 300 && pos_mouse.y < 250) {
-            all_infos()->value_to_print = '0';
-            all_infos()->value_to_print += (pos_mouse.y / 50) * 6;
-            all_infos()->value_to_print += (pos_mouse.x / 50);
-            return;
-        }
-        int y = (pos_mouse.y / 50) - round_sup(all_infos()->pos_player.y / 50);
-        int x = (pos_mouse.x / 50) - round_sup(all_infos()->pos_player.x / 50);
-        if (all_infos()->map_editor && x >= 0 && y >= 0 &&
-        y < my_arraylen(all_infos()->map_editor) &&
-        x < my_strlen(all_infos()->map_editor[0])) {
-            all_infos()->map_editor[y][x] = all_infos()->value_to_print;
-            return;
-        }
+    if (pos_mouse.x <= 300 && pos_mouse.y < 250) {
+        all_infos()->value_to_print = '0';
+        all_infos()->value_to_print += (pos_mouse.y / 50) * 6;
+        all_infos()->value_to_print += (pos_mouse.x / 50);
+        return;
+    }
+    int y = (pos_mouse.y / 50) - round_sup(all_infos()->pos_player.y / 50);
+    int x = (pos_mouse.x / 50) - round_sup(all_infos()->pos_player.x / 50);
+    if (all_infos()->map_editor && x >= 0 && y >= 0 &&
+    y < my_arraylen(all_infos()->map_editor) &&
+    x < my_strlen(all_infos()->map_editor[0])) {
+        all_infos()->map_editor[y][x] = all_infos()->value_to_print;
+        return;
     }
 }
 

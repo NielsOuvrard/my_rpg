@@ -12,35 +12,36 @@ static sprite_pictures *value;
 
 void full_list_sprites_next (void)
 {
-    value[GRASS].scale.x = 0.50;
-    value[GRASS].scale.y = 0.50;
-    sfSprite_setScale(value[GRASS].sprite, value[GRASS].scale);
-    value[SAND].scale.x = 0.50;
-    value[SAND].scale.y = 0.50;
-    sfSprite_setScale(value[SAND].sprite, value[SAND].scale);
-    value[WATHER].scale.x = 0.50;
-    value[WATHER].scale.y = 0.50;
-    sfSprite_setScale(value[WATHER].sprite, value[WATHER].scale);
-    value[DIRT].scale.x = 0.50;
-    value[DIRT].scale.y = 0.50;
-    sfSprite_setScale(value[DIRT].sprite, value[DIRT].scale);
 
     value[SPRITE_SHEET].rect.height = 16;
     value[SPRITE_SHEET].rect.width = 16;
     value[SPRITE_SHEET].rect.top = 16;  // 0
     value[SPRITE_SHEET].rect.left = 16; // 0
     sfSprite_setTextureRect(value[SPRITE_SHEET].sprite, value[SPRITE_SHEET].rect);
-    value[SPRITE_SHEET].anim = false;
+    value[SPRITE_SHEET].anim = '\0';
     value[SPRITE_SHEET].scale.x = 3.125;
     value[SPRITE_SHEET].scale.y = 3.125;
     sfSprite_setScale(value[SPRITE_SHEET].sprite, value[SPRITE_SHEET].scale);
+
+    value[HUNTER].anim = 'a';
+    value[HUNTER].scale.x = 3;
+    value[HUNTER].scale.y = 3;
+    sfSprite_setScale(value[HUNTER].sprite, value[HUNTER].scale);
+    value[HUNTER].pos.y = 1080 / 2;
+    value[HUNTER].pos.x = 1920 / 2;
+    sfSprite_setPosition(value[HUNTER].sprite, value[HUNTER].pos);
+    value[HUNTER].rect.height = 16;
+    value[HUNTER].rect.width = 16;
+    value[HUNTER].rect.top = 16;
+    value[HUNTER].rect.left = 16;
+    sfSprite_setTextureRect(value[HUNTER].sprite, value[HUNTER].rect);
 
     value[GHOST].scale.x = 2.50;
     value[GHOST].scale.y = 2.50;
     sfSprite_setScale(value[GHOST].sprite, value[GHOST].scale);
     value[GHOST].pos.y = 1080 / 2;
     value[GHOST].pos.x = 1920 / 2;
-    value[GHOST].anim = false;
+    value[GHOST].anim = '\0';
     sfSprite_setPosition(value[GHOST].sprite, value[GHOST].pos);
     value[GHOST].rect.top = (16 * random_int(0, 3));
     value[GHOST].rect.left = 0;

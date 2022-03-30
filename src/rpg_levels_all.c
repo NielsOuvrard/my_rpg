@@ -52,9 +52,7 @@ void while_it_is_open (void)
 
 int all_levels_game (void)
 {
-    // srand(time(NULL));
     full_list_sprites();
-    // full_time();
     creat_main();
     // game
     while_it_is_open();

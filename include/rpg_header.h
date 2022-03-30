@@ -21,16 +21,11 @@
 #include <SFML/GPUPreference.h>
 #include <SFML/OpenGL.h>
 
-#define GRASS 5
 #define GHOST 2
 #define MAP_EDITOR 2
 
+#define HUNTER 0
 #define SPRITE_SHEET 1
-
-#define GRASS 5
-#define SAND 4
-#define WATHER 6
-#define DIRT 7
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -42,7 +37,7 @@ typedef struct sprite_pictures {
     sfVector2f pos;
     sfVector2i origin;
     sfIntRect rect;
-    bool anim;
+    char anim;
 } sprite_pictures;
 
 typedef struct main_screen {

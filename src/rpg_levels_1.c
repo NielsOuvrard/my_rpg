@@ -8,23 +8,91 @@
 #include "my.h"
 #include "rpg_header.h"
 
+void anim_hunter_left_right (void)
+{
+    // my_printf("anim : %c\n", all_sprites()[HUNTER].anim);
+    if (all_sprites()[HUNTER].anim >= 'a' && all_sprites()[HUNTER].anim <= 'f') {
+        if (all_sprites()[HUNTER].anim >= 'f') {
+            all_sprites()[HUNTER].rect.left = 4 * 16;
+            all_sprites()[HUNTER].anim = 'E';
+            return;
+        }
+        all_sprites()[HUNTER].anim++;
+        all_sprites()[HUNTER].rect.left += 16;
+        return;
+    }
+    if (all_sprites()[HUNTER].anim <= 'A') {
+        all_sprites()[HUNTER].anim = 'b';
+        all_sprites()[HUNTER].rect.left = 16;
+        return;
+    }
+    all_sprites()[HUNTER].rect.left -= 16;
+    all_sprites()[HUNTER].anim--;
+}
+
+void anim_hunter (void)
+{
+    if (all_sprites()[HUNTER].rect.top > 3 * 16) {
+        my_printf("Shoot");
+        return;
+    }
+    if (all_sprites()[HUNTER].rect.top > 16) {
+        anim_hunter_left_right();
+        return;
+    }
+    if (all_sprites()[HUNTER].anim >= 'a' && all_sprites()[HUNTER].anim <= 'c') {
+        if (all_sprites()[HUNTER].anim == 'b') {
+            all_sprites()[HUNTER].anim = 'A';
+            all_sprites()[HUNTER].rect.left = 0;
+            return;
+        }
+        all_sprites()[HUNTER].anim = 'b';
+        all_sprites()[HUNTER].rect.left += 16;
+        return;
+    }
+    if (all_sprites()[HUNTER].anim >= 'A' && all_sprites()[HUNTER].anim <= 'C') {
+        if (all_sprites()[HUNTER].anim == 'C') {
+            all_sprites()[HUNTER].anim = 'a';
+            all_sprites()[HUNTER].rect.left = 0;
+            return;
+        }
+        all_sprites()[HUNTER].anim = 'C';
+        all_sprites()[HUNTER].rect.left += 16 * 2;
+        return;
+    }
+    all_sprites()[HUNTER].anim = 'a';
+}
+
 void anim_perso(void)
 {
-    if (all_sprites()[GHOST].anim) {
-        all_sprites()[GHOST].rect.left -= 16;
-        all_sprites()[GHOST].anim = false;
-        all_sprites()[SPRITE_SHEET].anim = false;
-    } else {
-        all_sprites()[SPRITE_SHEET].anim = true;
-        all_sprites()[GHOST].rect.left += 16;
-        all_sprites()[GHOST].anim = true;
+    if (all_sprites()[SPRITE_SHEET].anim)
+        all_sprites()[SPRITE_SHEET].anim = '\0';
+    else
+        all_sprites()[SPRITE_SHEET].anim = 'a';
+    if (!all_infos()->move)
+        return;
+    anim_hunter();
+    sfSprite_setTextureRect(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].rect);
+}
+
+void idle_perso(void)
+{
+    if (all_sprites()[HUNTER].rect.top > 16) {
+        all_sprites()[HUNTER].anim = 'f';
+        all_sprites()[HUNTER].rect.left = 5 * 16;
+        sfSprite_setTextureRect(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].rect);
+        return;
     }
-    sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
+    all_sprites()[HUNTER].rect.left = 0;
+    all_sprites()[HUNTER].anim = 'a';
+    sfSprite_setTextureRect(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].rect);
+    return;
 }
 
 void modify_var_move(sfEvent event)
 {
     if (event.type == sfEvtKeyPressed) {
+        char a = all_infos()->move;
         if (event.key.code == sfKeyUp)
             all_infos()->move = 'u';
         if (event.key.code == sfKeyLeft)
@@ -33,54 +101,48 @@ void modify_var_move(sfEvent event)
             all_infos()->move = 'd';
         if (event.key.code == sfKeyRight)
             all_infos()->move = 'r';
+        if (a != all_infos()->move) {
+            all_sprites()[HUNTER].anim = 'A';
+            all_sprites()[HUNTER].rect.left = 0;
+            change_look_ghost();
+            anim_hunter();
+            sfSprite_setTextureRect(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].rect);
+        }
     }
     if (event.type == sfEvtKeyReleased && !sfKeyboard_isKeyPressed(sfKeyLeft)
     && !sfKeyboard_isKeyPressed(sfKeyRight) && !sfKeyboard_isKeyPressed(sfKeyUp)
-    && !sfKeyboard_isKeyPressed(sfKeyDown))
+    && !sfKeyboard_isKeyPressed(sfKeyDown)) {
+        idle_perso();
         all_infos()->move = '\0';
+    }
 }
 
 void change_look_ghost(void)
 {
-    all_infos()->pos_player = sfSprite_getPosition(all_sprites()[GHOST].sprite);
+    // ? all_infos()->pos_player = sfSprite_getPosition(all_sprites()[HUNTER].sprite);
+    all_infos()->pos_player = all_sprites()[HUNTER].pos;
     if (all_infos()->move == 'u') {
-        if (!all_sprites()[GHOST].anim)
-            all_sprites()[GHOST].rect.left = 4 * 16;
-        else
-            all_sprites()[GHOST].rect.left = 5 * 16;
-        sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
-        all_infos()->pos_player.y -= 10;
+        all_sprites()[HUNTER].rect.top = 0;
+        all_sprites()[HUNTER].pos.y -= 10;
         sfView_move(all_infos()->view, (sfVector2f) {0, -10});
     }
     if (all_infos()->move == 'l') {
-        if (!all_sprites()[GHOST].anim)
-            all_sprites()[GHOST].rect.left = 2 * 16;
-        else
-            all_sprites()[GHOST].rect.left = 3 * 16;
-        sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
-        all_infos()->pos_player.x -= 10;
+        all_sprites()[HUNTER].rect.top = 2 * 16;
+        all_sprites()[HUNTER].pos.x -= 10;
         sfView_move(all_infos()->view, (sfVector2f) {-10, 0});
     }
     if (all_infos()->move == 'd') {
-        if (!all_sprites()[GHOST].anim)
-            all_sprites()[GHOST].rect.left = 6 * 16;
-        else
-            all_sprites()[GHOST].rect.left = 7 * 16;
-        sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
-        all_infos()->pos_player.y += 10;
+        all_sprites()[HUNTER].rect.top = 16;
+        all_sprites()[HUNTER].pos.y += 10;
         sfView_move(all_infos()->view, (sfVector2f) {0, 10});
     }
     if (all_infos()->move == 'r') {
-        if (!all_sprites()[GHOST].anim)
-            all_sprites()[GHOST].rect.left = 0;
-        else
-            all_sprites()[GHOST].rect.left = 16;
-        sfSprite_setTextureRect(all_sprites()[GHOST].sprite, all_sprites()[GHOST].rect);
-        all_infos()->pos_player.x += 10;
+        all_sprites()[HUNTER].rect.top = 3 * 16;
+        all_sprites()[HUNTER].pos.x += 10;
         sfView_move(all_infos()->view, (sfVector2f) {10, 0});
     }
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
-    sfSprite_setPosition(all_sprites()[GHOST].sprite, all_infos()->pos_player);
+    sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
 }
 
 void move_pos_player(void)
@@ -113,8 +175,10 @@ void event_level_1(sfEvent event)
             return;
         }
         if (event.type == sfEvtKeyPressed) {
-            if (event.key.code == sfKeySpace)
+            if (event.key.code == sfKeyEscape)
                 all_infos()->level = 0;
+            // if (event.key.code == sfKeySpace)
+            //     all_infos()->shoot = 1;
             change_scale(event);
         }
         modify_var_move(event);
@@ -123,7 +187,7 @@ void event_level_1(sfEvent event)
 }
 void level_1_clock(sfEvent event)
 {
-    if (!(all_infos()->clock_val % 50))
+    if (!(all_infos()->clock_val % 10))
         anim_perso();
     if (all_infos()->move && !(all_infos()->clock_val % 2)) {
         move_pos_player();
@@ -133,17 +197,11 @@ void level_1_clock(sfEvent event)
 
 void level_1(sfEvent event)
 {
-    // sfVector2f center = {1000, 1000};
-    // sfVector2f half_size = {400, 300};
-    // sfView view1 = {center, half_size};
-
-    // sfRenderWindow_setView(all_infos()->window, view1);
     event_level_1(event);
     if (all_infos()->quit_main == 1)
         return;
-
     disp_map(all_infos()->map);
-    sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[GHOST].sprite, NULL);
-    // sfRenderWindow_drawSprite(all_infos()->window, all_infos()->sprite_difficulty, NULL);
+    // sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[GHOST].sprite, NULL);
+    sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[HUNTER].sprite, NULL);
     return;
 }
