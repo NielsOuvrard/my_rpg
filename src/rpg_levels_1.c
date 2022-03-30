@@ -22,10 +22,44 @@ void idle_perso(void)
     return;
 }
 
+void move_to_salle_une (void)
+{
+    all_sprites()[HUNTER].pos.y = 50 * 8;
+    all_sprites()[HUNTER].pos.x = 50 * 5;
+    sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
+    all_infos()->map_actual = 0;
+    sfView_setCenter(all_infos()->view, (sfVector2f) {(50 * 5) + 25, 50 * 8});
+    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
+}
+
+void move_to_exterieure_une (void)
+{
+    all_sprites()[HUNTER].pos.y = 50 * 4;
+    all_sprites()[HUNTER].pos.x = 50 * 10;
+    sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
+    all_infos()->map_actual = 1;
+    sfView_setCenter(all_infos()->view, (sfVector2f) {(50 * 10) + 25, 50 * 4});
+    // + 25 car origin du perso pas contré
+    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
+}
+
+void change_map (sfEvent event)
+{
+    if (event.key.code == sfKeyX) {
+        move_to_salle_une();
+    }
+    if (event.key.code == sfKeyW) {
+        move_to_exterieure_une();
+    }
+}
+
 void modify_var_move(sfEvent event)
 {
     if (event.type == sfEvtKeyPressed) {
         char a = all_infos()->move;
+        if (event.key.code == sfKeyB)
+            all_sprites()[BANANA].anim = 'a';
+        change_map(event);
         if (event.key.code == sfKeyUp)
             all_infos()->move = 'u';
         if (event.key.code == sfKeyLeft)
@@ -84,9 +118,13 @@ void level_1(sfEvent event)
     event_level_1(event);
     if (all_infos()->quit_main == 1)
         return;
-    disp_map(all_infos()->map);
+    disp_map(all_maps()[all_infos()->map_actual].bg);
+    disp_map(all_maps()[all_infos()->map_actual].mg);
     sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[HUNTER].sprite, NULL);
     sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[NINJA].sprite, NULL);
     sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[DEMON].sprite, NULL);
+    disp_map(all_maps()[all_infos()->map_actual].fg);
+    if (all_sprites()[BANANA].anim)
+        sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[BANANA].sprite, NULL);
     return;
 }

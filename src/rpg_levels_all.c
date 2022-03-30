@@ -32,7 +32,7 @@ void while_it_is_open (void)
 {
     sfEvent event;
     // sfMusic_play(my_main.music);
-    sfRenderWindow_setFramerateLimit(all_infos()->window, 60);
+    sfRenderWindow_setFramerateLimit(all_infos()->window, 120);
     while (sfRenderWindow_isOpen(all_infos()->window)) {
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
         sfRenderWindow_clear(all_infos()->window, sfBlack);
@@ -50,14 +50,26 @@ void while_it_is_open (void)
     }
 }
 
+void free_map (int i)
+{
+    free_my_arr(all_maps()[i].bg);
+    free_my_arr(all_maps()[i].mg);
+    free_my_arr(all_maps()[i].fg);
+}
+
 int all_levels_game (void)
 {
     full_list_sprites();
     creat_main();
+    creat_editor();
+    full_list_maps();
     // game
     while_it_is_open();
-    free_my_arr(all_infos()->map);
+    // free_my_arr(all_infos()->map);
     free(all_infos());
+    free_map(0);
+    free_map(1);
+    free(all_maps());
     // free here
     return 0;
 }

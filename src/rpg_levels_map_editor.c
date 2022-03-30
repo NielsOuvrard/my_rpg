@@ -8,6 +8,24 @@
 #include "my.h"
 #include "rpg_header.h"
 
+void modify_var_move_editor(sfEvent event)
+{
+    if (event.type == sfEvtKeyPressed) {
+        if (event.key.code == sfKeyUp)
+            all_infos()->move = 'u';
+        if (event.key.code == sfKeyLeft)
+            all_infos()->move = 'l';
+        if (event.key.code == sfKeyDown)
+            all_infos()->move = 'd';
+        if (event.key.code == sfKeyRight)
+            all_infos()->move = 'r';
+    }
+    if (event.type == sfEvtKeyReleased && !sfKeyboard_isKeyPressed(sfKeyLeft)
+    && !sfKeyboard_isKeyPressed(sfKeyRight) && !sfKeyboard_isKeyPressed(sfKeyUp)
+    && !sfKeyboard_isKeyPressed(sfKeyDown))
+        all_infos()->move = '\0';
+}
+
 void level_map_editor_event(sfEvent event)
 {
     while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
@@ -15,15 +33,15 @@ void level_map_editor_event(sfEvent event)
             all_infos()->quit_main = 1;
             return;
         }
-        if (sfKeyboard_isKeyPressed(sfKeyP) && all_infos()->map_editor) {
-            my_show_word_array(all_infos()->map_editor);
-            free_my_arr(all_infos()->map_editor);
-            all_infos()->map_editor = NULL;
+        if (sfKeyboard_isKeyPressed(sfKeyP) && all_editor()->map_editor) {
+            my_show_word_array(all_editor()->map_editor);
+            free_my_arr(all_editor()->map_editor);
+            all_editor()->map_editor = NULL;
         }
         la_bonne_touche_editor(event);
         le_bon_click_editor(event);
-        if (all_infos()->map_editor)
-            modify_var_move(event);
+        if (all_editor()->map_editor)
+            modify_var_move_editor(event);
         else
             change_map_size(event);
     }
@@ -49,7 +67,7 @@ void disp_tile_sprite_seet_e(int i, int j, int top, int left)
 
 void disp_map_editor_next(char **map, int i, int j)
 {
-    if (!(map[i][j] >= '0' && map[i][j] <= '0' + 30))
+    if (!(map[i][j] >= '0' && map[i][j] <= '0' + 35))
         return;
     int x = map[i][j] - '0';
     x *= 16;
@@ -63,15 +81,15 @@ void disp_map_editor_next(char **map, int i, int j)
 
 void disp_map_editor(void)
 {
-    for (int i = 0; all_infos()->map_editor[i]; i++)
-        for (int j = 0; all_infos()->map_editor[i][j]; j++)
-            disp_map_editor_next(all_infos()->map_editor, i, j);
+    for (int i = 0; all_editor()->map_editor[i]; i++)
+        for (int j = 0; all_editor()->map_editor[i][j]; j++)
+            disp_map_editor_next(all_editor()->map_editor, i, j);
 }
 
 void disp_value_to_print(void)
 {
     // sfSprite_setScale(all_sprites()[SPRITE_SHEET].sprite, (sfVector2f){2, 2});
-    sfSprite_setTextureRect(all_sprites()[SPRITE_SHEET].sprite, (sfIntRect){0, 0, 96, 80});
+    sfSprite_setTextureRect(all_sprites()[SPRITE_SHEET].sprite, (sfIntRect){0, 0, 96, 96});
     sfSprite_setPosition(all_sprites()[SPRITE_SHEET].sprite, (sfVector2f){0, 0});
     sfRenderWindow_drawSprite(all_infos()->window,
     all_sprites()[SPRITE_SHEET].sprite, NULL);
@@ -87,7 +105,7 @@ void level_map_editor_clock(sfEvent event)
 void level_map_editor(sfEvent event)
 {
     level_map_editor_event(event);
-    if (all_infos()->map_editor)
+    if (all_editor()->map_editor)
         disp_map_editor();
     disp_value_to_print();
 }

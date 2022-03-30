@@ -38,7 +38,12 @@ void full_list_sprites_next (void)
     value[SPRITE_SHEET].scale.y = 3.125;
     sfSprite_setScale(value[SPRITE_SHEET].sprite, value[SPRITE_SHEET].scale);
 
-    full_perso(HUNTER, 1920 / 2, 1080 / 2);
+    value[BANANA].anim = '\0';
+    value[BANANA].scale.x = 10;
+    value[BANANA].scale.y = 10;
+    sfSprite_setScale(value[BANANA].sprite, value[BANANA].scale);
+
+    full_perso(HUNTER, 1920 / 3, 1080 / 2);
     full_perso(DEMON, 500, 240);
     full_perso(NINJA, 700, 1000);
 }

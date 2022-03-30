@@ -20,26 +20,26 @@ int round_sup (float a)
 void change_tile_to_print(sfEvent event)
 {
     if (event.key.code == sfKeyNum1)
-        all_infos()->value_to_print = 'g';
+        all_editor()->value_to_print = 'g';
     if (event.key.code == sfKeyNum2)
-        all_infos()->value_to_print = 'd';
+        all_editor()->value_to_print = 'd';
     if (event.key.code == sfKeyNum3)
-        all_infos()->value_to_print = 'w';
+        all_editor()->value_to_print = 'w';
     if (event.key.code == sfKeyNum4)
-        all_infos()->value_to_print = 's';
+        all_editor()->value_to_print = 's';
 }
 
 void change_map_size(sfEvent event)
 {
     if (event.type == sfEvtKeyPressed) {
         if (event.key.code == sfKeyUp)
-            all_infos()->size_edit.y--;
+            all_editor()->size_edit.y--;
         if (event.key.code == sfKeyLeft)
-            all_infos()->size_edit.x--;
+            all_editor()->size_edit.x--;
         if (event.key.code == sfKeyDown)
-            all_infos()->size_edit.y++;
+            all_editor()->size_edit.y++;
         if (event.key.code == sfKeyRight)
-            all_infos()->size_edit.x++;
+            all_editor()->size_edit.x++;
     }
 }
 
@@ -47,25 +47,25 @@ void le_bon_click_editor (sfEvent event)
 {
     if (event.type == sfEvtMouseButtonPressed)
         if (event.mouseButton.button == sfMouseLeft)
-            all_infos()->is_writing = true;
+            all_editor()->is_writing = true;
     if (event.type == sfEvtMouseButtonReleased)
         if (event.mouseButton.button == sfMouseLeft)
-            all_infos()->is_writing = false;
-    if (!all_infos()->is_writing)
+            all_editor()->is_writing = false;
+    if (!all_editor()->is_writing)
         return;
     sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(all_infos()->window);
-    if (pos_mouse.x <= 300 && pos_mouse.y < 250) {
-        all_infos()->value_to_print = '0';
-        all_infos()->value_to_print += (pos_mouse.y / 50) * 6;
-        all_infos()->value_to_print += (pos_mouse.x / 50);
+    if (pos_mouse.x <= 300 && pos_mouse.y < 300) {
+        all_editor()->value_to_print = '0';
+        all_editor()->value_to_print += (pos_mouse.y / 50) * 6;
+        all_editor()->value_to_print += (pos_mouse.x / 50);
         return;
     }
     int y = (pos_mouse.y / 50) - round_sup(all_infos()->pos_player.y / 50);
     int x = (pos_mouse.x / 50) - round_sup(all_infos()->pos_player.x / 50);
-    if (all_infos()->map_editor && x >= 0 && y >= 0 &&
-    y < my_arraylen(all_infos()->map_editor) &&
-    x < my_strlen(all_infos()->map_editor[0])) {
-        all_infos()->map_editor[y][x] = all_infos()->value_to_print;
+    if (all_editor()->map_editor && x >= 0 && y >= 0 &&
+    y < my_arraylen(all_editor()->map_editor) &&
+    x < my_strlen(all_editor()->map_editor[0])) {
+        all_editor()->map_editor[y][x] = all_editor()->value_to_print;
         return;
     }
 }
@@ -78,9 +78,9 @@ void la_bonne_touche_editor (sfEvent event)
         all_infos()->level = 0;
     change_tile_to_print(event);
     if (event.key.code == sfKeyN) {
-        if (all_infos()->map_editor)
-            free_my_arr(all_infos()->map_editor);
-        all_infos()->map_editor = editor_create_map(
-        all_infos()->size_edit.x, all_infos()->size_edit.y);
+        if (all_editor()->map_editor)
+            free_my_arr(all_editor()->map_editor);
+        all_editor()->map_editor = editor_create_map(
+        all_editor()->size_edit.x, all_editor()->size_edit.y);
     }
 }

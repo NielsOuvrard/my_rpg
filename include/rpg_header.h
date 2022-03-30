@@ -24,9 +24,10 @@
 #define MAP_EDITOR 2
 
 #define HUNTER 0
-#define NINJA 2
-#define DEMON 4
 #define SPRITE_SHEET 1
+#define NINJA 2
+#define BANANA 3
+#define DEMON 4
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -41,6 +42,27 @@ typedef struct sprite_pictures {
     char anim;
 } sprite_pictures;
 
+typedef struct struct_maps {
+    char **bg;
+    char **mg;
+    char **fg;
+    // linked list ennemis ?
+    // infos items ? in chest
+    // lieu de spawn
+    // interaction portes / items
+} struct_maps;
+
+typedef struct editor_screen {
+    // edito
+    sfVector2u size_edit;
+    bool is_writing;
+    char **map_editor;
+    char value_to_print;
+    // text
+    sfText *editor_text;
+    sfFont *font;
+} editor_screen;
+
 typedef struct main_screen {
     // score
     int score;
@@ -53,13 +75,8 @@ typedef struct main_screen {
     int clock_val;
     bool clock_bool;
 
-    // edito
-    sfVector2u size_edit;
-    bool is_writing;
-    char **map_editor;
-    char value_to_print;
 
-    char **map;
+    int map_actual;
     sfVector2f pos_player;
     char move;
     float zoom;
@@ -74,10 +91,17 @@ typedef struct main_screen {
     sfSoundBuffer *hurt_sound_buffer;
     sfSound *hurt_sound;
 
-    // text
-    sfText *editor_text;
-    sfFont *font;
 } main_screen;
+
+// create editor
+
+editor_screen *all_editor (void);
+
+char **editor_create_map (int x, int y);
+
+void initialize_editor_vals(void);
+
+void creat_editor (void);
 
 // create main
 
@@ -86,6 +110,18 @@ char **editor_create_map (int x, int y);
 main_screen *all_infos (void);
 
 void creat_main (void);
+
+// create maps
+
+void full_list_maps(void);
+
+struct_maps *all_maps(void);
+
+// create sprite
+
+void full_list_sprites (void);
+
+sprite_pictures *all_sprites (void);
 
 // level 0
 
@@ -102,6 +138,10 @@ void anim_hunter (void);
 void change_look_ghost(void);
 
 // level 1
+
+void move_to_salle_une (void);
+
+void move_to_exterieure_une (void);
 
 void change_look_ghost(void);
 
@@ -132,12 +172,6 @@ void la_bonne_touche_editor (sfEvent event);
 void level_map_editor_clock(sfEvent event);
 
 void level_map_editor (sfEvent event);
-
-// create sprite
-
-void full_list_sprites (void);
-
-sprite_pictures *all_sprites (void);
 
 // all
 

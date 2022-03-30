@@ -8,24 +8,22 @@
 #include "my.h"
 #include "rpg_header.h"
 
-
 void disp_tile_sprite_sheet(int i, int j, int top, int left)
 {
-    int type = SPRITE_SHEET;
-    all_sprites()[type].rect.top = top;
-    all_sprites()[type].rect.left = left;
-    sfSprite_setTextureRect(all_sprites()[type].sprite, all_sprites()[type].rect);
+    int s = SPRITE_SHEET;
+    all_sprites()[s].rect.top = top;
+    all_sprites()[s].rect.left = left;
+    sfSprite_setTextureRect(all_sprites()[s].sprite, all_sprites()[s].rect);
 
-    all_sprites()[type].pos.x = (all_sprites()[type].scale.x * 16) * all_infos()->zoom * j;
-    all_sprites()[type].pos.y = (all_sprites()[type].scale.x * 16) * all_infos()->zoom * i;
-    sfSprite_setPosition(all_sprites()[type].sprite, all_sprites()[type].pos);
-    sfRenderWindow_drawSprite(all_infos()->window,
-    all_sprites()[type].sprite, NULL);
+    all_sprites()[s].pos.x = (all_sprites()[s].scale.x * 16) * j;
+    all_sprites()[s].pos.y = (all_sprites()[s].scale.y * 16) * i;
+    sfSprite_setPosition(all_sprites()[s].sprite, all_sprites()[s].pos);
+    sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[s].sprite, NULL);
 }
 
 void disp_map_next(char **map, int i, int j)
 {
-    if (!(map[i][j] >= '0' && map[i][j] <= '0' + 30))
+    if (!(map[i][j] >= '0' && map[i][j] <= '0' + 35))
         return;
     int x = map[i][j] - '0';
     x *= 16;

@@ -103,6 +103,13 @@ void change_look_ghost(void)
         all_sprites()[HUNTER].pos.x += 10;
         sfView_move(all_infos()->view, (sfVector2f) {10, 0});
     }
+    // - 25 pour origin du perso
+    if (all_sprites()[HUNTER].pos.x >= (50 * 10) - 25 && all_sprites()[HUNTER].pos.x <= 50 * 11 &&
+    all_sprites()[HUNTER].pos.y >= 50 * 2 && all_sprites()[HUNTER].pos.y <= 50 * 3 && all_infos()->map_actual == 1)
+        move_to_salle_une();
+    if (all_sprites()[HUNTER].pos.x >= (50 * 5) - 25 && all_sprites()[HUNTER].pos.x <= 50 * 6 &&
+    all_sprites()[HUNTER].pos.y >= 50 * 9 && all_sprites()[HUNTER].pos.y <= 50 * 10 && all_infos()->map_actual == 0)
+        move_to_exterieure_une();
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
     sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
 }
