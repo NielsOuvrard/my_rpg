@@ -20,7 +20,7 @@ char **editor_create_map (int x, int y)
     char **map = malloc(sizeof(char *) * (y + 1));
     for (int i = 0; i < y; i++) {
         map[i] = malloc(sizeof(char) * (x + 1));
-        my_memset(map[i], x, 'g');
+        my_memset(map[i], x, all_infos()->value_to_print);
         map[i][x] = '\0';
     }
     map[y] = NULL;
@@ -32,6 +32,12 @@ void initialize_main_vals(void)
     sfView_setCenter(infos->view, (sfVector2f) {960, 540});
     sfView_setSize(infos->view, (sfVector2f) {1920, 1080});
     sfRenderWindow_setView(infos->window, infos->view);
+
+    sfText_setFont(infos->editor_text, infos->font);
+    sfText_setColor(infos->editor_text, sfWhite);
+    sfText_setCharacterSize(infos->editor_text, 60);
+    // sfText_setString(infos->editor_text, "str");
+    // sfText_setPosition(infos->editor_text, (sfVector2f){50, 0});
 }
 
 void creat_main (void)
@@ -54,11 +60,6 @@ void creat_main (void)
     //text
     infos->editor_text = sfText_create();
     infos->font = sfFont_createFromFile("font/coolvetica_rg.ttf");
-    sfText_setFont(infos->editor_text, infos->font);
-    sfText_setColor(infos->editor_text, sfWhite);
-    sfText_setCharacterSize(infos->editor_text, 60);
-    // sfText_setString(infos->editor_text, "str");
-    // sfText_setPosition(infos->editor_text, (sfVector2f){50, 0});
     // editor
     infos->map_editor = NULL;
     infos->value_to_print = 'w';

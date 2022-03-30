@@ -25,6 +25,16 @@ void full_list_sprites_next (void)
     value[DIRT].scale.y = 0.50;
     sfSprite_setScale(value[DIRT].sprite, value[DIRT].scale);
 
+    value[SPRITE_SHEET].rect.height = 16;
+    value[SPRITE_SHEET].rect.width = 16;
+    value[SPRITE_SHEET].rect.top = 16;  // 0
+    value[SPRITE_SHEET].rect.left = 16; // 0
+    sfSprite_setTextureRect(value[SPRITE_SHEET].sprite, value[SPRITE_SHEET].rect);
+    value[SPRITE_SHEET].anim = false;
+    value[SPRITE_SHEET].scale.x = 3.125;
+    value[SPRITE_SHEET].scale.y = 3.125;
+    sfSprite_setScale(value[SPRITE_SHEET].sprite, value[SPRITE_SHEET].scale);
+
     value[GHOST].scale.x = 2.50;
     value[GHOST].scale.y = 2.50;
     sfSprite_setScale(value[GHOST].sprite, value[GHOST].scale);

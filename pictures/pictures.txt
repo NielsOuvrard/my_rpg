@@ -1,5 +1,5 @@
 pictures/bg.png
-pictures/menu.png
+pictures/SpriteSheet.png
 pictures/perso/famtom.png
 pictures/perso/space_sprite.png
 pictures/tiles/sand1.jpg

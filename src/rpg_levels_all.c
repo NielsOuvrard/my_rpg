@@ -36,7 +36,7 @@ void while_it_is_open (void)
     while (sfRenderWindow_isOpen(all_infos()->window)) {
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
         sfRenderWindow_clear(all_infos()->window, sfBlack);
-        sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[0].sprite, NULL);
+        // sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[0].sprite, NULL);
         animation(event);
         if (all_infos()->level == 0)
             level_0(event);

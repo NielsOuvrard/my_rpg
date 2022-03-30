@@ -13,7 +13,9 @@ void anim_perso(void)
     if (all_sprites()[GHOST].anim) {
         all_sprites()[GHOST].rect.left -= 16;
         all_sprites()[GHOST].anim = false;
+        all_sprites()[SPRITE_SHEET].anim = false;
     } else {
+        all_sprites()[SPRITE_SHEET].anim = true;
         all_sprites()[GHOST].rect.left += 16;
         all_sprites()[GHOST].anim = true;
     }
@@ -140,7 +142,7 @@ void level_1(sfEvent event)
     if (all_infos()->quit_main == 1)
         return;
 
-    disp_map();
+    disp_map(all_infos()->map);
     sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[GHOST].sprite, NULL);
     // sfRenderWindow_drawSprite(all_infos()->window, all_infos()->sprite_difficulty, NULL);
     return;

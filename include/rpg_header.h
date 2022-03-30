@@ -25,6 +25,8 @@
 #define GHOST 2
 #define MAP_EDITOR 2
 
+#define SPRITE_SHEET 1
+
 #define GRASS 5
 #define SAND 4
 #define WATHER 6
@@ -95,9 +97,11 @@ void level_0 (sfEvent event);
 
 // disp map
 
-void disp_map(void);
+void disp_map(char **map);
 
 // level 1
+
+void change_look_ghost(void);
 
 void level_1_clock(sfEvent event);
 
