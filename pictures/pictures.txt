@@ -1,4 +1,5 @@
 pictures/Characters/Hunter/Hunter.png
 pictures/SpriteSheet.png
-pictures/perso/famtom.png
+pictures/Characters/Ninja/Ninja.png
 pictures/perso/space_sprite.png
+pictures/Characters/Demon/Demon.png

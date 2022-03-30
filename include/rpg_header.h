@@ -21,10 +21,11 @@
 #include <SFML/GPUPreference.h>
 #include <SFML/OpenGL.h>
 
-#define GHOST 2
 #define MAP_EDITOR 2
 
 #define HUNTER 0
+#define NINJA 2
+#define DEMON 4
 #define SPRITE_SHEET 1
 
 #define SCREEN_MAX_Y 1080
@@ -93,6 +94,12 @@ void level_0 (sfEvent event);
 // disp map
 
 void disp_map(char **map);
+
+// level 1 anim
+
+void anim_hunter (void);
+
+void change_look_ghost(void);
 
 // level 1
 

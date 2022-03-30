@@ -10,9 +10,24 @@
 
 static sprite_pictures *value;
 
+void full_perso (int type, int x, int y)
+{
+    value[type].anim = 'a';
+    value[type].scale.x = 3;
+    value[type].scale.y = 3;
+    sfSprite_setScale(value[type].sprite, value[type].scale);
+    value[type].pos.y = y;
+    value[type].pos.x = x;
+    sfSprite_setPosition(value[type].sprite, value[type].pos);
+    value[type].rect.height = 16;
+    value[type].rect.width = 16;
+    value[type].rect.top = 16;
+    value[type].rect.left = 16;
+    sfSprite_setTextureRect(value[type].sprite, value[type].rect);
+}
+
 void full_list_sprites_next (void)
 {
-
     value[SPRITE_SHEET].rect.height = 16;
     value[SPRITE_SHEET].rect.width = 16;
     value[SPRITE_SHEET].rect.top = 16;  // 0
@@ -23,31 +38,9 @@ void full_list_sprites_next (void)
     value[SPRITE_SHEET].scale.y = 3.125;
     sfSprite_setScale(value[SPRITE_SHEET].sprite, value[SPRITE_SHEET].scale);
 
-    value[HUNTER].anim = 'a';
-    value[HUNTER].scale.x = 3;
-    value[HUNTER].scale.y = 3;
-    sfSprite_setScale(value[HUNTER].sprite, value[HUNTER].scale);
-    value[HUNTER].pos.y = 1080 / 2;
-    value[HUNTER].pos.x = 1920 / 2;
-    sfSprite_setPosition(value[HUNTER].sprite, value[HUNTER].pos);
-    value[HUNTER].rect.height = 16;
-    value[HUNTER].rect.width = 16;
-    value[HUNTER].rect.top = 16;
-    value[HUNTER].rect.left = 16;
-    sfSprite_setTextureRect(value[HUNTER].sprite, value[HUNTER].rect);
-
-    value[GHOST].scale.x = 2.50;
-    value[GHOST].scale.y = 2.50;
-    sfSprite_setScale(value[GHOST].sprite, value[GHOST].scale);
-    value[GHOST].pos.y = 1080 / 2;
-    value[GHOST].pos.x = 1920 / 2;
-    value[GHOST].anim = '\0';
-    sfSprite_setPosition(value[GHOST].sprite, value[GHOST].pos);
-    value[GHOST].rect.top = (16 * random_int(0, 3));
-    value[GHOST].rect.left = 0;
-    value[GHOST].rect.width = 15;
-    value[GHOST].rect.height = 15;
-    sfSprite_setTextureRect(value[GHOST].sprite, value[GHOST].rect);
+    full_perso(HUNTER, 1920 / 2, 1080 / 2);
+    full_perso(DEMON, 500, 240);
+    full_perso(NINJA, 700, 1000);
 }
 
 void full_list_sprites (void)
