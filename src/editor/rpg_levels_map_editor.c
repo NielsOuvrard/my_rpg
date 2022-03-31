@@ -26,9 +26,18 @@ void modify_var_move_editor(sfEvent event)
         all_infos()->move = '\0';
 }
 
+char *get_filepath_with_filename (char *src, char *directories, char *file)
+{
+    my_memset(src, BUFF_SIZE - 1, '\0');
+    my_strcpy(src, all_editor()->dir_save);
+    my_strcat(src, file);
+    return src;
+}
+
 void write_maps (void)
 {
-    int fd = open("map/editor_map/bg", O_CREAT | O_RDWR);
+    char *str = malloc(sizeof(char) * BUFF_SIZE);
+    int fd = open(get_filepath_with_filename(str, all_editor()->dir_save, "/bg"), O_CREAT | O_RDWR);
     if (!fd)
         return;
     for (int i = 0; all_editor()->map_bg[i]; i++) {
@@ -36,7 +45,7 @@ void write_maps (void)
         write(fd, "\n", 1);
     }
     close(fd);
-    fd = open("map/editor_map/mg", O_CREAT | O_RDWR);
+    fd = open(get_filepath_with_filename(str, all_editor()->dir_save, "/mg"), O_CREAT | O_RDWR);
     if (!fd)
         return;
     for (int i = 0; all_editor()->map_mg[i]; i++) {
@@ -44,7 +53,7 @@ void write_maps (void)
         write(fd, "\n", 1);
     }
     close(fd);
-    fd = open("map/editor_map/fg", O_CREAT | O_RDWR);
+    fd = open(get_filepath_with_filename(str, all_editor()->dir_save, "/fg"), O_CREAT | O_RDWR);
     if (!fd)
         return;
     for (int i = 0; all_editor()->map_fg[i]; i++) {

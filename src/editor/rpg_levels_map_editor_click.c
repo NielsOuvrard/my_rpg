@@ -103,6 +103,9 @@ void la_bonne_touche_editor (sfEvent event)
         free_my_arr(all_editor()->map_bg);
         free_my_arr(all_editor()->map_mg);
         free_my_arr(all_editor()->map_fg);
+        all_editor()->map_bg = NULL;
+        all_editor()->map_mg = NULL;
+        all_editor()->map_fg = NULL;
         all_infos()->level = 0;
     }
     change_tile_to_print(event);

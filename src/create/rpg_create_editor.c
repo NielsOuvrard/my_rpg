@@ -52,7 +52,7 @@ void creat_editor (void)
     edito->size_edit.x = 30;
     edito->size_edit.y = 30;
     edito->is_writing = false;
-
+    edito->dir_save = "map/editor_map";
     edito->edit_ground = 'b';
     edito->ptr_map_edit = NULL;
     edito->v_bg = true;

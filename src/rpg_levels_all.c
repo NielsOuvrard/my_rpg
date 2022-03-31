@@ -57,12 +57,14 @@ void free_map (int i)
     free_my_arr(all_maps()[i].fg);
 }
 
-int all_levels_game (void)
+int all_levels_game (int ac, char **av)
 {
     full_list_sprites();
     creat_main();
     creat_editor();
     full_list_maps();
+    if (ac > 1 && !my_strcmp(av[1], "-edit") && av[2])
+        edit_existing_file(av[2]);
     // game
     while_it_is_open();
     // free_my_arr(all_infos()->map);

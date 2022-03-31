@@ -65,6 +65,7 @@ typedef struct editor_screen {
     char **map_fg;
     char value_to_print;
     // text
+    char *dir_save;
     sfText *editor_text;
     sfFont *font;
     char edit_ground;
@@ -185,6 +186,10 @@ void disp_text_and_boxes (void);
 
 void editor_click_infos_right (sfVector2i pos_mouse);
 
+// existing file
+
+void edit_existing_file (char *filepath_dir);
+
 // map editor
 
 int round_sup (float a);
@@ -213,7 +218,7 @@ void level_0 (sfEvent event);
 
 // all
 
-int all_levels_game (void);
+int all_levels_game (int ac, char **av);
 
 // open file
 

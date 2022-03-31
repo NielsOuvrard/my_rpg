@@ -10,5 +10,5 @@
 
 int main (int ac, char **av)
 {
-    return all_levels_game();
+    return all_levels_game(ac, av);
 }
