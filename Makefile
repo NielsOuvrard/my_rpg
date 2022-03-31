@@ -5,7 +5,10 @@
 ## un makefile de qualité spécial RPG
 ##
 
-SRC = src/*.c src/create/*.c
+SRC = 	src/*.c \
+		src/create/*.c \
+		src/editor/*.c \
+		src/level1/*.c
 
 CSFML = -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system
 

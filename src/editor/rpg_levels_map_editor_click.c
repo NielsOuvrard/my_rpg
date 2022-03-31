@@ -65,10 +65,10 @@ void le_bon_click_editor (sfEvent event)
     }
     int y = (pos_mouse.y / 50) - round_sup(all_infos()->pos_player.y / 50);
     int x = (pos_mouse.x / 50) - round_sup(all_infos()->pos_player.x / 50);
-    if (all_editor()->map_editor && x >= 0 && y >= 0 &&
-    y < my_arraylen(all_editor()->map_editor) &&
-    x < my_strlen(all_editor()->map_editor[0])) {
-        all_editor()->map_editor[y][x] = all_editor()->value_to_print;
+    if (all_editor()->map_bg && x >= 0 && y >= 0 &&
+    y < my_arraylen(all_editor()->map_bg) &&
+    x < my_strlen(all_editor()->map_bg[0])) {
+        all_editor()->map_bg[y][x] = all_editor()->value_to_print;
         return;
     }
 }
@@ -81,9 +81,9 @@ void la_bonne_touche_editor (sfEvent event)
         all_infos()->level = 0;
     change_tile_to_print(event);
     if (event.key.code == sfKeyN) {
-        if (all_editor()->map_editor)
-            free_my_arr(all_editor()->map_editor);
-        all_editor()->map_editor = editor_create_map(
+        if (all_editor()->map_bg)
+            free_my_arr(all_editor()->map_bg);
+        all_editor()->map_bg = editor_create_map(
         all_editor()->size_edit.x, all_editor()->size_edit.y);
     }
 }

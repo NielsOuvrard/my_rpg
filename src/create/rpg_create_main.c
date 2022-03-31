@@ -17,7 +17,7 @@ main_screen *all_infos (void)
 
 void initialize_main_vals(void)
 {
-    sfView_setCenter(infos->view, (sfVector2f) {10 * 50, 10 * 35});
+    sfView_setCenter(infos->view, (sfVector2f) {10 * 50, (10 * 35) - 16});
     sfView_setSize(infos->view, (sfVector2f) {1920 / 2, 1080 / 2});
     sfRenderWindow_setView(infos->window, infos->view);
 }

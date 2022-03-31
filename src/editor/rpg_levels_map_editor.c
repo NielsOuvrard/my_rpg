@@ -33,14 +33,14 @@ void level_map_editor_event(sfEvent event)
             all_infos()->quit_main = 1;
             return;
         }
-        if (sfKeyboard_isKeyPressed(sfKeyP) && all_editor()->map_editor) {
-            my_show_word_array(all_editor()->map_editor);
-            free_my_arr(all_editor()->map_editor);
-            all_editor()->map_editor = NULL;
+        if (sfKeyboard_isKeyPressed(sfKeyP) && all_editor()->map_bg) {
+            my_show_word_array(all_editor()->map_bg);
+            free_my_arr(all_editor()->map_bg);
+            all_editor()->map_bg = NULL;
         }
         la_bonne_touche_editor(event);
         le_bon_click_editor(event);
-        if (all_editor()->map_editor)
+        if (all_editor()->map_bg)
             modify_var_move_editor(event);
         else
             change_map_size(event);
@@ -81,9 +81,9 @@ void disp_map_editor_next(char **map, int i, int j)
 
 void disp_map_editor(void)
 {
-    for (int i = 0; all_editor()->map_editor[i]; i++)
-        for (int j = 0; all_editor()->map_editor[i][j]; j++)
-            disp_map_editor_next(all_editor()->map_editor, i, j);
+    for (int i = 0; all_editor()->map_bg[i]; i++)
+        for (int j = 0; all_editor()->map_bg[i][j]; j++)
+            disp_map_editor_next(all_editor()->map_bg, i, j);
 }
 
 void disp_value_to_print(void)
@@ -182,7 +182,7 @@ void disp_text_and_boxes (void)
 void level_map_editor(sfEvent event)
 {
     level_map_editor_event(event);
-    if (all_editor()->map_editor)
+    if (all_editor()->map_bg)
         disp_map_editor();
     disp_value_to_print();
     disp_text_and_boxes();

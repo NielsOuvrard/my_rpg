@@ -59,7 +59,9 @@ typedef struct editor_screen {
     // edito
     sfVector2u size_edit;
     bool is_writing;
-    char **map_editor;
+    char **map_bg;
+    char **map_mg;
+    char **map_fg;
     char value_to_print;
     // text
     sfText *editor_text;

@@ -43,7 +43,9 @@ void creat_editor (void)
     edito->editor_text = sfText_create();
     edito->font = sfFont_createFromFile("font/coolvetica_rg.ttf");
     // editor
-    edito->map_editor = NULL;
+    edito->map_bg = NULL;
+    edito->map_mg = NULL;
+    edito->map_fg = NULL;
     edito->value_to_print = 'w';
     edito->size_edit.x = 30;
     edito->size_edit.y = 30;

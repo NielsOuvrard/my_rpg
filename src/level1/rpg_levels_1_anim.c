@@ -30,10 +30,36 @@ int player_is_on_case(int x, int y)
     return 0;
 }
 
+int can_move_on_this_char (void)
+{
+    if (all_sprites()[HUNTER].pos.x < 0 && all_sprites()[HUNTER].pos.y < 0)
+        return 0;
+    int x = 0, y = 0;
+    if (all_infos()->move == 'u')
+        y -= 20;
+    if (all_infos()->move == 'l')
+        x -= 20;
+    if (all_infos()->move == 'd')
+        y += 20;
+    if (all_infos()->move == 'r')
+        x += 20;
+    x = ((int)all_sprites()[HUNTER].pos.x + x) / 50;
+    y = ((int)all_sprites()[HUNTER].pos.y + y) / 50;
+    if (my_arraylen(all_maps()[all_infos()->map_actual].bg) < y ||
+    my_strlen(all_maps()[all_infos()->map_actual].bg[0]) < x)
+        return 1;
+    char a = all_maps()[all_infos()->map_actual].bg[y][x];
+    if (a != '7' && a != ':' && a != 'G')
+        return 0;
+    return 1;
+}
+
 void change_look_ghost(void)
 {
     // ? all_infos()->pos_player = sfSprite_getPosition(all_sprites()[HUNTER].sprite);
     all_infos()->pos_player = all_sprites()[HUNTER].pos;
+    // if (!can_move_on_this_char())
+    //     return;
     if (all_infos()->move == 'u') {
         all_sprites()[HUNTER].rect.top = 0;
         all_sprites()[HUNTER].pos.y -= 10;
