@@ -102,6 +102,8 @@ typedef struct main_screen {
 
 } main_screen;
 
+// * ////////////// CREATE DIR //////////////////////////////////////////
+
 // create editor
 
 editor_screen *all_editor (void);
@@ -132,9 +134,7 @@ void full_list_sprites (void);
 
 sprite_pictures *all_sprites (void);
 
-// level 0
-
-void level_0 (sfEvent event);
+// * ////////////// LEVEL1 DIR //////////////////////////////////////////
 
 // disp map
 
@@ -166,9 +166,21 @@ void move_pos_player(void);
 
 void level_1 (sfEvent event);
 
-// level 2 (pause peut-etre)
+// * ////////////// EDITOR DIR //////////////////////////////////////////
 
-void level_2 (sfEvent event);
+// disp map editor
+
+void disp_map_editor(void);
+
+void disp_value_to_print(void);
+
+// disp right
+
+void disp_boxes (void);
+
+void disp_text_size (void);
+
+void disp_text_and_boxes (void);
 
 // map editor click infos right
 
@@ -189,6 +201,16 @@ void la_bonne_touche_editor (sfEvent event);
 void level_map_editor_clock(sfEvent event);
 
 void level_map_editor (sfEvent event);
+
+// * ////////////// SRC DIR //////////////////////////////////////////
+
+// level 2 (pause peut-etre)
+
+void level_2 (sfEvent event);
+
+// level 0
+
+void level_0 (sfEvent event);
 
 // all
 
