@@ -49,6 +49,11 @@ void creat_editor (void)
     edito->size_edit.y = 30;
     edito->is_writing = false;
 
+    edito->edit_ground = 'b';
+    edito->v_bg = true;
+    edito->v_mg = false;
+    edito->v_fg = false;
+
     initialize_editor_vals();
     return;
 }

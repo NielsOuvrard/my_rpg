@@ -24,22 +24,21 @@ void idle_perso(void)
 
 void move_to_salle_une (void)
 {
-    all_sprites()[HUNTER].pos.y = 50 * 8;
-    all_sprites()[HUNTER].pos.x = 50 * 5;
+    all_sprites()[HUNTER].pos.y = 50 * 9.95;
+    all_sprites()[HUNTER].pos.x = (50 * 5) + 25;
     sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
     all_infos()->map_actual = 0;
-    sfView_setCenter(all_infos()->view, (sfVector2f) {(50 * 5) + 25, 50 * 8});
+    sfView_setCenter(all_infos()->view, (sfVector2f) {(50 * 5) + 25, 50 * 9.95});
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
 }
 
 void move_to_exterieure_une (void)
 {
     all_sprites()[HUNTER].pos.y = 50 * 4;
-    all_sprites()[HUNTER].pos.x = 50 * 10;
+    all_sprites()[HUNTER].pos.x = (50 * 10) + 25;
     sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
     all_infos()->map_actual = 1;
     sfView_setCenter(all_infos()->view, (sfVector2f) {(50 * 10) + 25, 50 * 4});
-    // + 25 car origin du perso pas contré
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
 }
 
@@ -72,7 +71,7 @@ void modify_var_move(sfEvent event)
             all_sprites()[HUNTER].anim = 'A';
             all_sprites()[HUNTER].rect.left = 0;
             change_look_ghost();
-            anim_hunter();
+            anim_perso_according_to_int(HUNTER);
             sfSprite_setTextureRect(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].rect);
         }
     }

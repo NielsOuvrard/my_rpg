@@ -12,6 +12,9 @@ static sprite_pictures *value;
 
 void full_perso (int type, int x, int y)
 {
+    value[type].origin.x = 8;
+    value[type].origin.y = 16;
+    sfSprite_setOrigin(value[type].sprite, value[type].origin);
     value[type].anim = 'a';
     value[type].scale.x = 3;
     value[type].scale.y = 3;
@@ -24,6 +27,16 @@ void full_perso (int type, int x, int y)
     value[type].rect.top = 16;
     value[type].rect.left = 16;
     sfSprite_setTextureRect(value[type].sprite, value[type].rect);
+}
+
+void origin_in_8_8_scale(int sprite)
+{
+    value[sprite].origin.x = 8;
+    value[sprite].origin.y = 8;
+    sfSprite_setOrigin(value[sprite].sprite, value[sprite].origin);
+    value[sprite].scale.x = 1.4;
+    value[sprite].scale.y = 1.4;
+    sfSprite_setScale(value[sprite].sprite, value[sprite].scale);
 }
 
 void full_list_sprites_next (void)
@@ -43,9 +56,13 @@ void full_list_sprites_next (void)
     value[BANANA].scale.y = 10;
     sfSprite_setScale(value[BANANA].sprite, value[BANANA].scale);
 
-    full_perso(HUNTER, 1920 / 3, 1080 / 2);
+    full_perso(HUNTER, 10 * 50, 10 * 35);
     full_perso(DEMON, 500, 240);
     full_perso(NINJA, 700, 1000);
+
+    origin_in_8_8_scale(EMPTY_BOX);
+    origin_in_8_8_scale(CHECK_BOX);
+    origin_in_8_8_scale(CROSS_BOX);
 }
 
 void full_list_sprites (void)

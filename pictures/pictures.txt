@@ -3,3 +3,6 @@ pictures/SpriteSheet.png
 pictures/Characters/Ninja/Ninja.png
 pictures/HUD/Icons/Bannana.png
 pictures/Characters/Demon/Demon.png
+pictures/HUD/CheckBox.png
+pictures/HUD/EmptyBox.png
+pictures/HUD/Ex-Box.png

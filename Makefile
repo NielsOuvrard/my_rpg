@@ -2,26 +2,33 @@
 ## EPITECH PROJECT, 2021
 ## Makefile
 ## File description:
-## un makefile de qualité
+## un makefile de qualité spécial RPG
 ##
+
+SRC = src/*.c src/create/*.c
+
+CSFML = -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system
+
+BINARY = my_rpg
+
+LIB = -I./include/ -L./lib/my/ -lm -lmy
 
 all:
 		@cp ./lib/my/my.h include/my.h
 		@gcc -c lib/my/*.c
 		@ar rc lib/my/libmy.a *.o
 		@cp ./lib/my/libmy.a lib/libmy.a
-		@gcc -o my_rpg -g src/*.c -I./include/ -L./lib/my/ -lm -lmy -g3\
-		-lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system
-		@chmod 777 my_rpg
+		@gcc -o $(BINARY) -g $(SRC) $(LIB) -g3 $(CSFML)
+		@chmod 777 $(BINARY)
 		@make clean
 
 clean:
-		@rm -f *.o
+		rm -f *.o
 
 fclean: clean
-		@rm my_rpg
-		@rm lib/my/libmy.a
-		@rm lib/libmy.a
+		rm $(BINARY)
+		rm lib/my/libmy.a
+		rm lib/libmy.a
 
 re:	fclean all
 
@@ -29,10 +36,10 @@ auteur:
 	echo $(USER) > auteur
 
 push:
-		git add .
-		git status
-		git commit -m "push automatique"
-		git push
+		@git add .
+		@git status
+		@git commit -m "push automatique"
+		@git push
 
 mac_del:
 		rm -R *.dSYM

@@ -8,65 +8,6 @@
 #include "my.h"
 #include "rpg_header.h"
 
-void anim_hunter_left_right (void)
-{
-    // my_printf("anim : %c\n", all_sprites()[HUNTER].anim);
-    if (all_sprites()[HUNTER].anim >= 'a' && all_sprites()[HUNTER].anim <= 'f') {
-        if (all_sprites()[HUNTER].anim >= 'f') {
-            all_sprites()[HUNTER].rect.left = 4 * 16;
-            all_sprites()[HUNTER].anim = 'E';
-            return;
-        }
-        all_sprites()[HUNTER].anim++;
-        all_sprites()[HUNTER].rect.left += 16;
-        return;
-    }
-    if (all_sprites()[HUNTER].anim <= 'A') {
-        all_sprites()[HUNTER].anim = 'b';
-        all_sprites()[HUNTER].rect.left = 16;
-        return;
-    }
-    all_sprites()[HUNTER].rect.left -= 16;
-    all_sprites()[HUNTER].anim--;
-}
-
-void anim_hunter_up_and_down (void)
-{
-    if (all_sprites()[HUNTER].anim >= 'a' && all_sprites()[HUNTER].anim <= 'c') {
-        if (all_sprites()[HUNTER].anim == 'b') {
-            all_sprites()[HUNTER].anim = 'A';
-            all_sprites()[HUNTER].rect.left = 0;
-            return;
-        }
-        all_sprites()[HUNTER].anim = 'b';
-        all_sprites()[HUNTER].rect.left += 16;
-        return;
-    }
-    if (all_sprites()[HUNTER].anim >= 'A' && all_sprites()[HUNTER].anim <= 'C') {
-        if (all_sprites()[HUNTER].anim == 'C') {
-            all_sprites()[HUNTER].anim = 'a';
-            all_sprites()[HUNTER].rect.left = 0;
-            return;
-        }
-        all_sprites()[HUNTER].anim = 'C';
-        all_sprites()[HUNTER].rect.left += 16 * 2;
-        return;
-    }
-}
-
-void anim_hunter (void)
-{
-    if (all_sprites()[HUNTER].rect.top > 3 * 16) {
-        my_printf("Shoot");
-        return;
-    }
-    if (all_sprites()[HUNTER].rect.top > 16) {
-        anim_hunter_left_right();
-        return;
-    }
-    anim_hunter_up_and_down();
-}
-
 void anim_perso(void)
 {
     if (all_sprites()[SPRITE_SHEET].anim)
@@ -75,8 +16,18 @@ void anim_perso(void)
         all_sprites()[SPRITE_SHEET].anim = 'a';
     if (!all_infos()->move)
         return;
-    anim_hunter();
+    anim_perso_according_to_int(HUNTER);
     sfSprite_setTextureRect(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].rect);
+}
+
+int player_is_on_case(int x, int y)
+{
+    if (all_sprites()[HUNTER].pos.x >= (50 * x) &&
+    all_sprites()[HUNTER].pos.x <= 50 * (x + 1) &&
+    all_sprites()[HUNTER].pos.y >= 50 * y &&
+    all_sprites()[HUNTER].pos.y <= 50 * (y + 1))
+        return 1;
+    return 0;
 }
 
 void change_look_ghost(void)
@@ -103,12 +54,9 @@ void change_look_ghost(void)
         all_sprites()[HUNTER].pos.x += 10;
         sfView_move(all_infos()->view, (sfVector2f) {10, 0});
     }
-    // - 25 pour origin du perso
-    if (all_sprites()[HUNTER].pos.x >= (50 * 10) - 25 && all_sprites()[HUNTER].pos.x <= 50 * 11 &&
-    all_sprites()[HUNTER].pos.y >= 50 * 2 && all_sprites()[HUNTER].pos.y <= 50 * 3 && all_infos()->map_actual == 1)
+    if (player_is_on_case(10, 3) && all_infos()->map_actual == 1)
         move_to_salle_une();
-    if (all_sprites()[HUNTER].pos.x >= (50 * 5) - 25 && all_sprites()[HUNTER].pos.x <= 50 * 6 &&
-    all_sprites()[HUNTER].pos.y >= 50 * 9 && all_sprites()[HUNTER].pos.y <= 50 * 10 && all_infos()->map_actual == 0)
+    if (player_is_on_case(5, 10) && all_infos()->map_actual == 0)
         move_to_exterieure_une();
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
     sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);

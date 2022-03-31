@@ -28,6 +28,9 @@
 #define NINJA 2
 #define BANANA 3
 #define DEMON 4
+#define CHECK_BOX 5
+#define EMPTY_BOX 6
+#define CROSS_BOX 7
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -37,7 +40,7 @@ typedef struct sprite_pictures {
     sfTexture *texture;
     sfVector2f scale;
     sfVector2f pos;
-    sfVector2i origin;
+    sfVector2f origin;
     sfIntRect rect;
     char anim;
 } sprite_pictures;
@@ -61,6 +64,10 @@ typedef struct editor_screen {
     // text
     sfText *editor_text;
     sfFont *font;
+    char edit_ground;
+    bool v_bg;
+    bool v_mg;
+    bool v_fg;
 } editor_screen;
 
 typedef struct main_screen {
@@ -131,9 +138,13 @@ void level_0 (sfEvent event);
 
 void disp_map(char **map);
 
+// level 1 anim hunter
+
+void anim_perso_according_to_int (int sprite);
+
 // level 1 anim
 
-void anim_hunter (void);
+void anim_perso (void);
 
 void change_look_ghost(void);
 
@@ -153,9 +164,13 @@ void move_pos_player(void);
 
 void level_1 (sfEvent event);
 
-// level 2
+// level 2 (pause peut-etre)
 
 void level_2 (sfEvent event);
+
+// map editor click infos right
+
+void editor_click_infos_right (sfVector2i pos_mouse);
 
 // map editor
 

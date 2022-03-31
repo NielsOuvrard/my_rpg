@@ -59,6 +59,9 @@ void le_bon_click_editor (sfEvent event)
         all_editor()->value_to_print += (pos_mouse.y / 50) * 6;
         all_editor()->value_to_print += (pos_mouse.x / 50);
         return;
+    } else if (pos_mouse.x >= 1920 - 150 && pos_mouse.y <= 260) {
+        editor_click_infos_right(pos_mouse);
+        return;
     }
     int y = (pos_mouse.y / 50) - round_sup(all_infos()->pos_player.y / 50);
     int x = (pos_mouse.x / 50) - round_sup(all_infos()->pos_player.x / 50);
