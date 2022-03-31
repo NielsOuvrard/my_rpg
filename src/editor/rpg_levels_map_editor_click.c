@@ -29,19 +29,19 @@ void change_tile_to_print(sfEvent event)
         all_editor()->value_to_print = 's';
 }
 
-void change_map_size(sfEvent event)
-{
-    if (event.type == sfEvtKeyPressed) {
-        if (event.key.code == sfKeyUp)
-            all_editor()->size_edit.y--;
-        if (event.key.code == sfKeyLeft)
-            all_editor()->size_edit.x--;
-        if (event.key.code == sfKeyDown)
-            all_editor()->size_edit.y++;
-        if (event.key.code == sfKeyRight)
-            all_editor()->size_edit.x++;
-    }
-}
+// void change_map_size(sfEvent event)
+// {
+//     if (event.type == sfEvtKeyPressed) {
+//         if (event.key.code == sfKeyUp)
+//             all_editor()->size_edit.y--;
+//         if (event.key.code == sfKeyLeft)
+//             all_editor()->size_edit.x--;
+//         if (event.key.code == sfKeyDown)
+//             all_editor()->size_edit.y++;
+//         if (event.key.code == sfKeyRight)
+//             all_editor()->size_edit.x++;
+//     }
+// }
 
 void le_bon_click_editor (sfEvent event)
 {
@@ -61,15 +61,37 @@ void le_bon_click_editor (sfEvent event)
         return;
     } else if (pos_mouse.x >= 1920 - 150 && pos_mouse.y <= 260) {
         editor_click_infos_right(pos_mouse);
+        change_size_map();
         return;
     }
     int y = (pos_mouse.y / 50) - round_sup(all_infos()->pos_player.y / 50);
     int x = (pos_mouse.x / 50) - round_sup(all_infos()->pos_player.x / 50);
-    if (all_editor()->map_bg && x >= 0 && y >= 0 &&
-    y < my_arraylen(all_editor()->map_bg) &&
-    x < my_strlen(all_editor()->map_bg[0])) {
-        all_editor()->map_bg[y][x] = all_editor()->value_to_print;
+    if (all_editor()->ptr_map_edit && x >= 0 && y >= 0 &&
+    y < my_arraylen(all_editor()->ptr_map_edit) &&
+    x < my_strlen(all_editor()->ptr_map_edit[0])) {
+        all_editor()->ptr_map_edit[y][x] = all_editor()->value_to_print;
         return;
+    }
+}
+
+void paint_bucket_tool (void)
+{
+    free_my_arr(all_editor()->ptr_map_edit);
+    if (all_editor()->edit_ground == 'b') {
+        all_editor()->map_bg = editor_create_map(
+        all_editor()->size_edit.x, all_editor()->size_edit.y,
+        all_editor()->value_to_print);
+        all_editor()->ptr_map_edit = all_editor()->map_bg;
+    } else if (all_editor()->edit_ground == 'm') {
+        all_editor()->map_mg = editor_create_map(
+        all_editor()->size_edit.x, all_editor()->size_edit.y,
+        all_editor()->value_to_print);
+        all_editor()->ptr_map_edit = all_editor()->map_mg;
+    } else {
+        all_editor()->map_fg = editor_create_map(
+        all_editor()->size_edit.x, all_editor()->size_edit.y,
+        all_editor()->value_to_print);
+        all_editor()->ptr_map_edit = all_editor()->map_fg;
     }
 }
 
@@ -77,13 +99,13 @@ void la_bonne_touche_editor (sfEvent event)
 {
     if (!(event.type == sfEvtKeyPressed))
         return;
-    if (event.key.code == sfKeyEscape)
+    if (event.key.code == sfKeyEscape) {
+        free_my_arr(all_editor()->map_bg);
+        free_my_arr(all_editor()->map_mg);
+        free_my_arr(all_editor()->map_fg);
         all_infos()->level = 0;
-    change_tile_to_print(event);
-    if (event.key.code == sfKeyN) {
-        if (all_editor()->map_bg)
-            free_my_arr(all_editor()->map_bg);
-        all_editor()->map_bg = editor_create_map(
-        all_editor()->size_edit.x, all_editor()->size_edit.y);
     }
+    change_tile_to_print(event);
+    if (event.key.code == sfKeyN && all_editor()->ptr_map_edit)
+        paint_bucket_tool();
 }

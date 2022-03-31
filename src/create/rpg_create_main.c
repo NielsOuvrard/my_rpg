@@ -30,7 +30,6 @@ void creat_main (void)
     sfResize | sfClose, NULL);
     infos->level = 0;
     infos->quit_main = 0;
-    infos->score = 0;
     infos->map_actual = 1;
     infos->pos_player.x = 0;
     infos->pos_player.y = 0;
@@ -38,9 +37,8 @@ void creat_main (void)
     infos->move = '\0';
     infos->clock = sfClock_create();
     infos->clock_val = 0;
-    infos->clock_bool = true;
 
-    infos->view_position.x = 960;
+    infos->view_position.x = 960;       // ??
     infos->view_position.y = 540;
     infos->view = sfView_create();
     initialize_main_vals();

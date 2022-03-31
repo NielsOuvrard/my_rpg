@@ -17,6 +17,10 @@ void key_pressed (sfEvent event)
         sfView_setCenter(all_infos()->view, (sfVector2f) {960, 540});
         sfView_setSize(all_infos()->view, (sfVector2f) {1920, 1080});
         sfRenderWindow_setView(all_infos()->window, all_infos()->view);
+        all_editor()->map_bg = editor_create_map( 30, 30, all_editor()->value_to_print);
+        all_editor()->map_mg = editor_create_map(30, 30, 'R');
+        all_editor()->map_fg = editor_create_map(30, 30, 'R');
+        all_editor()->ptr_map_edit = all_editor()->map_bg;
         all_infos()->level = MAP_EDITOR;
     }
 }

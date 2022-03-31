@@ -26,6 +26,35 @@ void modify_var_move_editor(sfEvent event)
         all_infos()->move = '\0';
 }
 
+void write_maps (void)
+{
+    int fd = open("map/editor_map/bg", O_CREAT | O_RDWR);
+    if (!fd)
+        return;
+    for (int i = 0; all_editor()->map_bg[i]; i++) {
+        write(fd, all_editor()->map_bg[i], all_editor()->size_edit.x);
+        write(fd, "\n", 1);
+    }
+    close(fd);
+    fd = open("map/editor_map/mg", O_CREAT | O_RDWR);
+    if (!fd)
+        return;
+    for (int i = 0; all_editor()->map_mg[i]; i++) {
+        write(fd, all_editor()->map_mg[i], all_editor()->size_edit.x);
+        write(fd, "\n", 1);
+    }
+    close(fd);
+    fd = open("map/editor_map/fg", O_CREAT | O_RDWR);
+    if (!fd)
+        return;
+    for (int i = 0; all_editor()->map_fg[i]; i++) {
+        write(fd, all_editor()->map_fg[i], all_editor()->size_edit.x);
+        write(fd, "\n", 1);
+    }
+    close(fd);
+    my_printf("ecrit avec succes !\n");
+}
+
 void level_map_editor_event(sfEvent event)
 {
     while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
@@ -34,16 +63,12 @@ void level_map_editor_event(sfEvent event)
             return;
         }
         if (sfKeyboard_isKeyPressed(sfKeyP) && all_editor()->map_bg) {
-            my_show_word_array(all_editor()->map_bg);
-            free_my_arr(all_editor()->map_bg);
-            all_editor()->map_bg = NULL;
+            write_maps();
         }
         la_bonne_touche_editor(event);
         le_bon_click_editor(event);
         if (all_editor()->map_bg)
             modify_var_move_editor(event);
-        else
-            change_map_size(event);
     }
 }
 // pb avec dernier char des str du char **
@@ -61,8 +86,12 @@ void level_map_editor_clock(sfEvent event)
 void level_map_editor(sfEvent event)
 {
     level_map_editor_event(event);
-    if (all_editor()->map_bg)
-        disp_map_editor();
+    if (all_editor()->v_bg && all_editor()->map_bg)
+        disp_map_editor(all_editor()->map_bg);
+    if (all_editor()->v_mg && all_editor()->map_mg)
+        disp_map_editor(all_editor()->map_mg);
+    if (all_editor()->v_fg && all_editor()->map_fg)
+        disp_map_editor(all_editor()->map_fg);
     disp_value_to_print();
     disp_text_and_boxes();
 }

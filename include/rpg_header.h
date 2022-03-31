@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** header du my snake
+** header du RPG
 ** File description:
 ** bcp de definitions
 */
@@ -22,6 +22,8 @@
 #include <SFML/OpenGL.h>
 
 #define MAP_EDITOR 2
+
+#define BUFF_SIZE 512
 
 #define HUNTER 0
 #define SPRITE_SHEET 1
@@ -56,7 +58,6 @@ typedef struct struct_maps {
 } struct_maps;
 
 typedef struct editor_screen {
-    // edito
     sfVector2u size_edit;
     bool is_writing;
     char **map_bg;
@@ -67,23 +68,19 @@ typedef struct editor_screen {
     sfText *editor_text;
     sfFont *font;
     char edit_ground;
+    char **ptr_map_edit;
     bool v_bg;
     bool v_mg;
     bool v_fg;
 } editor_screen;
 
 typedef struct main_screen {
-    // score
-    int score;
-
     // window
     sfRenderWindow* window;
     int level;
     int quit_main;
     sfClock *clock;
     int clock_val;
-    bool clock_bool;
-
 
     int map_actual;
     sfVector2f pos_player;
@@ -97,8 +94,8 @@ typedef struct main_screen {
 
     // sound
     sfMusic *music;
-    sfSoundBuffer *hurt_sound_buffer;
-    sfSound *hurt_sound;
+    sfSoundBuffer *click_sound_buffer;
+    sfSound *click_sound;
 
 } main_screen;
 
@@ -108,15 +105,13 @@ typedef struct main_screen {
 
 editor_screen *all_editor (void);
 
-char **editor_create_map (int x, int y);
+char **editor_create_map (int x, int y, char c);
 
 void initialize_editor_vals(void);
 
 void creat_editor (void);
 
 // create main
-
-char **editor_create_map (int x, int y);
 
 main_screen *all_infos (void);
 
@@ -168,9 +163,13 @@ void level_1 (sfEvent event);
 
 // * ////////////// EDITOR DIR //////////////////////////////////////////
 
+// change size map
+
+void change_size_map (void);
+
 // disp map editor
 
-void disp_map_editor(void);
+void disp_map_editor(char **map);
 
 void disp_value_to_print(void);
 

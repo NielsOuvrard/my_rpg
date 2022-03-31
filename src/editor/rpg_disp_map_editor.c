@@ -36,11 +36,11 @@ void disp_map_editor_next(char **map, int i, int j)
     disp_tile_sprite_seet_e(i, j, y, x);
 }
 
-void disp_map_editor(void)
+void disp_map_editor(char **map)
 {
-    for (int i = 0; all_editor()->map_bg[i]; i++)
-        for (int j = 0; all_editor()->map_bg[i][j]; j++)
-            disp_map_editor_next(all_editor()->map_bg, i, j);
+    for (int i = 0; map[i]; i++)
+        for (int j = 0; map[i][j]; j++)
+            disp_map_editor_next(map, i, j);
 }
 
 void disp_value_to_print(void)

@@ -52,4 +52,9 @@ mac_del:
 vg_del:
 		rm vgcore.*
 
-.PHONY: all clean fclean re push mac_del vg_del
+fm_push:
+		make fclean
+		make mac_del
+		make push
+
+.PHONY: all clean fclean re push mac_del vg_del fm_push

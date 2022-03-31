@@ -15,15 +15,17 @@ editor_screen *all_editor (void)
     return edito;
 }
 
-char **editor_create_map (int x, int y)
+char **editor_create_map (int x, int y, char c)
 {
-    char **map = malloc(sizeof(char *) * (y + 1));
+    char **map = malloc(sizeof(char *) * BUFF_SIZE);
+    for (int i = 0; i < BUFF_SIZE; i++)
+        map[i] = NULL;
     for (int i = 0; i < y; i++) {
-        map[i] = malloc(sizeof(char) * (x + 1));
-        my_memset(map[i], x, edito->value_to_print);
-        map[i][x] = '\0';
+        map[i] = malloc(sizeof(char) * BUFF_SIZE);
+        my_memset(map[i], BUFF_SIZE - 1, '\0');
+        my_memset(map[i], x, c);
     }
-    map[y] = NULL;
+    // map[y] = NULL;
     return map;
 }
 
@@ -46,15 +48,16 @@ void creat_editor (void)
     edito->map_bg = NULL;
     edito->map_mg = NULL;
     edito->map_fg = NULL;
-    edito->value_to_print = 'w';
+    edito->value_to_print = '7';
     edito->size_edit.x = 30;
     edito->size_edit.y = 30;
     edito->is_writing = false;
 
     edito->edit_ground = 'b';
+    edito->ptr_map_edit = NULL;
     edito->v_bg = true;
-    edito->v_mg = false;
-    edito->v_fg = false;
+    edito->v_mg = true;
+    edito->v_fg = true;
 
     initialize_editor_vals();
     return;
