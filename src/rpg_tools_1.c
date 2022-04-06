@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** snake_tools_1.c
+** rpg_tools_1.c
 ** File description:
-** tools snake
+** tools rpg
 */
 
 #include "my.h"

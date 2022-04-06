@@ -47,6 +47,13 @@ typedef struct sprite_pictures {
     char anim;
 } sprite_pictures;
 
+typedef struct enemies {
+    struct enemies *next;
+    sfVector2f pos;
+    int health_points;
+    int value;
+} enemies;
+
 typedef struct struct_maps {
     char **bg;
     char **mg;
@@ -228,3 +235,11 @@ char **filepath_to_arr (char *filepath);
 // tools 1
 
 int random_int (int min, int max);
+
+// * ////////////// ENNEMIES //////////////////////////////////////////
+
+void add_enemies_to_list(enemies **list, int value, int x, int y);
+
+void print_enemies(enemies **list);
+
+void create_enemy(enemies **list);
