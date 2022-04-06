@@ -37,10 +37,10 @@ void creat_main (void)
     infos->move = '\0';
     infos->clock = sfClock_create();
     infos->clock_val = 0;
-
-    infos->view_position.x = 960;       // ??
+    infos->view_position.x = 960;
     infos->view_position.y = 540;
     infos->view = sfView_create();
+    infos->last_move = 'd';
     initialize_main_vals();
     return;
 }

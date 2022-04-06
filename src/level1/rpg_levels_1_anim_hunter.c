@@ -56,8 +56,9 @@ void anim_perso_up_and_down (int sprite)
 
 void anim_perso_according_to_int (int sprite)
 {
-    if (all_sprites()[sprite].rect.top > 3 * 16 && sprite == HUNTER) {
-        my_printf("Shoot");
+    if (all_sprites()[sprite].rect.top >= 64 && sprite == HUNTER) {
+        if (all_sprites()[HUNTER].rect.left > 0)
+            all_sprites()[HUNTER].rect.left -= 16;
         return;
     }
     if (all_sprites()[sprite].rect.top > 16) {

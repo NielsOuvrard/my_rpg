@@ -60,6 +60,11 @@ void change_look_ghost(void)
     all_infos()->pos_player = all_sprites()[HUNTER].pos;
     // if (!can_move_on_this_char())
     //     return;
+    if (all_infos()->move == 'e') {
+        all_sprites()[HUNTER].rect.top = 0;
+        all_sprites()[HUNTER].pos.y -= 10;
+        sfView_move(all_infos()->view, (sfVector2f) {0, -10});
+    }
     if (all_infos()->move == 'u') {
         all_sprites()[HUNTER].rect.top = 0;
         all_sprites()[HUNTER].pos.y -= 10;

@@ -10,7 +10,7 @@
 
 void modify_var_move_editor(sfEvent event)
 {
-    if (event.type == sfEvtKeyPressed) {
+    if (event.type == sfEvtKeyPressed && all_infos()->move != 'c') {
         if (event.key.code == sfKeyUp)
             all_infos()->move = 'u';
         if (event.key.code == sfKeyLeft)

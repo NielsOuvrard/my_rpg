@@ -86,6 +86,7 @@ typedef struct main_screen {
     int map_actual;
     sfVector2f pos_player;
     char move;
+    char last_move;
     float zoom;
     sfVector2f view_position;
     sfVector2u size_window;
