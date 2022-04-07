@@ -21,47 +21,10 @@ void modify_var_move_editor(sfEvent event)
             all_infos()->move = 'r';
     }
     if (event.type == sfEvtKeyReleased && !sfKeyboard_isKeyPressed(sfKeyLeft)
-    && !sfKeyboard_isKeyPressed(sfKeyRight) && !sfKeyboard_isKeyPressed(sfKeyUp)
+    && !sfKeyboard_isKeyPressed(sfKeyRight) &&
+    !sfKeyboard_isKeyPressed(sfKeyUp)
     && !sfKeyboard_isKeyPressed(sfKeyDown))
         all_infos()->move = '\0';
-}
-
-char *get_filepath_with_filename (char *src, char *directories, char *file)
-{
-    my_memset(src, BUFF_SIZE - 1, '\0');
-    my_strcpy(src, all_editor()->dir_save);
-    my_strcat(src, file);
-    return src;
-}
-
-void write_maps (void)
-{
-    char *str = malloc(sizeof(char) * BUFF_SIZE);
-    int fd = open(get_filepath_with_filename(str, all_editor()->dir_save, "/bg"), O_CREAT | O_RDWR);
-    if (!fd)
-        return;
-    for (int i = 0; all_editor()->map_bg[i]; i++) {
-        write(fd, all_editor()->map_bg[i], all_editor()->size_edit.x);
-        write(fd, "\n", 1);
-    }
-    close(fd);
-    fd = open(get_filepath_with_filename(str, all_editor()->dir_save, "/mg"), O_CREAT | O_RDWR);
-    if (!fd)
-        return;
-    for (int i = 0; all_editor()->map_mg[i]; i++) {
-        write(fd, all_editor()->map_mg[i], all_editor()->size_edit.x);
-        write(fd, "\n", 1);
-    }
-    close(fd);
-    fd = open(get_filepath_with_filename(str, all_editor()->dir_save, "/fg"), O_CREAT | O_RDWR);
-    if (!fd)
-        return;
-    for (int i = 0; all_editor()->map_fg[i]; i++) {
-        write(fd, all_editor()->map_fg[i], all_editor()->size_edit.x);
-        write(fd, "\n", 1);
-    }
-    close(fd);
-    my_printf("ecrit avec succes !\n");
 }
 
 void level_map_editor_event(sfEvent event)

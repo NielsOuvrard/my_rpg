@@ -186,6 +186,10 @@ void move_pos_player(void);
 
 void level_1 (sfEvent event);
 
+// write map
+
+void write_maps (void);
+
 // * ////////////// EDITOR DIR //////////////////////////////////////////
 
 // change size map tools
@@ -215,6 +219,10 @@ void disp_boxes (void);
 void disp_text_size (void);
 
 void disp_text_and_boxes (void);
+
+// le bon click editor
+
+void le_bon_click_editor (sfEvent event);
 
 // map editor click infos right
 

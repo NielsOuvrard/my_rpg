@@ -43,23 +43,21 @@ void full_list_sprites_next (void)
 {
     value[SPRITE_SHEET].rect.height = 16;
     value[SPRITE_SHEET].rect.width = 16;
-    value[SPRITE_SHEET].rect.top = 16;  // 0
-    value[SPRITE_SHEET].rect.left = 16; // 0
-    sfSprite_setTextureRect(value[SPRITE_SHEET].sprite, value[SPRITE_SHEET].rect);
+    value[SPRITE_SHEET].rect.top = 16;
+    value[SPRITE_SHEET].rect.left = 16;
+    sfSprite_setTextureRect(value[SPRITE_SHEET].sprite,
+    value[SPRITE_SHEET].rect);
     value[SPRITE_SHEET].anim = '\0';
     value[SPRITE_SHEET].scale.x = 3.125;
     value[SPRITE_SHEET].scale.y = 3.125;
     sfSprite_setScale(value[SPRITE_SHEET].sprite, value[SPRITE_SHEET].scale);
-
     value[BANANA].anim = '\0';
     value[BANANA].scale.x = 10;
     value[BANANA].scale.y = 10;
     sfSprite_setScale(value[BANANA].sprite, value[BANANA].scale);
-
     full_perso(HUNTER, 10 * 50, 10 * 35);
     full_perso(DEMON, 500, 240);
     full_perso(NINJA, 700, 1000);
-
     origin_in_8_8_scale(EMPTY_BOX);
     origin_in_8_8_scale(CHECK_BOX);
     origin_in_8_8_scale(CROSS_BOX);
