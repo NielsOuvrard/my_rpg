@@ -29,6 +29,7 @@ void full_list_maps(void)
         filepath[size - 2] = '\0';
         my_strcat(filepath, "fg");
         my_maps[i].fg = filepath_to_arr(filepath);
+        explor_map_find_all_ennemis(i);
     }
     free_my_arr(arr);
 }

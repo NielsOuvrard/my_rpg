@@ -4,73 +4,64 @@
 ** File description:
 ** my_printf.c
 */
-#include <stdio.h>
 #include <stdarg.h>
 #include "my.h"
-#include <stdlib.h>
 
-int is_a_flag (char *str, int a);
-
-formats_str alanyse_formats (char *str, int a, char *formats);
-
-int swich_to_funct (va_list list, formats_str array_int, char c);
-
-char *check_format_2 (char *str, int *a, int retour)
+int flag_s (va_list *list)
 {
-    int w, t, f, plus_post_sp = 0, boolean_space = 0;
-    for (w = 0; !my_isalpha(str[*a + w]); w++);
-    char *formats = malloc(sizeof(char) * w + 1);
-    char *if_erreur = malloc(sizeof(char) * w + 1);
-    for (f = 0, t = 0; w > t; t++) {
-        if (str[*a + t] != ' ')
-            formats[f++] = str[*a + t];
-        if (str[*a + t] == ' ' && !boolean_space) {
-            boolean_space = 1;
-            formats[f++] = str[*a + t];
-        }
-        if_erreur[t] = str[*a + t];
+    char *temp = va_arg(*list, char *);
+    if (!temp) {
+        my_putstr("(null)");
+        return 1;
     }
-    formats[f] = '\0';
-    *a += --t;
-    if (retour)
-        return formats;
-    return if_erreur;
+    my_putstr(temp);
+    return 0;
 }
 
-void check_format (va_list list, char *str, int *a)
+int flag_c (va_list *list)
 {
-    int b = *a, k = *a;
-    char *if_erreur = check_format_2(str, &b, 0);
-    char *formats = check_format_2(str, &k, 1);
-    *a = k;
-    formats_str array_int = alanyse_formats(str, *a, formats);
-    if (array_int.error) {
-        my_putchar('%');
-        my_putstr(if_erreur);
-        return;
+    char temp = va_arg(*list, int);
+    my_putchar(temp);
+    return 0;
+}
+
+int flag_d (va_list *list)
+{
+    int temp = va_arg(*list, int);
+    my_putint(temp);
+    return 0;
+}
+
+int swich_to_funct (va_list *list, char c)
+{
+    switch (c) {
+        case 's':
+            return flag_s(list);
+        case 'd':
+            return flag_d(list);
+        case 'i':
+            return flag_d(list);
+        case 'c':
+            return flag_c(list);
+        default:
+            return 0;
     }
-    char c = str[++(*a)];
-    if (is_a_flag(str, *a))
-        swich_to_funct(list, array_int, c);
-    if (str[(*a)] == 'l' || str[(*a)] == 'h')
-        (*a)++;
+    return 0;
 }
 
 int my_printf (char * str, ... )
 {
-    int return_value = 0, a;
+    int return_value = 0;
     va_list list;
     va_start(list, str);
-    for (a = 0; str[a] != '\0'; a++) {
+    for (int a = 0; str[a] != '\0'; a++) {
         if (str[a] == '%' && str[a + 1] != '\0' && str[a + 1] != '%') {
-            a++;
-            check_format(list, str, &a);
+            return_value += swich_to_funct(&list, str[++a]);
         } else if (str[a] == '%' && str[a + 1] != '\0' && str[a + 1] == '%') {
             my_putchar('%');
             a++;
         } else {
             my_putchar(str[a]);
-            return_value++;
         }
     }
     va_end(list);

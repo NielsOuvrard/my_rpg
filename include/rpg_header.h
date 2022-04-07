@@ -25,6 +25,8 @@
 
 #define BUFF_SIZE 512
 
+#define SIZE_TILE 50
+
 #define HUNTER 0
 #define SPRITE_SHEET 1
 #define NINJA 2
@@ -58,9 +60,8 @@ typedef struct struct_maps {
     char **bg;
     char **mg;
     char **fg;
-    // linked list ennemis ?
+    enemies *all_ennemis;
     // infos items ? in chest
-    // lieu de spawn
     // interaction portes / items
 } struct_maps;
 
@@ -71,7 +72,6 @@ typedef struct editor_screen {
     char **map_mg;
     char **map_fg;
     char value_to_print;
-    // text
     char *dir_save;
     sfText *editor_text;
     sfFont *font;
@@ -105,7 +105,6 @@ typedef struct main_screen {
     sfMusic *music;
     sfSoundBuffer *click_sound_buffer;
     sfSound *click_sound;
-
 } main_screen;
 
 // * ////////////// CREATE DIR //////////////////////////////////////////
@@ -171,10 +170,6 @@ void modify_var_move_next(sfEvent event, char a);
 void modify_var_move(sfEvent event);
 
 // level 1
-
-void move_to_salle_une (void);
-
-void move_to_exterieure_une (void);
 
 void change_look_ghost(void);
 
@@ -252,11 +247,13 @@ void level_map_editor (sfEvent event);
 
 // ennemis
 
-void add_enemies_to_list(enemies **list, int value, int x, int y);
+void add_enemies_to_list(int map, int value, int x, int y);
 
-void print_enemies(enemies **list);
+void explor_map_find_all_ennemis_next(int map, int i, int j);
 
-void create_enemy(enemies **list);
+void explor_map_find_all_ennemis(int map);
+
+void disp_all_ennemsi (void);
 
 // level 2 (pause peut-etre)
 

@@ -66,8 +66,6 @@ void event_level_1(sfEvent event)
 
 void level_1(sfEvent event)
 {
-    enemies *list = NULL;
-    create_enemy(&list);
     event_level_1(event);
     if (all_infos()->quit_main == 1)
         return;
@@ -75,7 +73,7 @@ void level_1(sfEvent event)
     disp_map(all_maps()[all_infos()->map_actual].mg);
     sfRenderWindow_drawSprite(all_infos()->window,
     all_sprites()[HUNTER].sprite, NULL);
-    print_enemies(&list);
+    disp_all_ennemsi();
     disp_map(all_maps()[all_infos()->map_actual].fg);
     if (all_sprites()[BANANA].anim)
         sfRenderWindow_drawSprite(all_infos()->window,
