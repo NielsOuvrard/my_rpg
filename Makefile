@@ -36,7 +36,7 @@ fclean: clean
 re:	fclean all
 
 auteur:
-	echo $(USER) > auteur
+		@echo $(USER) > auteur
 
 push:
 		@git add .
