@@ -31,7 +31,7 @@ void print_enemies(enemies **list)
     while (temp != NULL) {
         sfSprite_setPosition(all_sprites()[temp->value].sprite, temp->pos);
         sfRenderWindow_drawSprite(all_infos()->window, all_sprites()
-        [temp->value].sprite,NULL);
+        [temp->value].sprite, NULL);
         temp = temp->next;
     }
 }

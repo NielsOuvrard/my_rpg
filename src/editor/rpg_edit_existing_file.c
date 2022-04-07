@@ -15,6 +15,23 @@ void full_my_maps (char **map, char **map2)
     }
 }
 
+void edit_existing_file_next (char **bg, char **mg, char **fg)
+{
+    int size_y_map = my_arraylen(bg);
+    all_editor()->map_bg = editor_create_map(0, size_y_map, '\0');
+    all_editor()->map_mg = editor_create_map(0, size_y_map, '\0');
+    all_editor()->map_fg = editor_create_map(0, size_y_map, '\0');
+    full_my_maps(all_editor()->map_bg, bg);
+    full_my_maps(all_editor()->map_mg, mg);
+    full_my_maps(all_editor()->map_fg, fg);
+    free_my_arr(bg);
+    free_my_arr(mg);
+    free_my_arr(fg);
+    sfView_setCenter(all_infos()->view, (sfVector2f) {960, 540});
+    sfView_setSize(all_infos()->view, (sfVector2f) {1920, 1080});
+    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
+}
+
 void edit_existing_file (char *filepath_dir)
 {
     all_infos()->level = MAP_EDITOR;
@@ -33,18 +50,6 @@ void edit_existing_file (char *filepath_dir)
     free(filepath);
     if (!bg || !mg || !fg)
         exit(84);
-    int size_y_map = my_arraylen(bg);
-    all_editor()->map_bg = editor_create_map(0, size_y_map, '\0');
-    all_editor()->map_mg = editor_create_map(0, size_y_map, '\0');
-    all_editor()->map_fg = editor_create_map(0, size_y_map, '\0');
-    full_my_maps(all_editor()->map_bg, bg);
-    full_my_maps(all_editor()->map_mg, mg);
-    full_my_maps(all_editor()->map_fg, fg);
-    free_my_arr(bg);
-    free_my_arr(mg);
-    free_my_arr(fg);
     all_editor()->dir_save = filepath_dir;
-    sfView_setCenter(all_infos()->view, (sfVector2f) {960, 540});
-    sfView_setSize(all_infos()->view, (sfVector2f) {1920, 1080});
-    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
+    edit_existing_file_next(bg, mg, fg);
 }

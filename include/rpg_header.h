@@ -154,6 +154,22 @@ void anim_perso (void);
 
 void change_look_ghost(void);
 
+// change look ghost
+
+void change_look_ghost(void);
+
+// level 1 var move
+
+void idle_perso(void);
+
+void move_to_salle_une (void);
+
+void move_to_exterieure_une (void);
+
+void modify_var_move_next(sfEvent event, char a);
+
+void modify_var_move(sfEvent event);
+
 // level 1
 
 void move_to_salle_une (void);
@@ -171,6 +187,16 @@ void move_pos_player(void);
 void level_1 (sfEvent event);
 
 // * ////////////// EDITOR DIR //////////////////////////////////////////
+
+// change size map tools
+
+void add_new_y (char **map, int size, char c);
+
+void delete_y (char **map, int size);
+
+void add_new_x (char **map, int size, char c);
+
+void delete_x (char **map, int size);
 
 // change size map
 
@@ -216,6 +242,14 @@ void level_map_editor (sfEvent event);
 
 // * ////////////// SRC DIR //////////////////////////////////////////
 
+// ennemis
+
+void add_enemies_to_list(enemies **list, int value, int x, int y);
+
+void print_enemies(enemies **list);
+
+void create_enemy(enemies **list);
+
 // level 2 (pause peut-etre)
 
 void level_2 (sfEvent event);
@@ -236,10 +270,3 @@ char **filepath_to_arr (char *filepath);
 
 int random_int (int min, int max);
 
-// * ////////////// ENNEMIES //////////////////////////////////////////
-
-void add_enemies_to_list(enemies **list, int value, int x, int y);
-
-void print_enemies(enemies **list);
-
-void create_enemy(enemies **list);

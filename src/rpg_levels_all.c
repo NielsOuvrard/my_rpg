@@ -28,15 +28,14 @@ void animation (sfEvent event)
         level_map_editor_clock(event);
 }
 
+// sfMusic_play(my_main.music);
 void while_it_is_open (void)
 {
     sfEvent event;
-    // sfMusic_play(my_main.music);
     sfRenderWindow_setFramerateLimit(all_infos()->window, 120);
     while (sfRenderWindow_isOpen(all_infos()->window)) {
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
         sfRenderWindow_clear(all_infos()->window, sfBlack);
-        // sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[0].sprite, NULL);
         animation(event);
         if (all_infos()->level == 0)
             level_0(event);
@@ -65,13 +64,10 @@ int all_levels_game (int ac, char **av)
     full_list_maps();
     if (ac > 1 && !my_strcmp(av[1], "-edit") && av[2])
         edit_existing_file(av[2]);
-    // game
     while_it_is_open();
-    // free_my_arr(all_infos()->map);
     free(all_infos());
     free_map(0);
     free_map(1);
     free(all_maps());
-    // free here
     return 0;
 }

@@ -29,20 +29,6 @@ void change_tile_to_print(sfEvent event)
         all_editor()->value_to_print = 's';
 }
 
-// void change_map_size(sfEvent event)
-// {
-//     if (event.type == sfEvtKeyPressed) {
-//         if (event.key.code == sfKeyUp)
-//             all_editor()->size_edit.y--;
-//         if (event.key.code == sfKeyLeft)
-//             all_editor()->size_edit.x--;
-//         if (event.key.code == sfKeyDown)
-//             all_editor()->size_edit.y++;
-//         if (event.key.code == sfKeyRight)
-//             all_editor()->size_edit.x++;
-//     }
-// }
-
 void le_bon_click_editor (sfEvent event)
 {
     if (event.type == sfEvtMouseButtonPressed)

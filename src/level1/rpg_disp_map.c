@@ -14,11 +14,11 @@ void disp_tile_sprite_sheet(int i, int j, int top, int left)
     all_sprites()[s].rect.top = top;
     all_sprites()[s].rect.left = left;
     sfSprite_setTextureRect(all_sprites()[s].sprite, all_sprites()[s].rect);
-
     all_sprites()[s].pos.x = (all_sprites()[s].scale.x * 16) * j;
     all_sprites()[s].pos.y = (all_sprites()[s].scale.y * 16) * i;
     sfSprite_setPosition(all_sprites()[s].sprite, all_sprites()[s].pos);
-    sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[s].sprite, NULL);
+    sfRenderWindow_drawSprite(all_infos()->window,
+    all_sprites()[s].sprite, NULL);
 }
 
 void disp_map_next(char **map, int i, int j)
@@ -51,11 +51,14 @@ void disp_tile_sprite_seet(int i, int j, int top, int left)
 {
     all_sprites()[SPRITE_SHEET].rect.top = top;
     all_sprites()[SPRITE_SHEET].rect.left = left;
-    sfSprite_setTextureRect(all_sprites()[SPRITE_SHEET].sprite, all_sprites()[SPRITE_SHEET].rect);
-
-    all_sprites()[SPRITE_SHEET].pos.x = (all_sprites()[SPRITE_SHEET].scale.x * 16) * j;
-    all_sprites()[SPRITE_SHEET].pos.y = (all_sprites()[SPRITE_SHEET].scale.x * 16) * i;
-    sfSprite_setPosition(all_sprites()[SPRITE_SHEET].sprite, all_sprites()[SPRITE_SHEET].pos);
+    sfSprite_setTextureRect(all_sprites()[SPRITE_SHEET].sprite,
+    all_sprites()[SPRITE_SHEET].rect);
+    all_sprites()[SPRITE_SHEET].pos.x =
+     (all_sprites()[SPRITE_SHEET].scale.x * 16) * j;
+    all_sprites()[SPRITE_SHEET].pos.y =
+     (all_sprites()[SPRITE_SHEET].scale.x * 16) * i;
+    sfSprite_setPosition(all_sprites()[SPRITE_SHEET].sprite,
+    all_sprites()[SPRITE_SHEET].pos);
     sfRenderWindow_drawSprite(all_infos()->window,
     all_sprites()[SPRITE_SHEET].sprite, NULL);
 }

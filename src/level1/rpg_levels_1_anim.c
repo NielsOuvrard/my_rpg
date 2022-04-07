@@ -17,17 +17,8 @@ void anim_perso(void)
     if (!all_infos()->move)
         return;
     anim_perso_according_to_int(HUNTER);
-    sfSprite_setTextureRect(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].rect);
-}
-
-int player_is_on_case(int x, int y)
-{
-    if (all_sprites()[HUNTER].pos.x >= (50 * x) &&
-    all_sprites()[HUNTER].pos.x <= 50 * (x + 1) &&
-    all_sprites()[HUNTER].pos.y >= 50 * y &&
-    all_sprites()[HUNTER].pos.y <= 50 * (y + 1))
-        return 1;
-    return 0;
+    sfSprite_setTextureRect(all_sprites()[HUNTER].sprite,
+    all_sprites()[HUNTER].rect);
 }
 
 int can_move_on_this_char (void)
@@ -52,45 +43,6 @@ int can_move_on_this_char (void)
     if (a != '7' && a != ':' && a != 'G')
         return 0;
     return 1;
-}
-
-void change_look_ghost(void)
-{
-    // ? all_infos()->pos_player = sfSprite_getPosition(all_sprites()[HUNTER].sprite);
-    all_infos()->pos_player = all_sprites()[HUNTER].pos;
-    // if (!can_move_on_this_char())
-    //     return;
-    if (all_infos()->move == 'e') {
-        all_sprites()[HUNTER].rect.top = 0;
-        all_sprites()[HUNTER].pos.y -= 10;
-        sfView_move(all_infos()->view, (sfVector2f) {0, -10});
-    }
-    if (all_infos()->move == 'u') {
-        all_sprites()[HUNTER].rect.top = 0;
-        all_sprites()[HUNTER].pos.y -= 10;
-        sfView_move(all_infos()->view, (sfVector2f) {0, -10});
-    }
-    if (all_infos()->move == 'l') {
-        all_sprites()[HUNTER].rect.top = 2 * 16;
-        all_sprites()[HUNTER].pos.x -= 10;
-        sfView_move(all_infos()->view, (sfVector2f) {-10, 0});
-    }
-    if (all_infos()->move == 'd') {
-        all_sprites()[HUNTER].rect.top = 16;
-        all_sprites()[HUNTER].pos.y += 10;
-        sfView_move(all_infos()->view, (sfVector2f) {0, 10});
-    }
-    if (all_infos()->move == 'r') {
-        all_sprites()[HUNTER].rect.top = 3 * 16;
-        all_sprites()[HUNTER].pos.x += 10;
-        sfView_move(all_infos()->view, (sfVector2f) {10, 0});
-    }
-    if (player_is_on_case(10, 3) && all_infos()->map_actual == 1)
-        move_to_salle_une();
-    if (player_is_on_case(5, 10) && all_infos()->map_actual == 0)
-        move_to_exterieure_une();
-    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
-    sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
 }
 
 void move_pos_player(void)
