@@ -69,6 +69,13 @@ typedef struct enemies {
     sfVector2f pos;
     int health_points;
     int value;
+    sfClock *clock;
+    int radius;
+    int move_type;
+    int x;
+    int y;
+    int og_x;
+    int og_y;
 } enemies;
 
 typedef struct struct_interact {
@@ -310,3 +317,4 @@ char **filepath_to_arr (char *filepath);
 
 int random_int (int min, int max);
 
+void get_move_val(enemies *enemy);

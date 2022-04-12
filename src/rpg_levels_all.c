@@ -34,6 +34,7 @@ void while_it_is_open (void)
     sfEvent event;
     sfRenderWindow_setFramerateLimit(all_infos()->window, 120);
     while (sfRenderWindow_isOpen(all_infos()->window)) {
+        move_all_ennemys();
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
         sfRenderWindow_clear(all_infos()->window, sfBlack);
         animation(event);
