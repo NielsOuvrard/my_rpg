@@ -26,26 +26,15 @@ void idle_perso(void)
     return;
 }
 
-void move_to_salle_une (void)
+void move_to_map (int map, int x, int y)
 {
-    all_sprites()[HUNTER].pos.y = 50 * 9.95;
-    all_sprites()[HUNTER].pos.x = (50 * 5) + 25;
+    all_sprites()[HUNTER].pos.y = SIZE_TILE * y;
+    all_sprites()[HUNTER].pos.x = (SIZE_TILE * x) + 25;
     sfSprite_setPosition(all_sprites()[HUNTER].sprite,
     all_sprites()[HUNTER].pos);
-    all_infos()->map_actual = 0;
+    all_infos()->map_actual = map;
     sfView_setCenter(all_infos()->view,
-    (sfVector2f) {(50 * 5) + 25, 50 * 9.95});
-    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
-}
-
-void move_to_exterieure_une (void)
-{
-    all_sprites()[HUNTER].pos.y = 50 * 4;
-    all_sprites()[HUNTER].pos.x = (50 * 10) + 25;
-    sfSprite_setPosition(all_sprites()[HUNTER].sprite,
-    all_sprites()[HUNTER].pos);
-    all_infos()->map_actual = 1;
-    sfView_setCenter(all_infos()->view, (sfVector2f) {(50 * 10) + 25, 50 * 4});
+    (sfVector2f) {(SIZE_TILE * x) + 25, SIZE_TILE * y});
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
 }
 

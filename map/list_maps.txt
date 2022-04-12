@@ -1,2 +1,5 @@
-salle1/
-exterieur1/
+MAP_EXT_0/
+MAP_GREEN_0/
+MAP_GREY_0/
+MAP_GREY_1/
+MAP_WOOD_0/

@@ -38,6 +38,16 @@ void change_look_ghost_next(void)
     }
 }
 
+void check_all_intecract_map_actual (void)
+{
+    struct_interact *list = all_maps()[all_infos()->map_actual].interact;
+    while (list) {
+        if (player_is_on_case(list->x, list->y))
+            move_to_map(list->data, list->a_x, list->a_y);
+        list = list->next;
+    }
+}
+
 void change_look_ghost(void)
 {
     change_look_ghost_next();
@@ -51,10 +61,7 @@ void change_look_ghost(void)
         all_sprites()[HUNTER].pos.x += 10;
         sfView_move(all_infos()->view, (sfVector2f) {10, 0});
     }
-    if (player_is_on_case(10, 3) && all_infos()->map_actual == 1)
-        move_to_salle_une();
-    if (player_is_on_case(5, 10) && all_infos()->map_actual == 0)
-        move_to_exterieure_une();
+    check_all_intecract_map_actual();
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
     sfSprite_setPosition(all_sprites()[HUNTER].sprite,
     all_sprites()[HUNTER].pos);

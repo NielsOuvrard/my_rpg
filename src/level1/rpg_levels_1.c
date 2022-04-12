@@ -32,6 +32,10 @@ void event_level_1_pressed(sfEvent event)
         all_infos()->last_move == 'u')
             all_sprites()[HUNTER].rect.top = 80;
     }
+    if (event.key.code == sfKeyY)
+        move_to_map(--all_infos()->map_actual, 5, 5);
+    if (event.key.code == sfKeyT)
+        move_to_map(++all_infos()->map_actual, 5, 5);
     change_scale(event);
 }
 
@@ -70,10 +74,7 @@ void level_1(sfEvent event)
     if (all_infos()->quit_main == 1)
         return;
     disp_map(all_maps()[all_infos()->map_actual].bg);
-    disp_map(all_maps()[all_infos()->map_actual].mg);
-    sfRenderWindow_drawSprite(all_infos()->window,
-    all_sprites()[HUNTER].sprite, NULL);
-    disp_all_ennemsi();
+    disp_mg();
     disp_map(all_maps()[all_infos()->map_actual].fg);
     if (all_sprites()[BANANA].anim)
         sfRenderWindow_drawSprite(all_infos()->window,

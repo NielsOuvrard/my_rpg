@@ -23,7 +23,7 @@ void disp_tile_sprite_sheet(int i, int j, int top, int left)
 
 void disp_map_next(char **map, int i, int j)
 {
-    if (!(map[i][j] >= '0' && map[i][j] <= '0' + 35) || map[i][j] == 'R')
+    if (!(map[i][j] >= '0' && map[i][j] <= '0' + NMB_TILES) || map[i][j] == 'R')
         return;
     int x = map[i][j] - '0';
     x *= 16;
@@ -54,9 +54,9 @@ void disp_tile_sprite_seet(int i, int j, int top, int left)
     sfSprite_setTextureRect(all_sprites()[SPRITE_SHEET].sprite,
     all_sprites()[SPRITE_SHEET].rect);
     all_sprites()[SPRITE_SHEET].pos.x =
-     (all_sprites()[SPRITE_SHEET].scale.x * 16) * j;
+    (all_sprites()[SPRITE_SHEET].scale.x * 16) * j;
     all_sprites()[SPRITE_SHEET].pos.y =
-     (all_sprites()[SPRITE_SHEET].scale.x * 16) * i;
+    (all_sprites()[SPRITE_SHEET].scale.x * 16) * i;
     sfSprite_setPosition(all_sprites()[SPRITE_SHEET].sprite,
     all_sprites()[SPRITE_SHEET].pos);
     sfRenderWindow_drawSprite(all_infos()->window,

@@ -30,7 +30,7 @@ void creat_main (void)
     sfResize | sfClose, NULL);
     infos->level = 0;
     infos->quit_main = 0;
-    infos->map_actual = 1;
+    infos->map_actual = 0;
     infos->pos_player.x = 0;
     infos->pos_player.y = 0;
     infos->zoom = 1;

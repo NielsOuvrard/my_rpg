@@ -10,6 +10,63 @@
 
 static struct_maps *my_maps;
 
+struct_interact *interactions_of_map (char *str, struct_maps autr)
+{
+    struct_interact *ptr_inte = malloc(sizeof(struct_interact));
+    ptr_inte->next = NULL;
+    ptr_inte->type = my_getnbr(str);
+    while (my_isdidgit(str[0]))
+        str++;
+    str++;
+    ptr_inte->data = my_getnbr(str);
+    while (my_isdidgit(str[0]))
+        str++;
+    str++;
+    ptr_inte->y = my_getnbr(str);
+    while (my_isdidgit(str[0]))
+        str++;
+    str++;
+    ptr_inte->x = my_getnbr(str);
+    while (my_isdidgit(str[0]))
+        str++;
+    str++;
+    ptr_inte->a_y = my_getnbr(str);
+    while (my_isdidgit(str[0]))
+        str++;
+    str++;
+    ptr_inte->a_x = my_getnbr(str);
+    ptr_inte->next = autr.interact;
+    return ptr_inte;
+}
+
+struct_maps edit_bg_pas_gabriel(struct_maps autr)
+{
+    int size = 0;
+    for (int i = 0; autr.bg[i]; i++)
+        if (autr.bg[i][0] == '$')
+            size = i;
+    if (size == 0)
+        return autr;
+    char **new_bg = malloc(sizeof(char *) * (size + 1));
+    for (int i = 0; i < size; i++)
+        new_bg[i] = autr.bg[i];
+    new_bg[size] = NULL;
+    autr.interact = NULL;
+    for (int i = size + 1; autr.bg[i]; i++)
+        autr.interact = interactions_of_map(autr.bg[i], autr);
+    autr.bg = new_bg;
+    // TODO : infos to 'my_maps[i].interact'
+
+    struct_interact *list = autr.interact;
+    while (list) {
+        my_printf("type : %d\tdata : %d\tx : %d\ty : %d\n",
+        list->type, list->data, list->x, list->y);
+        list = list->next;
+    }
+    my_printf("room : %s\n", autr.interact ? "FULL" : NULL);
+    return autr;
+}
+
 void full_list_maps(void)
 {
     char **arr = filepath_to_arr("map/list_maps.txt");
@@ -23,6 +80,7 @@ void full_list_maps(void)
         my_strcat(filepath, "bg");
         int size = my_strlen(filepath);
         my_maps[i].bg = filepath_to_arr(filepath);
+        my_maps[i] = edit_bg_pas_gabriel(my_maps[i]);
         filepath[size - 2] = '\0';
         my_strcat(filepath, "mg");
         my_maps[i].mg = filepath_to_arr(filepath);

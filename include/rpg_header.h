@@ -25,16 +25,31 @@
 
 #define BUFF_SIZE 512
 
-#define SIZE_TILE 50
+#define SIZE_TILE           50
+#define NMB_TILES           45
+#define SIZE_TILE_SHEET_X   96
+#define SIZE_TILE_SHEET_Y   128
+#define SCALE_TILE_SHEET    3.125
 
-#define HUNTER 0
-#define SPRITE_SHEET 1
-#define NINJA 2
-#define BANANA 3
-#define DEMON 4
-#define CHECK_BOX 5
-#define EMPTY_BOX 6
-#define CROSS_BOX 7
+#define VALEURE_APPROXIMATIVE_POUR_PASSER_DERRIER_UNE_TUILE_EN_MG 32
+
+#define MAP_EXT_0   0
+#define MAP_GREEN_0 1
+#define MAP_GREY_0  2
+#define MAP_GREY_1  3
+#define MAP_WOOD_0  4
+
+#define TYPE_CHANGE_MAP 0
+#define TYPE_CHEST      1
+
+#define HUNTER          0
+#define SPRITE_SHEET    1
+#define NINJA           2
+#define BANANA          3
+#define DEMON           4
+#define CHECK_BOX       5
+#define EMPTY_BOX       6
+#define CROSS_BOX       7
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -56,13 +71,25 @@ typedef struct enemies {
     int value;
 } enemies;
 
+typedef struct struct_interact {
+    int x;
+    int y;
+    int a_x;
+    int a_y;
+    int type;
+    // ? bool locked; ?
+    int data;
+    struct struct_interact *next;
+} struct_interact;
+
 typedef struct struct_maps {
     char **bg;
     char **mg;
     char **fg;
     enemies *all_ennemis;
+    struct_interact *interact;
     // infos items ? in chest
-    // interaction portes / items
+    // items / panneaux ?
 } struct_maps;
 
 typedef struct editor_screen {
@@ -139,6 +166,10 @@ sprite_pictures *all_sprites (void);
 
 // * ////////////// LEVEL1 DIR //////////////////////////////////////////
 
+// disp mg
+
+void disp_mg (void);
+
 // disp map
 
 void disp_map(char **map);
@@ -161,9 +192,11 @@ void change_look_ghost(void);
 
 void idle_perso(void);
 
-void move_to_salle_une (void);
+void move_to_map (int map, int x, int y);
 
-void move_to_exterieure_une (void);
+// void move_to_salle_une (void);
+
+// void move_to_exterieure_une (void);
 
 void modify_var_move_next(sfEvent event, char a);
 
@@ -202,6 +235,8 @@ void delete_x (char **map, int size);
 void change_size_map (void);
 
 // disp map editor
+
+void disp_map_next(char **map, int i, int j);
 
 void disp_map_editor(char **map);
 

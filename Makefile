@@ -45,9 +45,9 @@ push:
 		@git push
 
 mac_del:
-		rm -R *.dSYM
-		rm -R .vscode
-		rm -R .DS_Store
+		rm -Rf *.dSYM
+		rm -Rf .vscode
+		rm -Rf .DS_Store
 
 vg_del:
 		rm vgcore.*

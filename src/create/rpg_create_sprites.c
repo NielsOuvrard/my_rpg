@@ -48,8 +48,8 @@ void full_list_sprites_next (void)
     sfSprite_setTextureRect(value[SPRITE_SHEET].sprite,
     value[SPRITE_SHEET].rect);
     value[SPRITE_SHEET].anim = '\0';
-    value[SPRITE_SHEET].scale.x = 3.125;
-    value[SPRITE_SHEET].scale.y = 3.125;
+    value[SPRITE_SHEET].scale.x = SCALE_TILE_SHEET;
+    value[SPRITE_SHEET].scale.y = SCALE_TILE_SHEET;
     sfSprite_setScale(value[SPRITE_SHEET].sprite, value[SPRITE_SHEET].scale);
     value[BANANA].anim = '\0';
     value[BANANA].scale.x = 10;
