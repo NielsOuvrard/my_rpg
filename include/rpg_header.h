@@ -81,6 +81,13 @@ typedef struct enemies {
     sfIntRect rect;
 } enemies;
 
+typedef struct struct_particule {
+    int size;
+    sfVector2f pos;
+    sfColor color;
+    struct struct_particule *next;
+} struct_particule;
+
 typedef struct struct_interact {
     int x;
     int y;
@@ -134,6 +141,9 @@ typedef struct main_screen {
     float zoom;
     sfVector2f view_position;
     sfVector2u size_window;
+
+    // particules :
+    struct_particule *particules;
 
     //view
     sfView *view;
@@ -228,6 +238,14 @@ void level_1 (sfEvent event);
 // write map
 
 void write_maps (void);
+
+// particules
+
+void add_particules (sfVector2f pos, int size, sfColor color);
+
+void anim_all_particules (void);
+
+void print_all_particules (void);
 
 // * ////////////// EDITOR DIR //////////////////////////////////////////
 

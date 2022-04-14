@@ -55,6 +55,9 @@ void move_pos_player(void)
         all_infos()->pos_player.y -= 10;
     if (all_infos()->move == 'r')
         all_infos()->pos_player.x -= 10;
+    if (all_infos()->move != 'c')
+    add_particules(all_sprites()[HUNTER].pos, 10,
+        sfColor_fromRGBA(255, 255, 255, 200));
 }
 
 void level_1_clock(sfEvent event)
@@ -63,8 +66,11 @@ void level_1_clock(sfEvent event)
         anim_perso();
         anim_all_enemies();
     }
-    if (all_infos()->move && !(all_infos()->clock_val % 2)) {
-        move_pos_player();
-        change_look_hunter();
+    if (!(all_infos()->clock_val % 2)) {
+        if (all_infos()->move) {
+            move_pos_player();
+            change_look_hunter();
+        }
+        anim_all_particules();
     }
 }

@@ -74,6 +74,7 @@ void level_1(sfEvent event)
     if (all_infos()->quit_main == 1)
         return;
     disp_map(all_maps()[all_infos()->map_actual].bg);
+    print_all_particules();
     disp_mg();
     disp_map(all_maps()[all_infos()->map_actual].fg);
     if (all_sprites()[BANANA].anim)
