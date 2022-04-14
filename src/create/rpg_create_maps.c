@@ -55,15 +55,9 @@ struct_maps edit_bg_pas_gabriel(struct_maps autr)
     for (int i = size + 1; autr.bg[i]; i++)
         autr.interact = interactions_of_map(autr.bg[i], autr);
     autr.bg = new_bg;
-    // TODO : infos to 'my_maps[i].interact'
-
     struct_interact *list = autr.interact;
-    while (list) {
-        // my_printf("type : %d\tdata : %d\tx : %d\ty : %d\n",
-        // list->type, list->data, list->x, list->y);
+    while (list)
         list = list->next;
-    }
-    // my_printf("room : %s\n", autr.interact ? "FULL" : NULL);
     return autr;
 }
 

@@ -226,7 +226,6 @@ void modify_var_move(sfEvent event);
 
 // level 1
 
-
 void level_1_clock(sfEvent event);
 
 void modify_var_move(sfEvent event);
@@ -240,6 +239,8 @@ void level_1 (sfEvent event);
 void write_maps (void);
 
 // particules
+
+void find_tile_particle (char c, int i, int j);
 
 void add_particules (sfVector2f pos, int size, sfColor color);
 
@@ -328,6 +329,12 @@ void explor_map_find_all_ennemis_next(int map, int i, int j);
 void explor_map_find_all_ennemis(int map);
 
 void disp_all_ennemsi (void);
+
+// free
+
+void free_map (int i);
+
+void free_particules (void);
 
 // level 2 (pause peut-etre)
 

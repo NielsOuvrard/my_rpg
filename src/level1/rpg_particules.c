@@ -29,6 +29,19 @@ void add_particules (sfVector2f pos, int size, sfColor color)
     p->next = new;
 }
 
+void anim_all_particules_next (struct_particule *del)
+{
+    struct_particule *del_tmp = del;
+    while (del_tmp->next) {
+        if (del_tmp->next->size < 1) {
+            struct_particule *tmp = del_tmp->next;
+            del_tmp->next = del_tmp->next->next;
+            free(tmp);
+        }
+        del_tmp = del_tmp->next;
+    }
+}
+
 void anim_all_particules (void)
 {
     struct_particule *p = all_infos()->particules;
@@ -47,14 +60,15 @@ void anim_all_particules (void)
     all_infos()->particules = del;
     if (!del)
         return;
-    struct_particule *del_tmp = del;
-    while (del_tmp->next) {
-        if (del_tmp->next->size < 1) {
-            struct_particule *tmp = del_tmp->next;
-            del_tmp->next = del_tmp->next->next;
-            free(tmp);
-        }
-        del_tmp = del_tmp->next;
+    anim_all_particules_next(del);
+}
+
+void find_tile_particle (char c, int i, int j)
+{
+    if (c == '0') {
+        add_particules((sfVector2f){(j * (16 * SCALE_TILE_SHEET)) + 16,
+        (i * (16 * SCALE_TILE_SHEET)) + 16}, 15,
+        sfColor_fromRGBA(220, 0, 0, 120));
     }
 }
 
@@ -71,4 +85,3 @@ void print_all_particules (void)
         p = p->next;
     }
 }
-// sfColor_fromRGBA(255, 255, 255, 200)

@@ -19,7 +19,8 @@ int round_sup (float a)
 
 int le_bon_click_editor_pos_map (sfEvent event, sfVector2i pos_mouse)
 {
-    if (pos_mouse.x <= SCALE_TILE_SHEET * SIZE_TILE_SHEET_X && pos_mouse.y < SCALE_TILE_SHEET * SIZE_TILE_SHEET_Y) {
+    if (pos_mouse.x <= SCALE_TILE_SHEET * SIZE_TILE_SHEET_X &&
+        pos_mouse.y < SCALE_TILE_SHEET * SIZE_TILE_SHEET_Y) {
         all_editor()->value_to_print = '0';
         all_editor()->value_to_print += (pos_mouse.y / 50) * 6;
         all_editor()->value_to_print += (pos_mouse.x / 50);
@@ -43,10 +44,6 @@ void le_bon_click_editor (sfEvent event)
     if (!all_editor()->is_writing)
         return;
     sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(all_infos()->window);
-    // my_printf("mouse : x %d\ty %d\n", pos_mouse.x, pos_mouse.y);
-    // my_printf("decale : x %d\ty %d\n", (int)(all_infos()->pos_player.x), (int)(all_infos()->pos_player.y));
-    // my_printf("m - d : x %d\ty %d\n\n", (int)(pos_mouse.x - all_infos()->pos_player.x), (int)(pos_mouse.y - all_infos()->pos_player.y));
-    // my_printf("m - d / 50 : x %d\ty %d\n\n", (int)(pos_mouse.x - all_infos()->pos_player.x) / 50, (int)(pos_mouse.y - all_infos()->pos_player.y) / 50);
     if (le_bon_click_editor_pos_map(event, pos_mouse))
         return;
     int y = (pos_mouse.y / 50) - ((all_infos()->pos_player.y / 50));

@@ -34,7 +34,8 @@ int can_be_moved(int x, int y, enemies *enemy)
         return 0;
     if (y <= 0 || x <= 0)
         return 0;
-    if (all_maps()[all_infos()->map_actual].bg[y][x] != '7')
+    char tile = all_maps()[all_infos()->map_actual].bg[y][x];
+    if (tile != '7' && tile != 'U' && tile != 'G')
         return 0;
     if (all_maps()[all_infos()->map_actual].mg[y][x] != 'R')
         return 0;

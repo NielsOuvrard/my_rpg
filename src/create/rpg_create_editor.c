@@ -25,7 +25,6 @@ char **editor_create_map (int x, int y, char c)
         my_memset(map[i], BUFF_SIZE - 1, '\0');
         my_memset(map[i], x, c);
     }
-    // map[y] = NULL;
     return map;
 }
 
@@ -34,17 +33,13 @@ void initialize_editor_vals(void)
     sfText_setFont(edito->editor_text, edito->font);
     sfText_setColor(edito->editor_text, sfWhite);
     sfText_setCharacterSize(edito->editor_text, 60);
-    // sfText_setString(edito->editor_text, "str");
-    // sfText_setPosition(edito->editor_text, (sfVector2f){50, 0});
 }
 
 void creat_editor (void)
 {
     edito = malloc(sizeof(editor_screen));
-    //text
     edito->editor_text = sfText_create();
     edito->font = sfFont_createFromFile("font/coolvetica_rg.ttf");
-    // editor
     edito->map_bg = NULL;
     edito->map_mg = NULL;
     edito->map_fg = NULL;
@@ -58,7 +53,6 @@ void creat_editor (void)
     edito->v_bg = true;
     edito->v_mg = true;
     edito->v_fg = true;
-
     initialize_editor_vals();
     return;
 }

@@ -50,13 +50,6 @@ void while_it_is_open (void)
     }
 }
 
-void free_map (int i)
-{
-    free_my_arr(all_maps()[i].bg);
-    free_my_arr(all_maps()[i].mg);
-    free_my_arr(all_maps()[i].fg);
-}
-
 int all_levels_game (int ac, char **av)
 {
     full_list_sprites();
@@ -66,6 +59,7 @@ int all_levels_game (int ac, char **av)
     if (ac > 1 && !my_strcmp(av[1], "-edit") && av[2])
         edit_existing_file(av[2]);
     while_it_is_open();
+    free_particules();
     free(all_infos());
     free_map(0);
     free_map(1);

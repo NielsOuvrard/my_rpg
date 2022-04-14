@@ -33,8 +33,9 @@ void disp_mg_next (int i)
 void disp_mg (void)
 {
     for (int i = 0; all_maps()[all_infos()->map_actual].mg[i]; i++) {
-        for (int j = 0; all_maps()[all_infos()->map_actual].mg[i][j]; j++)
+        for (int j = 0; all_maps()[all_infos()->map_actual].mg[i][j]; j++) {
             disp_map_next(all_maps()[all_infos()->map_actual].mg, i, j);
+        }
         disp_mg_next(i);
     }
 }

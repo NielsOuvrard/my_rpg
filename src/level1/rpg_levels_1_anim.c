@@ -56,8 +56,25 @@ void move_pos_player(void)
     if (all_infos()->move == 'r')
         all_infos()->pos_player.x -= 10;
     if (all_infos()->move != 'c')
-    add_particules(all_sprites()[HUNTER].pos, 10,
+        add_particules(all_sprites()[HUNTER].pos, 10,
         sfColor_fromRGBA(255, 255, 255, 200));
+}
+
+void find_all_particules_from_mg (void)
+{
+    for (int i = 0; all_maps()[all_infos()->map_actual].mg[i]; i++) {
+        for (int j = 0; all_maps()[all_infos()->map_actual].mg[i][j]; j++) {
+            find_tile_particle(all_maps()[
+            all_infos()->map_actual].mg[i][j], i, j);
+        }
+    }
+    int si = 0;
+    struct_particule *p = all_infos()->particules;
+    while (p) {
+        si++;
+        p = p->next;
+    }
+    my_printf("nmb part = %d\n", si);
 }
 
 void level_1_clock(sfEvent event)
@@ -65,6 +82,7 @@ void level_1_clock(sfEvent event)
     if (!(all_infos()->clock_val % 10)) {
         anim_perso();
         anim_all_enemies();
+
     }
     if (!(all_infos()->clock_val % 2)) {
         if (all_infos()->move) {
@@ -72,5 +90,6 @@ void level_1_clock(sfEvent event)
             change_look_hunter();
         }
         anim_all_particules();
+        find_all_particules_from_mg();
     }
 }
