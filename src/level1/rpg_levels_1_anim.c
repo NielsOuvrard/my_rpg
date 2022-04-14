@@ -59,10 +59,12 @@ void move_pos_player(void)
 
 void level_1_clock(sfEvent event)
 {
-    if (!(all_infos()->clock_val % 10))
+    if (!(all_infos()->clock_val % 10)) {
         anim_perso();
+        anim_all_enemies();
+    }
     if (all_infos()->move && !(all_infos()->clock_val % 2)) {
         move_pos_player();
-        change_look_ghost();
+        change_look_hunter();
     }
 }

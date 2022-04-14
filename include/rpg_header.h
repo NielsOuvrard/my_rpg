@@ -76,6 +76,9 @@ typedef struct enemies {
     int y;
     int og_x;
     int og_y;
+
+    char anim;
+    sfIntRect rect;
 } enemies;
 
 typedef struct struct_interact {
@@ -181,6 +184,10 @@ void disp_mg (void);
 
 void disp_map(char **map);
 
+// level 1 anim enemis
+
+void anim_all_enemies (void);
+
 // level 1 anim hunter
 
 void anim_perso_according_to_int (int sprite);
@@ -189,11 +196,9 @@ void anim_perso_according_to_int (int sprite);
 
 void anim_perso (void);
 
-void change_look_ghost(void);
+// change look hunter
 
-// change look ghost
-
-void change_look_ghost(void);
+void change_look_hunter(void);
 
 // level 1 var move
 
@@ -211,7 +216,6 @@ void modify_var_move(sfEvent event);
 
 // level 1
 
-void change_look_ghost(void);
 
 void level_1_clock(sfEvent event);
 
@@ -286,6 +290,16 @@ void level_map_editor_clock(sfEvent event);
 void level_map_editor (sfEvent event);
 
 // * ////////////// SRC DIR //////////////////////////////////////////
+
+// ennemis
+
+void move_all_ennemys (void);
+
+void get_move_val(enemies *enemy);
+
+int can_be_moved(int x, int y, enemies *enemy);
+
+void get_new_vals(enemies *enemy);
 
 // ennemis
 

@@ -48,8 +48,6 @@ void edit_existing_file (char *filepath_dir)
     my_strcat(filepath, "/fg");
     char **fg = filepath_to_arr(filepath);
     free(filepath);
-    if (!bg || !mg || !fg)
-        exit(84);
     all_editor()->dir_save = filepath_dir;
     edit_existing_file_next(bg, mg, fg);
 }

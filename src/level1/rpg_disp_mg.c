@@ -14,6 +14,10 @@ void disp_mg_next (int i)
     while (expl) {
         if (expl->pos.y > (SIZE_TILE * i) + 16) {
             sfSprite_setPosition(all_sprites()[expl->value].sprite, expl->pos);
+
+            // rect
+            sfSprite_setTextureRect(all_sprites()[expl->value].sprite, expl->rect);
+
             sfRenderWindow_drawSprite(all_infos()->window,
             all_sprites()[expl->value].sprite, NULL);
         }

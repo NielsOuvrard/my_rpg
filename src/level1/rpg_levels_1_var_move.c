@@ -52,7 +52,7 @@ void modify_var_move_next(sfEvent event, char a)
         all_sprites()[HUNTER].anim = 'A';
         if (all_infos()->move != 'c')
             all_sprites()[HUNTER].rect.left = 0;
-        change_look_ghost();
+        change_look_hunter();
         anim_perso_according_to_int(HUNTER);
         sfSprite_setTextureRect(all_sprites()[HUNTER].sprite,
         all_sprites()[HUNTER].rect);

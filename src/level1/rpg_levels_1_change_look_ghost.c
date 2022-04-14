@@ -18,7 +18,7 @@ int player_is_on_case(int x, int y)
     return 0;
 }
 
-void change_look_ghost_next(void)
+void change_look_hunter_next(void)
 {
     all_infos()->pos_player = all_sprites()[HUNTER].pos;
     if (all_infos()->move == 'e') {
@@ -48,9 +48,9 @@ void check_all_intecract_map_actual (void)
     }
 }
 
-void change_look_ghost(void)
+void change_look_hunter(void)
 {
-    change_look_ghost_next();
+    change_look_hunter_next();
     if (all_infos()->move == 'd') {
         all_sprites()[HUNTER].rect.top = 16;
         all_sprites()[HUNTER].pos.y += 10;

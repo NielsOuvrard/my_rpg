@@ -28,6 +28,11 @@ void add_enemies_to_list(int map, int value, int x, int y)
     new_enemy->clock = sfClock_create();
     new_enemy->radius = 5;
     new_enemy->move_type = 4;
+    new_enemy->anim = 'a';
+    new_enemy->rect.height = 16;
+    new_enemy->rect.width = 16;
+    new_enemy->rect.top = 16;
+    new_enemy->rect.left = 16;
     new_enemy->og_x = (new_enemy->pos.x / SIZE_TILE);
     new_enemy->og_y = (new_enemy->pos.y / SIZE_TILE);
     if (all_maps()[map].all_ennemis == NULL) {

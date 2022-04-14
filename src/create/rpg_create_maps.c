@@ -59,11 +59,11 @@ struct_maps edit_bg_pas_gabriel(struct_maps autr)
 
     struct_interact *list = autr.interact;
     while (list) {
-        my_printf("type : %d\tdata : %d\tx : %d\ty : %d\n",
-        list->type, list->data, list->x, list->y);
+        // my_printf("type : %d\tdata : %d\tx : %d\ty : %d\n",
+        // list->type, list->data, list->x, list->y);
         list = list->next;
     }
-    my_printf("room : %s\n", autr.interact ? "FULL" : NULL);
+    // my_printf("room : %s\n", autr.interact ? "FULL" : NULL);
     return autr;
 }
 
