@@ -33,7 +33,7 @@ void editor_click_infos_right_next (sfVector2i pos_mouse, int views)
     return;
 }
 
-// too long
+// 1 line too long
 void editor_click_infos_right (sfVector2i pos_mouse)
 {
     bool views = false;
