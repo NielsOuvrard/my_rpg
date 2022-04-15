@@ -23,10 +23,11 @@ void animation (sfEvent event)
 {
     bool anim = if_in_time();
     if (anim && all_infos()->level == 1)
-        level_1_clock(event);
+        level_1_animations(event);
     if (anim && all_infos()->level == MAP_EDITOR)
         level_map_editor_clock(event);
 }
+    // my_printf("top : %d\tleft : %d\n", all_sprites()[HUNTER].rect.top, all_sprites()[HUNTER].rect.left);
 
 // sfMusic_play(my_main.music);
 void while_it_is_open (void)
@@ -55,9 +56,12 @@ int all_levels_game (int ac, char **av)
     full_list_sprites();
     creat_main();
     creat_editor();
+    creat_keyes();
     full_list_maps();
     if (ac > 1 && !my_strcmp(av[1], "-edit") && av[2])
         edit_existing_file(av[2]);
+    if (ac > 1 && !my_strcmp(av[1], "-q"))
+        qwerty_keyes();
     while_it_is_open();
     free_particules();
     free(all_infos());

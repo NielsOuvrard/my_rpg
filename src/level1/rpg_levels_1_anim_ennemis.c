@@ -8,25 +8,34 @@
 #include "my.h"
 #include "rpg_header.h"
 
+
 void anim_enemis_left_right (enemies *enemy)
 {
-    if (enemy->anim >= 'a' && enemy->anim <= 'f') {
-        if (enemy->anim >= 'f') {
-            enemy->rect.left = 4 * 16;
-            enemy->anim = 'E';
+    if (enemy->anim >= 'a' && enemy->anim <= 'c') {
+        if (enemy->anim >= 'c') {
+            enemy->rect.left = 0;
+            enemy->anim = 'A';
             return;
         }
         enemy->anim++;
         enemy->rect.left += 16;
         return;
     }
-    if (enemy->anim <= 'A') {
-        enemy->anim = 'b';
-        enemy->rect.left = 16;
+    if (enemy->anim == 'A') {
+        enemy->anim++;
+        enemy->rect.left = 3 * 16;
         return;
     }
-    enemy->rect.left -= 16;
-    enemy->anim--;
+    if (enemy->anim == 'B') {
+        enemy->anim++;
+        enemy->rect.left += 16;
+        return;
+    }
+    if (enemy->anim == 'C') {
+        enemy->anim = 'a';
+        enemy->rect.left = 0;
+        return;
+    }
 }
 
 void anim_enemis_up_and_down (enemies *enemy)

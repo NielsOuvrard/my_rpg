@@ -8,18 +8,6 @@
 #include "my.h"
 #include "rpg_header.h"
 
-void change_tile_to_print(sfEvent event)
-{
-    if (event.key.code == sfKeyNum1)
-        all_editor()->value_to_print = 'g';
-    if (event.key.code == sfKeyNum2)
-        all_editor()->value_to_print = 'd';
-    if (event.key.code == sfKeyNum3)
-        all_editor()->value_to_print = 'w';
-    if (event.key.code == sfKeyNum4)
-        all_editor()->value_to_print = 's';
-}
-
 void paint_bucket_tool (void)
 {
     free_my_arr(all_editor()->ptr_map_edit);
@@ -54,7 +42,6 @@ void la_bonne_touche_editor (sfEvent event)
         all_editor()->map_fg = NULL;
         all_infos()->level = 0;
     }
-    change_tile_to_print(event);
     if (event.key.code == sfKeyN && all_editor()->ptr_map_edit)
         paint_bucket_tool();
 }

@@ -81,6 +81,19 @@ typedef struct enemies {
     sfIntRect rect;
 } enemies;
 
+typedef struct struct_keys {
+    sfKeyCode k_up;
+    sfKeyCode k_down;
+    sfKeyCode k_left;
+    sfKeyCode k_right;
+    sfKeyCode k_interact;
+    sfKeyCode k_map;
+    sfKeyCode k_open_bag;
+    sfKeyCode shoot;
+    sfKeyCode zoom_in;
+    sfKeyCode zoom_out;
+} struct_keys;
+
 typedef struct struct_particule {
     int size;
     sfVector2f pos;
@@ -137,6 +150,10 @@ typedef struct main_screen {
     int map_actual;
     sfVector2f pos_player;
     char move;
+    bool move_u;
+    bool move_d;
+    bool move_r;
+    bool move_l;
     char last_move;
     float zoom;
     sfVector2f view_position;
@@ -155,6 +172,14 @@ typedef struct main_screen {
 } main_screen;
 
 // * ////////////// CREATE DIR //////////////////////////////////////////
+
+// keyes
+
+void creat_keyes (void);
+
+struct_keys *all_keyes (void);
+
+void qwerty_keyes (void);
 
 // create editor
 
@@ -185,6 +210,13 @@ void full_list_sprites (void);
 sprite_pictures *all_sprites (void);
 
 // * ////////////// LEVEL1 DIR //////////////////////////////////////////
+// interact change map
+
+void move_to_map (int map, int x, int y);
+
+int player_is_on_case(int x, int y);
+
+void check_all_intecract_map_actual (void);
 
 // disp mg
 
@@ -200,7 +232,7 @@ void anim_all_enemies (void);
 
 // level 1 anim hunter
 
-void anim_perso_according_to_int (int sprite);
+void anim_perso_according_to_int (void);
 
 // level 1 anim
 
@@ -208,7 +240,13 @@ void anim_perso (void);
 
 // change look hunter
 
-void change_look_hunter(void);
+// void change_look_hunter(void);
+
+// enevt
+
+void recalculate_the_sprite_perso (void);
+
+void event_level_1(sfEvent event);
 
 // level 1 var move
 
@@ -226,7 +264,7 @@ void modify_var_move(sfEvent event);
 
 // level 1
 
-void level_1_clock(sfEvent event);
+void level_1_animations(sfEvent event);
 
 void modify_var_move(sfEvent event);
 

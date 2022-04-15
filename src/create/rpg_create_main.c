@@ -35,6 +35,10 @@ void creat_main (void)
     infos->pos_player.y = 0;
     infos->zoom = 1;
     infos->move = '\0';
+    infos->move_u = false;
+    infos->move_d = false;
+    infos->move_l = false;
+    infos->move_r = false;
     infos->clock = sfClock_create();
     infos->clock_val = 0;
     infos->particules = NULL;
