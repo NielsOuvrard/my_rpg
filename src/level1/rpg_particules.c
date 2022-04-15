@@ -29,10 +29,10 @@ void add_particules (sfVector2f pos, int size, sfColor color)
     p->next = new;
 }
 
-void anim_all_particules_next (struct_particule *del)
+void anim_all_particules_next (void)
 {
-    struct_particule *del_tmp = del;
-    while (del_tmp->next) {
+    struct_particule *del_tmp = all_infos()->particules;
+    while (del_tmp && del_tmp->next) {
         if (del_tmp->next->size < 1) {
             struct_particule *tmp = del_tmp->next;
             del_tmp->next = del_tmp->next->next;
@@ -60,7 +60,7 @@ void anim_all_particules (void)
     all_infos()->particules = del;
     if (!del)
         return;
-    anim_all_particules_next(del);
+    anim_all_particules_next();
 }
 
 void find_tile_particle (char c, int i, int j)
