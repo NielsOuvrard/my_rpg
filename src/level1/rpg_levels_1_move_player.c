@@ -10,7 +10,6 @@
 
 void recalculate_the_sprite_perso (void)
 {
-    my_printf("recalculate_the_sprite_perso\n");
     all_sprites()[HUNTER].rect.left = 0;
     if (all_infos()->move_u)
         all_sprites()[HUNTER].rect.top = 0;

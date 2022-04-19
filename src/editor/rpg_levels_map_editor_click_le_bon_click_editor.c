@@ -46,8 +46,8 @@ void le_bon_click_editor (sfEvent event)
     sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(all_infos()->window);
     if (le_bon_click_editor_pos_map(event, pos_mouse))
         return;
-    int y = (pos_mouse.y / 50) - ((all_infos()->pos_player.y / 50));
-    int x = (pos_mouse.x / 50) - ((all_infos()->pos_player.x / 50));
+    int y = (pos_mouse.y / 50) - (((all_infos()->pos_player.y - 8) / 50));
+    int x = (pos_mouse.x / 50) - (((all_infos()->pos_player.x - 8) / 50));
     if (all_editor()->ptr_map_edit && x >= 0 && y >= 0 &&
     y < my_arraylen(all_editor()->ptr_map_edit) &&
     x < my_strlen(all_editor()->ptr_map_edit[0])) {

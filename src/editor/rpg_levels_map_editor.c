@@ -30,8 +30,17 @@ void level_map_editor_event(sfEvent event)
 // si param, modif map existante
 void level_map_editor_clock(sfEvent event)
 {
-    if (all_infos()->move && !(all_infos()->clock_val % 2)) {
-        move_pos_player();
+    if ((all_infos()->move_u || all_infos()->move_d ||
+        all_infos()->move_r || all_infos()->move_l) &&
+        !(all_infos()->clock_val % 2)) {
+        if (all_infos()->move_u)
+            all_infos()->pos_player.y += 10;
+        if (all_infos()->move_d)
+            all_infos()->pos_player.y -= 10;
+        if (all_infos()->move_l)
+            all_infos()->pos_player.x += 10;
+        if (all_infos()->move_r)
+            all_infos()->pos_player.x -= 10;
     }
 }
 

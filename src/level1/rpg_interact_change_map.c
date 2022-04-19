@@ -10,6 +10,13 @@
 
 void move_to_map (int map, int x, int y)
 {
+    struct_particule *all_p = all_infos()->particules;
+    all_infos()->particules = NULL;
+    while (all_p) {
+        struct_particule *tmp = all_p;
+        all_p = all_p->next;
+        free(tmp);
+    }
     all_sprites()[HUNTER].pos.y = SIZE_TILE * y;
     all_sprites()[HUNTER].pos.x = (SIZE_TILE * x) + 25;
     sfSprite_setPosition(all_sprites()[HUNTER].sprite,

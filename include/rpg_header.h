@@ -26,9 +26,9 @@
 #define BUFF_SIZE 512
 
 #define SIZE_TILE           50
-#define NMB_TILES           45
+#define NMB_TILES           72
 #define SIZE_TILE_SHEET_X   96
-#define SIZE_TILE_SHEET_Y   128
+#define SIZE_TILE_SHEET_Y   192
 #define SCALE_TILE_SHEET    3.125
 
 #define VALEURE_APPROXIMATIVE_POUR_PASSER_DERRIER_UNE_TUILE_EN_MG 32

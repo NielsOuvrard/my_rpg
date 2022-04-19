@@ -31,6 +31,13 @@ void paint_bucket_tool (void)
 
 void la_bonne_touche_editor (sfEvent event)
 {
+    if (event.type == sfEvtKeyReleased) {
+        all_infos()->move_d = false;
+        all_infos()->move_u = false;
+        all_infos()->move_l = false;
+        all_infos()->move_r = false;
+        return;
+    }
     if (!(event.type == sfEvtKeyPressed))
         return;
     if (event.key.code == sfKeyEscape) {
@@ -44,4 +51,16 @@ void la_bonne_touche_editor (sfEvent event)
     }
     if (event.key.code == sfKeyN && all_editor()->ptr_map_edit)
         paint_bucket_tool();
+    if (event.key.code == all_keyes()->k_down)
+        all_infos()->move_d = true;
+    if (event.key.code == all_keyes()->k_up)
+        all_infos()->move_u = true;
+    if (event.key.code == all_keyes()->k_left)
+        all_infos()->move_l = true;
+    if (event.key.code == all_keyes()->k_right)
+        all_infos()->move_r = true;
 }
+
+// etcher portable
+
+// les 2 dernieres tiles ne sont pas accessible

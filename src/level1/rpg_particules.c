@@ -65,10 +65,15 @@ void anim_all_particules (void)
 
 void find_tile_particle (char c, int i, int j)
 {
-    if (c == '0') {
+    if (c == '0' || c == ']') {
         add_particules((sfVector2f){(j * (16 * SCALE_TILE_SHEET)) + 16,
         (i * (16 * SCALE_TILE_SHEET)) + 16}, 15,
         sfColor_fromRGBA(220, 0, 0, 120));
+    }
+    if (c == ']') {
+        add_particules((sfVector2f){(j * (16 * SCALE_TILE_SHEET)) + 16,
+        (i * (16 * SCALE_TILE_SHEET)) + 16}, 20,
+        sfColor_fromRGBA(0, 0, 0, 80));
     }
 }
 

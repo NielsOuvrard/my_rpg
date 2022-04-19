@@ -23,7 +23,8 @@ void write_maps_mg_fg (char *str)
     if (!fd)
         return;
     for (int i = 0; all_editor()->map_mg[i]; i++) {
-        write(fd, all_editor()->map_mg[i], all_editor()->size_edit.x);
+        for (int j = 0; all_editor()->map_mg[i][j]; j++)
+            write(fd, &all_editor()->map_mg[i][j], 1);
         write(fd, "\n", 1);
     }
     close(fd);
@@ -32,7 +33,8 @@ void write_maps_mg_fg (char *str)
     if (!fd)
         return;
     for (int i = 0; all_editor()->map_fg[i]; i++) {
-        write(fd, all_editor()->map_fg[i], all_editor()->size_edit.x);
+        for (int j = 0; all_editor()->map_fg[i][j]; j++)
+            write(fd, &all_editor()->map_fg[i][j], 1);
         write(fd, "\n", 1);
     }
     close(fd);
@@ -46,7 +48,8 @@ void write_maps (void)
     if (!fd)
         return;
     for (int i = 0; all_editor()->map_bg[i]; i++) {
-        write(fd, all_editor()->map_bg[i], all_editor()->size_edit.x);
+        for (int j = 0; all_editor()->map_bg[i][j]; j++)
+            write(fd, &all_editor()->map_bg[i][j], 1);
         write(fd, "\n", 1);
     }
     close(fd);

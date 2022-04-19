@@ -30,6 +30,8 @@ void edit_existing_file_next (char **bg, char **mg, char **fg)
     sfView_setCenter(all_infos()->view, (sfVector2f) {960, 540});
     sfView_setSize(all_infos()->view, (sfVector2f) {1920, 1080});
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
+    all_editor()->size_edit.x = my_strlen(all_editor()->map_bg[0]);
+    all_editor()->size_edit.y = my_arraylen(all_editor()->map_bg);
 }
 
 void edit_existing_file (char *filepath_dir)
