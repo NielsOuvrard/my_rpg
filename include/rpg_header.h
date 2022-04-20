@@ -21,7 +21,9 @@
 #include <SFML/GPUPreference.h>
 #include <SFML/OpenGL.h>
 
+#define GAME 1
 #define MAP_EDITOR 2
+#define INVENTORY 3
 
 #define BUFF_SIZE 512
 
@@ -50,6 +52,8 @@
 #define CHECK_BOX       5
 #define EMPTY_BOX       6
 #define CROSS_BOX       7
+#define SELEC_BOX       8
+#define LIFE            9
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -64,6 +68,11 @@ typedef struct sprite_pictures {
     char anim;
 } sprite_pictures;
 
+typedef struct struct_inventory {
+    char object;
+    struct struct_inventory *next;
+} struct_inventory;
+
 typedef struct enemies {
     struct enemies *next;
     sfVector2f pos;
@@ -77,6 +86,7 @@ typedef struct enemies {
     int og_x;
     int og_y;
 
+    bool printed;
     char anim;
     sfIntRect rect;
 } enemies;
@@ -86,8 +96,8 @@ typedef struct struct_keys {
     sfKeyCode k_down;
     sfKeyCode k_left;
     sfKeyCode k_right;
-    sfKeyCode k_interact;
     sfKeyCode k_map;
+    sfKeyCode k_interact;
     sfKeyCode k_open_bag;
     sfKeyCode shoot;
     sfKeyCode zoom_in;
@@ -116,6 +126,7 @@ typedef struct struct_maps {
     char **bg;
     char **mg;
     char **fg;
+    char **is_printed;
     enemies *all_ennemis;
     struct_interact *interact;
     // infos items ? in chest
@@ -147,13 +158,17 @@ typedef struct main_screen {
     sfClock *clock;
     int clock_val;
 
+    struct_inventory *inventory;
+
     int map_actual;
     sfVector2f pos_player;
+    int life;
     char move;
     bool move_u;
     bool move_d;
     bool move_r;
     bool move_l;
+    bool printed;
     char last_move;
     float zoom;
     sfVector2f view_position;
@@ -164,6 +179,7 @@ typedef struct main_screen {
 
     //view
     sfView *view;
+    sfView *hud_view;
 
     // sound
     sfMusic *music;
@@ -270,6 +286,8 @@ void modify_var_move(sfEvent event);
 
 void move_pos_player(void);
 
+void disp_hud (void);
+
 void level_1 (sfEvent event);
 
 // write map
@@ -345,6 +363,10 @@ void la_bonne_touche_editor (sfEvent event);
 void level_map_editor_clock(sfEvent event);
 
 void level_map_editor (sfEvent event);
+
+// * ////////////// INVENTORY DIR //////////////////////////////////////////
+
+void level_inventory(sfEvent event);
 
 // * ////////////// SRC DIR //////////////////////////////////////////
 

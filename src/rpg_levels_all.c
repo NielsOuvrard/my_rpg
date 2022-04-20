@@ -22,7 +22,7 @@ bool if_in_time (void)
 void animation (sfEvent event)
 {
     bool anim = if_in_time();
-    if (anim && all_infos()->level == 1)
+    if (anim && all_infos()->level == GAME)
         level_1_animations(event);
     if (anim && all_infos()->level == MAP_EDITOR)
         level_map_editor_clock(event);
@@ -35,16 +35,19 @@ void while_it_is_open (void)
     sfEvent event;
     sfRenderWindow_setFramerateLimit(all_infos()->window, 120);
     while (sfRenderWindow_isOpen(all_infos()->window)) {
-        move_all_ennemys();
+        if (all_infos()->level == GAME)
+            move_all_ennemys();
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
         sfRenderWindow_clear(all_infos()->window, sfBlack);
         animation(event);
         if (all_infos()->level == 0)
             level_0(event);
-        if (all_infos()->level == 1)
+        if (all_infos()->level == GAME)
             level_1(event);
         if (all_infos()->level == MAP_EDITOR)
             level_map_editor(event);
+        if (all_infos()->level == INVENTORY)
+            level_inventory(event);
         if (all_infos()->quit_main)
             return;
         sfRenderWindow_display(all_infos()->window);

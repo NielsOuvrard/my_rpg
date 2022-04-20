@@ -8,6 +8,7 @@
 SRC = 	src/*.c \
 		src/create/*.c \
 		src/editor/*.c \
+		src/inventory/*.c \
 		src/level1/*.c
 
 CSFML = -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system

@@ -17,9 +17,33 @@ main_screen *all_infos (void)
 
 void initialize_main_vals(void)
 {
+    infos->move_u = false;
+    infos->move_d = false;
+    infos->move_l = false;
+    infos->move_r = false;
+    infos->clock = sfClock_create();
+    infos->clock_val = 0;
+    infos->particules = NULL;
+    infos->view_position.x = 960;
+    infos->view_position.y = 540;
+    infos->view = sfView_create();
+    infos->hud_view = sfView_create();
+    sfView_setCenter(infos->hud_view, (sfVector2f) {1920 / 4, 1080 / 4});
+    sfView_setSize(infos->hud_view, (sfVector2f) {1920 / 2, 1080 / 2});
+    sfRenderWindow_setView(infos->window, infos->hud_view);
+    infos->last_move = 'd';
+    // sfView_setCenter(infos->view, (sfVector2f) {1920 / 4, 1080 / 4});
     sfView_setCenter(infos->view, (sfVector2f) {10 * 50, (10 * 35) - 16});
     sfView_setSize(infos->view, (sfVector2f) {1920 / 2, 1080 / 2});
     sfRenderWindow_setView(infos->window, infos->view);
+}
+
+struct_inventory *add_to_inventory (struct_inventory *list)
+{
+    struct_inventory *val = malloc(sizeof(struct_inventory));
+    val->object = '0';
+    val->next = list;
+    return val;
 }
 
 void creat_main (void)
@@ -35,17 +59,11 @@ void creat_main (void)
     infos->pos_player.y = 0;
     infos->zoom = 1;
     infos->move = '\0';
-    infos->move_u = false;
-    infos->move_d = false;
-    infos->move_l = false;
-    infos->move_r = false;
-    infos->clock = sfClock_create();
-    infos->clock_val = 0;
-    infos->particules = NULL;
-    infos->view_position.x = 960;
-    infos->view_position.y = 540;
-    infos->view = sfView_create();
-    infos->last_move = 'd';
+    infos->life = 10;
+    struct_inventory *val = NULL;
+    for (int i = 0; i < 20; i++)
+        val = add_to_inventory(val);
+    infos->inventory = val;
     initialize_main_vals();
     return;
 }

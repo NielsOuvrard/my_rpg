@@ -61,6 +61,20 @@ struct_maps edit_bg_pas_gabriel(struct_maps autr)
     return autr;
 }
 
+char **array_of_printed (char **size)
+{
+    int size_x = my_strlen(size[0]);
+    int size_y = my_arraylen(size);
+    char **array = malloc(sizeof(char *) * (size_y + 1));
+    for (int i = 0; i < size_y; i++) {
+        array[i] = malloc(sizeof(char) * (size_x + 1));
+        my_memset(array[i], size_y, 'N');
+        array[i][size_x] = '\0';
+    }
+    array[size_y] = NULL;
+    return array;
+}
+
 void full_list_maps(void)
 {
     char **arr = filepath_to_arr("map/list_maps.txt");
@@ -78,6 +92,7 @@ void full_list_maps(void)
         filepath[size - 2] = '\0';
         my_strcat(filepath, "mg");
         my_maps[i].mg = filepath_to_arr(filepath);
+        my_maps[i].is_printed = array_of_printed(my_maps[i].mg);
         filepath[size - 2] = '\0';
         my_strcat(filepath, "fg");
         my_maps[i].fg = filepath_to_arr(filepath);

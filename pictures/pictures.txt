@@ -6,3 +6,5 @@ pictures/Characters/Demon/Demon.png
 pictures/HUD/CheckBox.png
 pictures/HUD/EmptyBox.png
 pictures/HUD/Ex-Box.png
+pictures/HUD/SelectedBox.png
+pictures/HUD/life.png

@@ -61,6 +61,14 @@ void full_list_sprites_next (void)
     origin_in_8_8_scale(EMPTY_BOX);
     origin_in_8_8_scale(CHECK_BOX);
     origin_in_8_8_scale(CROSS_BOX);
+    origin_in_8_8_scale(SELEC_BOX);
+
+    value[LIFE].origin.x = 8;
+    value[LIFE].origin.y = 8;
+    sfSprite_setOrigin(value[LIFE].sprite, value[LIFE].origin);
+    value[LIFE].scale.x = 3.125;
+    value[LIFE].scale.y = 3.125;
+    sfSprite_setScale(value[LIFE].sprite, value[LIFE].scale);
 }
 
 void full_list_sprites (void)
