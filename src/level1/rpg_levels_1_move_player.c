@@ -34,25 +34,25 @@ void change_pos_and_views (int x, int y)
 void move_pos_player(void)
 {
     char a = all_infos()->move;
-    if (all_infos()->move_d) {
+    if (all_infos()->move_d && can_move(0, 5)) {
         all_infos()->move = 'd';
         change_pos_and_views(0, 7);
         if (!all_infos()->move_l && !all_infos()->move_r)
             change_pos_and_views(0, 3);
     }
-    if (all_infos()->move_u) {
+    if (all_infos()->move_u && can_move(0, -5)) {
         all_infos()->move = 'u';
         change_pos_and_views(0, -7);
         if (!all_infos()->move_l && !all_infos()->move_r)
             change_pos_and_views(0, -3);
     }
-    if (all_infos()->move_r) {
+    if (all_infos()->move_r && can_move(5, 0)) {
         all_infos()->move = 'r';
         change_pos_and_views(7, 0);
         if (!all_infos()->move_u && !all_infos()->move_d)
             change_pos_and_views(3, 0);
     }
-    if (all_infos()->move_l) {
+    if (all_infos()->move_l && can_move(-5, 0)) {
         all_infos()->move = 'l';
         change_pos_and_views(-7, 0);
         if (!all_infos()->move_u && !all_infos()->move_d)

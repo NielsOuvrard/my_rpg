@@ -68,8 +68,8 @@ void level_1_animations(sfEvent event)
     if (!(all_infos()->clock_val % 2)) {
         if (all_infos()->move_d || all_infos()->move_u ||
             all_infos()->move_r || all_infos()->move_l) {
-            move_pos_player();
             check_all_intecract_map_actual();
+            move_pos_player();
         } else {
             if (all_infos()->move != 'c')
                 idle_perso();

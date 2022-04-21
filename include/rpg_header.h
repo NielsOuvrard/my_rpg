@@ -417,3 +417,7 @@ char **filepath_to_arr (char *filepath);
 int random_int (int min, int max);
 
 void get_move_val(enemies *enemy);
+
+int can_move(int x, int y);
+
+int is_movable(char my_mg, char my_bg);
