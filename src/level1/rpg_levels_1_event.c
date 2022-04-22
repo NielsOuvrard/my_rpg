@@ -19,17 +19,8 @@ void change_scale(sfEvent event)
 
 // E = inventaire
 // A = interaction
-void event_level_1_pressed(sfEvent event)
+void event_level_1_pressed_next(sfEvent event)
 {
-    if (event.key.code == all_keyes()->shoot) {
-        all_infos()->last_move = all_infos()->move;
-        all_infos()->move = 'c';
-        if (all_sprites()[HUNTER].rect.top == 16 || all_sprites()[HUNTER].rect.top == 2 * 16)
-            all_sprites()[HUNTER].rect.top = 64;
-        else //if (all_infos()->last_move == 'r' || all_infos()->last_move == 'u')
-            all_sprites()[HUNTER].rect.top = 80;
-        all_sprites()[HUNTER].rect.left = 16 * 3;
-    }
     if (event.key.code == all_keyes()->k_up)
         all_infos()->move_u = true;
     if (event.key.code == all_keyes()->k_left)
@@ -44,13 +35,47 @@ void event_level_1_pressed(sfEvent event)
         all_infos()->life--;
     if (event.key.code == sfKeyM)
         all_infos()->life++;
+}
+
+void event_level_1_pressed(sfEvent event)
+{
+    if (event.key.code == all_keyes()->shoot) {
+        all_infos()->last_move = all_infos()->move;
+        all_infos()->move = 'c';
+        if (all_sprites()[HUNTER].rect.top == 16 ||
+        all_sprites()[HUNTER].rect.top == 2 * 16)
+            all_sprites()[HUNTER].rect.top = 64;
+        else
+            all_sprites()[HUNTER].rect.top = 80;
+        all_sprites()[HUNTER].rect.left = 16 * 3;
+    }
+    event_level_1_pressed_next(event);
     change_scale(event);
+}
+
+// shoot an arrow after all_infos()->move == 'c' &&
+// !sfKeyboard_isKeyPressed(all_keyes()->shoot) JF
+void event_level_1_relased_next (sfEvent event)
+{
+    if (!sfKeyboard_isKeyPressed(all_keyes()->k_left))
+        all_infos()->move_l = false;
+    if (!sfKeyboard_isKeyPressed(all_keyes()->k_right))
+        all_infos()->move_r = false;
+    if (!sfKeyboard_isKeyPressed(all_keyes()->k_up))
+        all_infos()->move_u = false;
+    if (!sfKeyboard_isKeyPressed(all_keyes()->k_down))
+        all_infos()->move_d = false;
+    if (!all_infos()->move_u && !all_infos()->move_d &&
+    !all_infos()->move_l && !all_infos()->move_r)
+        all_infos()->move = '\0';
+    sfSprite_setTextureRect(all_sprites()[HUNTER].sprite,
+    all_sprites()[HUNTER].rect);
 }
 
 void event_level_1_relased(sfEvent event)
 {
-    if (all_infos()->move == 'c' && !sfKeyboard_isKeyPressed(all_keyes()->shoot)) {
-        // shoot an arrow
+    if (all_infos()->move == 'c' &&
+    !sfKeyboard_isKeyPressed(all_keyes()->shoot)) {
         all_sprites()[HUNTER].rect.left = 0;
         all_infos()->move = all_infos()->last_move;
         if (all_infos()->move == 'l' || all_infos()->move == 'd')
@@ -60,25 +85,12 @@ void event_level_1_relased(sfEvent event)
         else
             all_sprites()[HUNTER].rect.top = 16;
     }
-
-    if (!sfKeyboard_isKeyPressed(all_keyes()->k_left))
-        all_infos()->move_l = false;
-    if (!sfKeyboard_isKeyPressed(all_keyes()->k_right))
-        all_infos()->move_r = false;
-    if (!sfKeyboard_isKeyPressed(all_keyes()->k_up))
-        all_infos()->move_u = false;
-    if (!sfKeyboard_isKeyPressed(all_keyes()->k_down))
-        all_infos()->move_d = false;
-    if (!all_infos()->move_u && !all_infos()->move_d && !all_infos()->move_l && !all_infos()->move_r)
-        all_infos()->move = '\0';
-    sfSprite_setTextureRect(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].rect);
+    event_level_1_relased_next(event);
 }
 
 void event_level_1(sfEvent event)
 {
     while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
-        // if (all_infos()->move != 'c' && all_infos()->move != '\0')
-        //     all_infos()->last_move = all_infos()->move;
         if (event.type == sfEvtClosed) {
             all_infos()->quit_main = 1;
             return;
@@ -87,7 +99,6 @@ void event_level_1(sfEvent event)
             event_level_1_pressed(event);
         if (event.type == sfEvtKeyReleased)
             event_level_1_relased(event);
-        // modify_var_move(event);
     }
     return;
 }

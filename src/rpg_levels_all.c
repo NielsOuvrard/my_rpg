@@ -27,7 +27,6 @@ void animation (sfEvent event)
     if (anim && all_infos()->level == MAP_EDITOR)
         level_map_editor_clock(event);
 }
-    // my_printf("top : %d\tleft : %d\n", all_sprites()[HUNTER].rect.top, all_sprites()[HUNTER].rect.left);
 
 // sfMusic_play(my_main.music);
 void while_it_is_open (void)

@@ -57,4 +57,3 @@ void write_maps (void)
     free(str);
     my_printf("ecrit avec succes !\n");
 }
-// ! attention au free, peut-etre un pb

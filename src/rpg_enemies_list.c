@@ -17,10 +17,8 @@
 //     }
 //     return a;
 // }
-
-void add_enemies_to_list(int map, int value, int x, int y)
+void add_enemies_to_list_next(enemies *new_enemy, int value, int x, int y)
 {
-    enemies *new_enemy = malloc(sizeof(enemies));
     new_enemy->pos.x = x;
     new_enemy->pos.y = y;
     new_enemy->value = value;
@@ -33,6 +31,12 @@ void add_enemies_to_list(int map, int value, int x, int y)
     new_enemy->rect.width = 16;
     new_enemy->rect.top = 16;
     new_enemy->rect.left = 16;
+}
+
+void add_enemies_to_list(int map, int value, int x, int y)
+{
+    enemies *new_enemy = malloc(sizeof(enemies));
+    add_enemies_to_list_next(new_enemy, value, x, y);
     new_enemy->og_x = (new_enemy->pos.x / SIZE_TILE);
     new_enemy->og_y = (new_enemy->pos.y / SIZE_TILE);
     if (all_maps()[map].all_ennemis == NULL) {
@@ -64,17 +68,14 @@ void explor_map_find_all_ennemis(int map)
         for (int j = 0; all_maps()[map].fg[i][j]; j++)
             explor_map_find_all_ennemis_next(map, i, j);
 }
-// my_printf("%d ennemis in map %d\n", size_list(all_maps()[map].all_ennemis), map);
 
 void disp_all_ennemsi (void)
 {
     enemies *expl = all_maps()[all_infos()->map_actual].all_ennemis;
     while (expl) {
         sfSprite_setPosition(all_sprites()[expl->value].sprite, expl->pos);
-        sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[expl->value].sprite, NULL);
+        sfRenderWindow_drawSprite(all_infos()->window,
+        all_sprites()[expl->value].sprite, NULL);
         expl = expl->next;
     }
 }
-
-// 47 = DEMON
-// 46 = NUNJA

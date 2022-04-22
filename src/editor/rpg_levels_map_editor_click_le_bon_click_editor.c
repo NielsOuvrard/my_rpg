@@ -43,7 +43,8 @@ void le_bon_click_editor (sfEvent event)
             all_editor()->is_writing = false;
     if (!all_editor()->is_writing)
         return;
-    sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(all_infos()->window);
+    sfVector2i pos_mouse =
+    sfMouse_getPositionRenderWindow(all_infos()->window);
     if (le_bon_click_editor_pos_map(event, pos_mouse))
         return;
     int y = (pos_mouse.y / 50) - (((all_infos()->pos_player.y - 8) / 50));

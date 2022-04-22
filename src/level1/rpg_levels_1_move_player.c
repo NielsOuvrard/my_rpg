@@ -31,6 +31,23 @@ void change_pos_and_views (int x, int y)
     sfView_move(all_infos()->view, (sfVector2f) {x, y});
 }
 
+void move_pos_player_next(char a)
+{
+    if (all_infos()->move_l && can_move(-5, 0)) {
+        all_infos()->move = 'l';
+        change_pos_and_views(-7, 0);
+        if (!all_infos()->move_u && !all_infos()->move_d)
+            change_pos_and_views(-3, 0);
+    }
+    if (a != all_infos()->move)
+        recalculate_the_sprite_perso();
+    sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
+    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
+    if (all_infos()->move != 'c')
+        add_particules(all_sprites()[HUNTER].pos, 10,
+        sfColor_fromRGBA(255, 255, 255, 200));
+}
+
 void move_pos_player(void)
 {
     char a = all_infos()->move;
@@ -52,18 +69,5 @@ void move_pos_player(void)
         if (!all_infos()->move_u && !all_infos()->move_d)
             change_pos_and_views(3, 0);
     }
-    if (all_infos()->move_l && can_move(-5, 0)) {
-        all_infos()->move = 'l';
-        change_pos_and_views(-7, 0);
-        if (!all_infos()->move_u && !all_infos()->move_d)
-            change_pos_and_views(-3, 0);
-    }
-    if (a != all_infos()->move)
-        recalculate_the_sprite_perso();
-    // my_printf("changé en %c\n", all_infos()->move);
-    sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
-    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
-    if (all_infos()->move != 'c')
-        add_particules(all_sprites()[HUNTER].pos, 10,
-        sfColor_fromRGBA(255, 255, 255, 200));
+    move_pos_player_next(a);
 }

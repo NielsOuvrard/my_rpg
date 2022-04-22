@@ -13,8 +13,10 @@ void disp_mg_next (int i)
     enemies *expl = all_maps()[all_infos()->map_actual].all_ennemis;
     while (expl) {
         if (!expl->printed && expl->pos.y > (SIZE_TILE * i) + 16) {
-            sfSprite_setPosition(all_sprites()[expl->value].sprite, expl->pos);
-            sfSprite_setTextureRect(all_sprites()[expl->value].sprite, expl->rect);
+            sfSprite_setPosition(all_sprites()[expl->value].sprite,
+            expl->pos);
+            sfSprite_setTextureRect(all_sprites()[expl->value].sprite,
+            expl->rect);
             sfRenderWindow_drawSprite(all_infos()->window,
             all_sprites()[expl->value].sprite, NULL);
             expl->printed = true;
@@ -25,9 +27,9 @@ void disp_mg_next (int i)
     VALEURE_APPROXIMATIVE_POUR_PASSER_DERRIER_UNE_TUILE_EN_MG) {
         sfRenderWindow_drawSprite(all_infos()->window,
         all_sprites()[HUNTER].sprite, NULL);
-        // all_infos()->printed = true;
     }
 }
+
 // lmn
 // rst
 void disp_priorit(int i)
@@ -52,7 +54,6 @@ void disp_mg (void)
     for (int i = 0; all_maps()[all_infos()->map_actual].mg[i]; i++)
         for (int j = 0; all_maps()[all_infos()->map_actual].mg[i][j]; j++)
             all_maps()[all_infos()->map_actual].is_printed[i][j] = 'N';
-    // all_infos()->printed = false;
     for (int i = 0; all_maps()[all_infos()->map_actual].mg[i]; i++)
         disp_priorit(i);
     print_all_particules();
@@ -60,11 +61,8 @@ void disp_mg (void)
         for (int j = 0; all_maps()[all_infos()->map_actual].mg[i][j]; j++) {
             if (all_maps()[all_infos()->map_actual].is_printed[i][j] == 'N') {
                 disp_map_next(all_maps()[all_infos()->map_actual].mg, i, j);
-            // all_maps()[all_infos()->map_actual].is_printed[i][j] = 'Y';
             }
         }
         disp_mg_next(i);
     }
-    // if (!all_infos()->printed)
-    //     sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[HUNTER].sprite, NULL);
 }

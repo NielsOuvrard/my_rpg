@@ -8,7 +8,16 @@
 #include "my.h"
 #include "rpg_header.h"
 
-void editor_click_infos_right_next (sfVector2i pos_mouse, int views)
+void editor_click_infos_right_4 (sfVector2i pos_mouse, bool views)
+{
+    if (views)
+        all_editor()->size_edit.y++;
+    else
+        all_editor()->size_edit.y--;
+    return;
+}
+
+void editor_click_infos_right_3 (sfVector2i pos_mouse, bool views)
 {
     if (pos_mouse.y <= 190) {
         if (views) {
@@ -26,14 +35,23 @@ void editor_click_infos_right_next (sfVector2i pos_mouse, int views)
             all_editor()->size_edit.x--;
         return;
     }
-    if (views)
-        all_editor()->size_edit.y++;
-    else
-        all_editor()->size_edit.y--;
-    return;
+    return editor_click_infos_right_4(pos_mouse, views);
 }
 
-// 1 line too long
+int editor_click_infos_right_2 (sfVector2i pos_mouse, bool views)
+{
+    if (pos_mouse.y <= 130) {
+        if (views) {
+            all_editor()->v_mg = all_editor()->v_mg ? false : true;
+        } else {
+            all_editor()->edit_ground = 'm';
+            all_editor()->ptr_map_edit = all_editor()->map_mg;
+        }
+        return 1;
+    }
+    return 0;
+}
+
 void editor_click_infos_right (sfVector2i pos_mouse)
 {
     bool views = false;
@@ -48,14 +66,7 @@ void editor_click_infos_right (sfVector2i pos_mouse)
         }
         return;
     }
-    if (pos_mouse.y <= 130) {
-        if (views) {
-            all_editor()->v_mg = all_editor()->v_mg ? false : true;
-        } else {
-            all_editor()->edit_ground = 'm';
-            all_editor()->ptr_map_edit = all_editor()->map_mg;
-        }
+    if (editor_click_infos_right_2(pos_mouse, views))
         return;
-    }
-    editor_click_infos_right_next(pos_mouse, views);
+    editor_click_infos_right_3(pos_mouse, views);
 }

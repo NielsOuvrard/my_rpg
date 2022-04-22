@@ -21,23 +21,14 @@ int can_move(int x, int y)
     my_putchar(all_maps()[all_infos()->map_actual].bg[final_y][final_x]);
     my_putchar(all_maps()[all_infos()->map_actual].mg[final_y][final_x]);
     my_putchar('\n');
-    if(!is_movable(all_maps()[all_infos()->map_actual].mg[final_y][final_x], all_maps()[all_infos()->map_actual].bg[final_y][final_x]))
+    if(!is_movable(all_maps()[all_infos()->map_actual].mg[final_y][final_x],
+    all_maps()[all_infos()->map_actual].bg[final_y][final_x]))
         return 0;
     return 1;
 }
 
-int is_movable(char my_mg, char my_bg)
+int is_movable_next(char my_mg, char my_bg)
 {
-    if (!my_mg || !my_bg)
-        return 0;
-    if (my_bg == 'V' && my_bg == 'X')
-        return 1;
-    if (my_bg == 'V' || my_bg == '4' && my_mg == 'X' || my_mg == 'Y')
-        return 1;
-    if (my_mg == ':' || my_mg == 'm' || my_mg == 's')
-        return 1;
-    if (my_bg == '@' && my_mg == ':' || my_mg == '9' || my_mg == '\\')
-        return 1;
     char mg[] = "Z3<?fg]0MABCiY";
     int i = 0;
     while (mg[i]) {
@@ -53,4 +44,19 @@ int is_movable(char my_mg, char my_bg)
         i++;
     }
     return 1;
+}
+
+int is_movable(char my_mg, char my_bg)
+{
+    if (!my_mg || !my_bg)
+        return 0;
+    if (my_bg == 'V' && my_bg == 'X')
+        return 1;
+    if (my_bg == 'V' || my_bg == '4' && my_mg == 'X' || my_mg == 'Y')
+        return 1;
+    if (my_mg == ':' || my_mg == 'm' || my_mg == 's')
+        return 1;
+    if (my_bg == '@' && my_mg == ':' || my_mg == '9' || my_mg == '\\')
+        return 1;
+    return is_movable_next(my_mg, my_bg);
 }

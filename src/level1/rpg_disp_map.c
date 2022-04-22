@@ -23,7 +23,8 @@ void disp_tile_sprite_sheet(int i, int j, int top, int left)
 
 void disp_map_next(char **map, int i, int j)
 {
-    if (!(map[i][j] >= '0' && map[i][j] <= '0' + NMB_TILES) || map[i][j] == 'R')
+    if (!(map[i][j] >= '0' && map[i][j] <= '0' + NMB_TILES) ||
+    map[i][j] == 'R')
         return;
     int x = map[i][j] - '0';
     x *= 16;

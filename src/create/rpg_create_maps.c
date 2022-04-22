@@ -10,34 +10,7 @@
 
 static struct_maps *my_maps;
 
-struct_interact *interactions_of_map (char *str, struct_maps autr)
-{
-    struct_interact *ptr_inte = malloc(sizeof(struct_interact));
-    ptr_inte->next = NULL;
-    ptr_inte->type = my_getnbr(str);
-    while (my_isdidgit(str[0]))
-        str++;
-    str++;
-    ptr_inte->data = my_getnbr(str);
-    while (my_isdidgit(str[0]))
-        str++;
-    str++;
-    ptr_inte->y = my_getnbr(str);
-    while (my_isdidgit(str[0]))
-        str++;
-    str++;
-    ptr_inte->x = my_getnbr(str);
-    while (my_isdidgit(str[0]))
-        str++;
-    str++;
-    ptr_inte->a_y = my_getnbr(str);
-    while (my_isdidgit(str[0]))
-        str++;
-    str++;
-    ptr_inte->a_x = my_getnbr(str);
-    ptr_inte->next = autr.interact;
-    return ptr_inte;
-}
+struct_interact *interactions_of_map (char *str, struct_maps autr);
 
 struct_maps edit_bg_pas_gabriel(struct_maps autr)
 {
@@ -75,29 +48,33 @@ char **array_of_printed (char **size)
     return array;
 }
 
+void list_of_map (char *filepath, int i, char **arr)
+{
+    my_memset(filepath, 511, '\0');
+    my_strcpy(filepath, "map/");
+    my_strcat(filepath, arr[i]);
+    my_strcat(filepath, "bg");
+    int size = my_strlen(filepath);
+    my_maps[i].bg = filepath_to_arr(filepath);
+    my_maps[i] = edit_bg_pas_gabriel(my_maps[i]);
+    filepath[size - 2] = '\0';
+    my_strcat(filepath, "mg");
+    my_maps[i].mg = filepath_to_arr(filepath);
+    my_maps[i].is_printed = array_of_printed(my_maps[i].mg);
+    filepath[size - 2] = '\0';
+    my_strcat(filepath, "fg");
+    my_maps[i].fg = filepath_to_arr(filepath);
+    explor_map_find_all_ennemis(i);
+}
+
 void full_list_maps(void)
 {
     char **arr = filepath_to_arr("map/list_maps.txt");
     int nbr = my_arraylen(arr), i;
     my_maps = malloc(sizeof(struct_maps) * (nbr + 1));
     char *filepath = malloc(sizeof(char) * 512);
-    for (i = 0; arr[i]; i++) {
-        my_memset(filepath, 511, '\0');
-        my_strcpy(filepath, "map/");
-        my_strcat(filepath, arr[i]);
-        my_strcat(filepath, "bg");
-        int size = my_strlen(filepath);
-        my_maps[i].bg = filepath_to_arr(filepath);
-        my_maps[i] = edit_bg_pas_gabriel(my_maps[i]);
-        filepath[size - 2] = '\0';
-        my_strcat(filepath, "mg");
-        my_maps[i].mg = filepath_to_arr(filepath);
-        my_maps[i].is_printed = array_of_printed(my_maps[i].mg);
-        filepath[size - 2] = '\0';
-        my_strcat(filepath, "fg");
-        my_maps[i].fg = filepath_to_arr(filepath);
-        explor_map_find_all_ennemis(i);
-    }
+    for (i = 0; arr[i]; i++)
+        list_of_map(filepath, i, arr);
     free_my_arr(arr);
 }
 

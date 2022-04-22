@@ -45,15 +45,12 @@ int can_be_moved(int x, int y, enemies *enemy)
 void get_new_vals_next(enemies *enemy)
 {
     if (enemy->move_type == 3) {
-        if (can_be_moved(enemy->x, enemy->y + 1, enemy)) {
-            enemy->pos.y += 1;
-            enemy->y += 1;
-            enemy->rect.top = 16;
-        } else {
-            enemy->move_type = random_int(1, 3);
-            enemy->anim = 'a';
-            enemy->rect.left = 0;
-        }
+        if (can_be_moved(enemy->x, enemy->y + 1, enemy))
+            my_printf("", enemy->pos.y += 1, enemy->y += 1,
+            enemy->rect.top = 16);
+        else
+            my_printf("", enemy->move_type = random_int(1, 3),
+            enemy->anim = 'a', enemy->rect.left = 0);
     }
     if (enemy->move_type == 4) {
         if (can_be_moved(enemy->x, enemy->y - 1, enemy)) {
@@ -71,26 +68,20 @@ void get_new_vals_next(enemies *enemy)
 void get_new_vals(enemies *enemy)
 {
     if (enemy->move_type == 1) {
-        if (can_be_moved(enemy->x + 1, enemy->y, enemy)) {
-            enemy->pos.x += 1;
-            enemy->x += 1;
-            enemy->rect.top = 3 * 16;
-        } else {
-            enemy->move_type = random_int(1, 3);
-            enemy->anim = 'a';
-            enemy->rect.left = 0;
-        }
+        if (can_be_moved(enemy->x + 1, enemy->y, enemy))
+            my_printf("", enemy->pos.x += 1, enemy->x += 1,
+            enemy->rect.top = 3 * 16);
+        else
+            my_printf("", enemy->move_type = random_int(1, 3),
+            enemy->anim = 'a', enemy->rect.left = 0);
     }
     if (enemy->move_type == 2) {
-        if (can_be_moved(enemy->x - 1, enemy->y, enemy)) {
-            enemy->pos.x -= 1;
-            enemy->x -= 1;
-            enemy->rect.top = 2 * 16;
-        } else {
-            enemy->move_type = random_int(1, 3);
-            enemy->anim = 'a';
-            enemy->rect.left = 0;
-        }
+        if (can_be_moved(enemy->x - 1, enemy->y, enemy))
+            my_printf("", enemy->pos.x -= 1, enemy->x -= 1,
+            enemy->rect.top = 2 * 16);
+        else
+            my_printf("", enemy->move_type = random_int(1, 3),
+            enemy->anim = 'a', enemy->rect.left = 0);
     }
     get_new_vals_next(enemy);
 }

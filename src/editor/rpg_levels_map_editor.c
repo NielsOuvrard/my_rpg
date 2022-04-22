@@ -20,8 +20,6 @@ void level_map_editor_event(sfEvent event)
         }
         la_bonne_touche_editor(event);
         le_bon_click_editor(event);
-        // if (all_editor()->map_bg)
-        //     modify_var_move_editor(event);
     }
 }
 
@@ -56,27 +54,3 @@ void level_map_editor(sfEvent event)
     disp_value_to_print();
     disp_text_and_boxes();
 }
-
-
-// void modify_var_move_editor(sfEvent event)
-// {
-//     if (event.type == sfEvtKeyPressed && all_infos()->move != 'c') {
-//         if (event.key.code == all_keyes()->k_up)
-//             all_infos()->move_u = true;
-//         if (event.key.code == all_keyes()->k_left)
-//             all_infos()->move_l = true;
-//         if (event.key.code == all_keyes()->k_down)
-//             all_infos()->move_d = true;
-//         if (event.key.code == all_keyes()->k_right)
-//             all_infos()->move_r = true;
-//     }
-//     if (event.type == sfEvtKeyReleased && !sfKeyboard_isKeyPressed(all_keyes()->k_left)
-//     && !sfKeyboard_isKeyPressed(all_keyes()->k_right) &&
-//     !sfKeyboard_isKeyPressed(all_keyes()->k_up)
-//     && !sfKeyboard_isKeyPressed(all_keyes()->k_down))
-//         all_infos()->move = '\0';
-//         all_infos()->move_r = false;
-//         all_infos()->move_l = false;
-//         all_infos()->move_u = false;
-//         all_infos()->move_d = false;
-// }
