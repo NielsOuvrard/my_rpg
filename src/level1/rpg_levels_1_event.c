@@ -33,7 +33,7 @@ void event_level_1_pressed_next(sfEvent event)
         all_infos()->level = INVENTORY;
     if (event.key.code == sfKeyP)
         all_infos()->life--;
-    if (event.key.code == sfKeyM)
+    if (event.key.code == sfKeyM && all_infos()->life + 1 <= 10)
         all_infos()->life++;
 }
 

@@ -50,6 +50,8 @@ int is_movable(char my_mg, char my_bg)
 {
     if (!my_mg || !my_bg)
         return 0;
+    if (my_bg == 'N' && my_mg == '9')
+        return 1;
     if (my_bg == 'V' && my_bg == 'X')
         return 1;
     if (my_bg == 'V' || my_bg == '4' && my_mg == 'X' || my_mg == 'Y')
