@@ -57,6 +57,12 @@ void full_list_sprites_more_infos (void)
     all_sprites()[LIFE].scale.x = 3.125;
     all_sprites()[LIFE].scale.y = 3.125;
     sfSprite_setScale(all_sprites()[LIFE].sprite, all_sprites()[LIFE].scale);
+    // all_sprites()[BALLON].origin.x = 8;
+    // all_sprites()[BALLON].origin.y = 8;
+    // sfSprite_setOrigin(all_sprites()[BALLON].sprite, all_sprites()[BALLON].origin);
+    // all_sprites()[BALLON].scale.x = 3.125;
+    // all_sprites()[BALLON].scale.y = 3.125;
+    // sfSprite_setScale(all_sprites()[BALLON].sprite, all_sprites()[BALLON].scale);
 }
 
 void full_list_sprites_next (void)

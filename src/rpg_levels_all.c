@@ -48,7 +48,7 @@ void while_it_is_open (void)
         if (all_infos()->level == INVENTORY)
             level_inventory(event);
         if (all_infos()->level == DIALOGUE)
-            show_quest();
+            level_quest();
         if (all_infos()->quit_main)
             return;
         sfRenderWindow_display(all_infos()->window);

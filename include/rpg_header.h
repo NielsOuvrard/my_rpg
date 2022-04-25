@@ -58,6 +58,7 @@
 #define NPC            10
 #define INTERACTION_BT 11
 #define NPC2           12
+#define BALLON         13
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -420,7 +421,7 @@ void disp_all_npcs(void);
 
 void disp_interaction_button(void);
 
-void show_quest(void);
+void level_quest(void);
 
 // free
 
