@@ -24,6 +24,21 @@ void disp_hud (void)
     * 0.05, (1080 * 0.5) * 0.1});
     sfRenderWindow_drawSprite(all_infos()->window,
     all_sprites()[LIFE].sprite, NULL);
+    disp_stamina();
+}
+
+void disp_stamina(void)
+{
+    sfVector2f pos2 = {(1920 * 0.5) * 0.05, (1080 * 0.5) * 0.20};
+    sfRectangleShape *stamina = sfRectangleShape_create();
+    sfRectangleShape_setPosition(stamina, pos2);
+    sfRectangleShape_setFillColor(stamina, sfBlack);
+    sfRectangleShape_setSize(stamina, (sfVector2f){150, 15});
+    sfRenderWindow_drawRectangleShape(all_infos()->window, stamina, NULL);
+    sfRectangleShape_setFillColor(stamina, sfGreen);
+    sfRectangleShape_setSize(stamina, (sfVector2f){all_infos()->stamina * 15, 15});
+    sfRenderWindow_drawRectangleShape(all_infos()->window, stamina, NULL);
+    sfRectangleShape_destroy(stamina);
 }
 
 void level_1(sfEvent event)

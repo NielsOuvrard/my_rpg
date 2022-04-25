@@ -180,12 +180,11 @@ typedef struct main_screen {
     int quit_main;
     sfClock *clock;
     int clock_val;
-
     struct_inventory *inventory;
-
     int map_actual;
     sfVector2f pos_player;
     int life;
+    float stamina;
     char move;
     bool move_u;
     bool move_d;

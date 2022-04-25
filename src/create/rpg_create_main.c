@@ -60,6 +60,7 @@ void creat_main (void)
     infos->zoom = 1;
     infos->move = '\0';
     infos->life = 10;
+    infos->stamina = 10;
     struct_inventory *val = NULL;
     for (int i = 0; i < 20; i++)
         val = add_to_inventory(val);
