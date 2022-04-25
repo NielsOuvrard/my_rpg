@@ -13,7 +13,7 @@ int can_move(int x, int y)
     int final_x = (all_sprites()[HUNTER].pos.x + x) / (SIZE_TILE);
     int final_y = (all_sprites()[HUNTER].pos.y + y) / (SIZE_TILE);
     if (all_maps()[all_infos()->map_actual].mg[final_y] == NULL)
-        return 0;
+        return 1;
     if (final_y < 0 || final_x < 0)
         return 0;
     if (final_y > my_arraylen(all_maps()[all_infos()->map_actual].mg))
@@ -22,8 +22,10 @@ int can_move(int x, int y)
     my_putchar(all_maps()[all_infos()->map_actual].mg[final_y][final_x]);
     my_putchar('\n');
     if(!is_movable(all_maps()[all_infos()->map_actual].mg[final_y][final_x],
-    all_maps()[all_infos()->map_actual].bg[final_y][final_x]))
+    all_maps()[all_infos()->map_actual].bg[final_y][final_x])) {
+        my_putchar('0');
         return 0;
+    }
     return 1;
 }
 
@@ -48,8 +50,6 @@ int is_movable_next(char my_mg, char my_bg)
 
 int is_movable(char my_mg, char my_bg)
 {
-    if (!my_mg || !my_bg)
-        return 0;
     if (my_bg == 'N' && my_mg == '9')
         return 1;
     if (my_bg == '@' && my_mg == '9')

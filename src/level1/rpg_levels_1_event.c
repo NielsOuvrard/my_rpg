@@ -31,12 +31,11 @@ void event_level_1_pressed_next(sfEvent event)
         all_infos()->move_r = true;
     if (event.key.code == all_keyes()->k_open_bag)
         all_infos()->level = INVENTORY;
-    if (event.key.code == sfKeyP) {
-        all_infos()->stamina -= 0.5;
+    if (event.key.code == sfKeyP)
         all_infos()->life--;
-    }
     if (event.key.code == sfKeyM && all_infos()->life + 1 <= 10)
         all_infos()->life++;
+    check_stamina();
 }
 
 void event_npc(sfEvent event)
