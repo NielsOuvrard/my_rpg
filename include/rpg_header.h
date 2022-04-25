@@ -24,6 +24,7 @@
 #define GAME 1
 #define MAP_EDITOR 2
 #define INVENTORY 3
+#define DIALOGUE 4
 
 #define BUFF_SIZE 512
 
@@ -54,6 +55,9 @@
 #define CROSS_BOX       7
 #define SELEC_BOX       8
 #define LIFE            9
+#define NPC            10
+#define INTERACTION_BT 11
+#define NPC2           12
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -72,6 +76,23 @@ typedef struct struct_inventory {
     char object;
     struct struct_inventory *next;
 } struct_inventory;
+
+typedef struct npcs {
+    int value;
+    int radius;
+    int move_type;
+    int x;
+    int y;
+    int og_x;
+    int og_y;
+    int interaction;
+    char anim;
+    bool printed;
+    sfClock *clock;
+    sfVector2f pos;
+    sfIntRect rect;
+    struct npcs *next;
+} npcs;
 
 typedef struct enemies {
     struct enemies *next;
@@ -127,6 +148,7 @@ typedef struct struct_maps {
     char **mg;
     char **fg;
     char **is_printed;
+    npcs *all_npcs;
     enemies *all_ennemis;
     struct_interact *interact;
     // infos items ? in chest
@@ -389,6 +411,16 @@ void explor_map_find_all_ennemis_next(int map, int i, int j);
 void explor_map_find_all_ennemis(int map);
 
 void disp_all_ennemsi (void);
+
+// npcs
+
+void explor_map_find_all_npcs(int map);
+
+void disp_all_npcs(void);
+
+void disp_interaction_button(void);
+
+void show_quest(void);
 
 // free
 

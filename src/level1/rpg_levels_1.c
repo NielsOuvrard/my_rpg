@@ -34,6 +34,8 @@ void level_1(sfEvent event)
     disp_map(all_maps()[all_infos()->map_actual].bg);
     disp_mg();
     disp_map(all_maps()[all_infos()->map_actual].fg);
+    disp_all_npcs();
+    disp_interaction_button();
     sfRenderWindow_setView(all_infos()->window, all_infos()->hud_view);
     disp_hud();
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);

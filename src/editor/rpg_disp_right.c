@@ -11,7 +11,7 @@
 #define f2 sfVector2f
 #define N NULL
 
-void disp_boxes (void)
+void disp_boxes(void)
 {
     int s = EMPTY_BOX;
     s = all_editor()->edit_ground == 'f' ? CHECK_BOX : EMPTY_BOX;
@@ -34,7 +34,7 @@ void disp_boxes (void)
     sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[s].sprite, N);
 }
 
-void disp_text_size (void)
+void disp_text_size(void)
 {
     sfText_setCharacterSize(all_editor()->editor_text, 40);
     sfText_setString(all_editor()->editor_text, "-           +");
@@ -55,7 +55,7 @@ void disp_text_size (void)
     free(size_y);
 }
 
-void disp_text_and_boxes (void)
+void disp_text_and_boxes(void)
 {
     sfText_setCharacterSize(all_editor()->editor_text, 20);
     sfText_setString(all_editor()->editor_text, "Edit");

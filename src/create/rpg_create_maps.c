@@ -65,6 +65,7 @@ void list_of_map (char *filepath, int i, char **arr)
     my_strcat(filepath, "fg");
     my_maps[i].fg = filepath_to_arr(filepath);
     explor_map_find_all_ennemis(i);
+    explor_map_find_all_npcs(i);
 }
 
 void full_list_maps(void)

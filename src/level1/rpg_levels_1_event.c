@@ -37,6 +37,16 @@ void event_level_1_pressed_next(sfEvent event)
         all_infos()->life++;
 }
 
+void event_npc(sfEvent event)
+{
+    npcs *expl = all_maps()[all_infos()->map_actual].all_npcs;
+    while (expl) {
+        if (event.key.code == sfKeyF && expl->interaction == 1)
+            all_infos()->level = DIALOGUE;
+        expl = expl->next;
+    }
+}
+
 void event_level_1_pressed(sfEvent event)
 {
     if (event.key.code == all_keyes()->shoot) {
@@ -51,6 +61,7 @@ void event_level_1_pressed(sfEvent event)
     }
     event_level_1_pressed_next(event);
     change_scale(event);
+    event_npc(event);
 }
 
 // shoot an arrow after all_infos()->move == 'c' &&

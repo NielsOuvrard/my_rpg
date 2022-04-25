@@ -45,6 +45,8 @@ void full_list_sprites_more_infos (void)
     full_perso(HUNTER, 10 * 50, 10 * 35);
     full_perso(DEMON, 500, 240);
     full_perso(NINJA, 700, 1000);
+    full_perso(NPC, 900, 1000);
+    full_perso(NPC2, 1100, 1200);
     origin_in_8_8_scale(EMPTY_BOX);
     origin_in_8_8_scale(CHECK_BOX);
     origin_in_8_8_scale(CROSS_BOX);

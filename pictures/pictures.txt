@@ -9,3 +9,5 @@ pictures/HUD/Ex-Box.png
 pictures/HUD/SelectedBox.png
 pictures/HUD/life.png
 pictures/Characters/Villager/Villager.png
+pictures/HUD/F_key.png
+pictures/Characters/Villager/Villager_2.png

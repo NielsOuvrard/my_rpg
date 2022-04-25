@@ -78,6 +78,8 @@ void level_inventory(sfEvent event)
     print_all_particules();
     disp_mg();
     disp_map(all_maps()[all_infos()->map_actual].fg);
+    disp_all_npcs();
+    disp_interaction_button();
     sfRenderWindow_setView(all_infos()->window, all_infos()->hud_view);
     disp_hud();
     disp_inventory();

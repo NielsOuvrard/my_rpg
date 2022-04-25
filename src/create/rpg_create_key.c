@@ -19,12 +19,12 @@ void creat_keyes (void)
 {
     keyes = malloc(sizeof(struct_keys));
     keyes->k_down = sfKeyS;
-    keyes->k_up = sfKeyZ;
-    keyes->k_left = sfKeyQ;
+    keyes->k_up = sfKeyW;
+    keyes->k_left = sfKeyA;
     keyes->k_right = sfKeyD;
     keyes->k_map = sfKeyTab;
     keyes->k_open_bag = sfKeyE;
-    keyes->k_interact = sfKeyA;
+    keyes->k_interact = sfKeyF;
     keyes->shoot = sfKeySpace;
     keyes->zoom_in = sfKeyUp;
     keyes->zoom_out = sfKeyDown;
