@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg_header.h"
 
-bool if_in_time (void)
+bool if_in_time(void)
 {
     sfTime time_anim = sfClock_getElapsedTime(all_infos()->clock);
     if (time_anim.microseconds > 10000) {
@@ -19,27 +19,30 @@ bool if_in_time (void)
     return false;
 }
 
-void animation (sfEvent event)
+void handle_animations(sfEvent event)
 {
     bool anim = if_in_time();
-    if (anim && all_infos()->level == GAME)
+    if (!if_in_time()) {
+        return;
+    }
+    if (all_infos()->level == GAME) {
         level_1_animations(event);
-    if (anim && all_infos()->level == MAP_EDITOR)
+    } else if (all_infos()->level == MAP_EDITOR) {
         level_map_editor_clock(event);
+    }
 }
 
 // sfMusic_play(my_main.music);
-void while_it_is_open (void)
+void while_it_is_open(void)
 {
     sfEvent event;
-    sfRenderWindow_setFramerateLimit(all_infos()->window, 120);
     while (sfRenderWindow_isOpen(all_infos()->window)) {
         if (all_infos()->level == GAME)
             move_all_ennemys();
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
         sfRenderWindow_clear(all_infos()->window, sfBlack);
         increase_stamina();
-        animation(event);
+        handle_animations(event);
         if (all_infos()->level == 0)
             level_0(event);
         if (all_infos()->level == GAME)
@@ -56,7 +59,17 @@ void while_it_is_open (void)
     }
 }
 
-int all_levels_game(int ac, char **av)
+int start_game_loop(void)
+{
+    while_it_is_open();
+    free_particules();
+    free(all_infos());
+    free_map(0);
+    free_map(1);
+    free(all_maps());
+}
+
+int start_game(int ac, char **av)
 {
     fill_sprite_dictionary();
     create_main();
@@ -67,11 +80,7 @@ int all_levels_game(int ac, char **av)
         edit_existing_file(av[2]);
     if (ac > 1 && !my_strcmp(av[1], "-q"))
         qwerty_keyes();
-    while_it_is_open();
-    free_particules();
-    free(all_infos());
-    free_map(0);
-    free_map(1);
-    free(all_maps());
+    sfRenderWindow_setFramerateLimit(all_infos()->window, 120);
+    start_game_loop();
     return 0;
 }

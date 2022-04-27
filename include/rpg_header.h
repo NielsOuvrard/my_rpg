@@ -319,7 +319,7 @@ void modify_var_move(sfEvent event);
 
 void move_pos_player(void);
 
-void disp_hud(void);
+void display_hud(void);
 
 void level_1(sfEvent event);
 
@@ -363,7 +363,7 @@ void disp_value_to_print(void);
 
 // disp right
 
-void disp_boxes(void);
+void display_boxes(void);
 
 void disp_text_size(void);
 
@@ -449,7 +449,7 @@ void level_0(sfEvent event);
 
 // all
 
-int all_levels_game(int ac, char **av);
+int start_game(int ac, char **av);
 
 // open file
 
@@ -467,7 +467,7 @@ int is_movable(char my_mg, char my_bg);
 
 void check_stamina(void);
 
-void disp_stamina(void);
+void display_stamina(void);
 
 void increase_stamina(void);
 

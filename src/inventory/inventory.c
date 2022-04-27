@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg_header.h"
 
-int nmb_inv (void)
+int nmb_inv(void)
 {
     struct_inventory *val = all_infos()->inventory;
     int i = 0;
@@ -81,7 +81,7 @@ void level_inventory(sfEvent event)
     disp_all_npcs();
     disp_interaction_button();
     sfRenderWindow_setView(all_infos()->window, all_infos()->hud_view);
-    disp_hud();
+    display_hud();
     disp_inventory();
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
     return;

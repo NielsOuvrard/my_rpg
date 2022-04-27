@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg_header.h"
 
-int main (int ac, char **av)
+int main(int ac, char **av)
 {
-    return all_levels_game(ac, av);
+    return start_game(ac, av);
 }

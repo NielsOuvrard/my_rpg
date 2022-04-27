@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg_header.h"
 
-void move_to_map (int map, int x, int y)
+void move_to_map(int map, int x, int y)
 {
     struct_particule *all_p = all_infos()->particules;
     all_infos()->particules = NULL;

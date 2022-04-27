@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg_header.h"
 
-void add_particules (sfVector2f pos, int size, sfColor color)
+void add_particules(sfVector2f pos, int size, sfColor color)
 {
     struct_particule *p = all_infos()->particules;
     if (!p) {

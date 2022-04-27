@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg_header.h"
 
-void disp_hud (void)
+void display_hud(void)
 {
     sfVector2f pos = {(1920 * 0.5) * 0.05, (1080 * 0.5) * 0.09};
     sfRectangleShape *rectan = sfRectangleShape_create();
@@ -24,10 +24,10 @@ void disp_hud (void)
     * 0.05, (1080 * 0.5) * 0.1});
     sfRenderWindow_drawSprite(all_infos()->window,
     all_sprites()[LIFE].sprite, NULL);
-    disp_stamina();
+    display_stamina();
 }
 
-void disp_stamina(void)
+void display_stamina(void)
 {
     sfVector2f pos2 = {(1920 * 0.5) * 0.05, (1080 * 0.5) * 0.20};
     sfRectangleShape *stamina = sfRectangleShape_create();
@@ -52,7 +52,7 @@ void level_1(sfEvent event)
     disp_all_npcs();
     disp_interaction_button();
     sfRenderWindow_setView(all_infos()->window, all_infos()->hud_view);
-    disp_hud();
+    display_hud();
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
     return;
 }

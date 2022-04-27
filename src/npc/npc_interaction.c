@@ -73,7 +73,7 @@ void level_quest(void)
     disp_all_npcs();
     disp_interaction_button();
     sfRenderWindow_setView(all_infos()->window, all_infos()->hud_view);
-    disp_hud();
+    display_hud();
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
     return;
 }
