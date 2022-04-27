@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg_header.h"
 
-bool if_in_time(void)
+bool clock_cycle_update(void)
 {
     sfTime time_anim = sfClock_getElapsedTime(all_infos()->clock);
     if (time_anim.microseconds > 10000) {
@@ -21,8 +21,7 @@ bool if_in_time(void)
 
 void handle_animations(sfEvent event)
 {
-    bool anim = if_in_time();
-    if (!if_in_time()) {
+    if (!clock_cycle_update()) {
         return;
     }
     if (all_infos()->level == GAME) {
