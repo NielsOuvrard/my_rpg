@@ -194,6 +194,7 @@ typedef struct main_screen {
     bool printed;
     bool sprint;
     bool can_move;
+    int nb_of_zoom;
     sfClock *stamina_clock;
     char last_move;
     float zoom;

@@ -57,6 +57,7 @@ void creat_main (void)
     infos->map_actual = 0;
     infos->pos_player.x = 0;
     infos->pos_player.y = 0;
+    infos->nb_of_zoom = 1;
     infos->zoom = 1;
     infos->move = '\0';
     infos->life = 10;

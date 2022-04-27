@@ -10,10 +10,14 @@
 
 void change_scale(sfEvent event)
 {
-    if (event.key.code == all_keyes()->zoom_out)
+    if (event.key.code == all_keyes()->zoom_out && all_infos()->nb_of_zoom + 1 != 4) {
         sfView_zoom(all_infos()->view, 0.8);
-    if (event.key.code == all_keyes()->zoom_in)
+        all_infos()->nb_of_zoom += 1;
+    }
+    if (event.key.code == all_keyes()->zoom_in && all_infos()->nb_of_zoom - 1 > 0) {
         sfView_zoom(all_infos()->view, 1.2);
+        all_infos()->nb_of_zoom -= 1;
+    }
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
 }
 
