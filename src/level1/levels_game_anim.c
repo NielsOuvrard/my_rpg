@@ -47,7 +47,7 @@ void find_all_particules_from_mg (void)
     }
 }
 
-void level_1_animations(sfEvent event)
+void level_game_animations(void)
 {
     if (!(all_infos()->clock_val % 10)) {
         if (all_sprites()[SPRITE_SHEET].anim)

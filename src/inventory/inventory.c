@@ -46,9 +46,9 @@ void disp_inventory (void)
 }
 
 // if (event.type == sfEvtKeyPressed)
-//     event_level_1_pressed(event);
+//     event_level_game_pressed(event);
 // if (event.type == sfEvtKeyReleased)
-//     event_level_1_relased(event);
+//     event_level_game_relased(event);
 // modify_var_move(event);
 void event_level_inventory(sfEvent event)
 {

@@ -8,16 +8,16 @@
 #include "my.h"
 #include "rpg_header.h"
 
-void move_all_ennemys (void)
+void move_all_ennemies(void)
 {
-    enemies *expl = all_maps()[all_infos()->map_actual].all_ennemis;
-    while (expl) {
-        sfTime time_anim = sfClock_getElapsedTime(expl->clock);
+    enemies *enemies = all_maps()[all_infos()->map_actual].all_ennemis;
+    while (enemies) {
+        sfTime time_anim = sfClock_getElapsedTime(enemies->clock);
         if (time_anim.microseconds > 1000) {
-            get_move_val(expl);
-            sfClock_restart(expl->clock);
+            get_move_val(enemies);
+            sfClock_restart(enemies->clock);
         }
-        expl = expl->next;
+        enemies = enemies->next;
     }
 }
 

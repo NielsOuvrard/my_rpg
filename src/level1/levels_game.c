@@ -41,9 +41,9 @@ void display_stamina(void)
     sfRectangleShape_destroy(stamina);
 }
 
-void level_1(sfEvent event)
+void level_game(sfEvent event)
 {
-    event_level_1(event);
+    event_level_game(event);
     if (all_infos()->quit_main == 1)
         return;
     disp_map(all_maps()[all_infos()->map_actual].bg);

@@ -19,33 +19,33 @@ bool clock_cycle_update(void)
     return false;
 }
 
-void handle_animations(sfEvent event)
+void on_clock_update()
 {
     if (!clock_cycle_update()) {
         return;
     }
+    increase_stamina();
     if (all_infos()->level == GAME) {
-        level_1_animations(event);
+        level_game_animations();
     } else if (all_infos()->level == MAP_EDITOR) {
-        level_map_editor_clock(event);
+        level_map_editor_clock();
     }
 }
 
 // sfMusic_play(my_main.music);
-void while_it_is_open(void)
+void game_loop(void)
 {
     sfEvent event;
     while (sfRenderWindow_isOpen(all_infos()->window)) {
         if (all_infos()->level == GAME)
-            move_all_ennemys();
+            move_all_ennemies();
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
         sfRenderWindow_clear(all_infos()->window, sfBlack);
-        increase_stamina();
-        handle_animations(event);
+        on_clock_update();
         if (all_infos()->level == 0)
             level_0(event);
         if (all_infos()->level == GAME)
-            level_1(event);
+            level_game(event);
         if (all_infos()->level == MAP_EDITOR)
             level_map_editor(event);
         if (all_infos()->level == INVENTORY)
@@ -60,7 +60,7 @@ void while_it_is_open(void)
 
 int start_game_loop(void)
 {
-    while_it_is_open();
+    game_loop();
     free_particules();
     free(all_infos());
     free_map(0);

@@ -295,7 +295,7 @@ void anim_perso (void);
 
 void recalculate_the_sprite_perso(void);
 
-void event_level_1(sfEvent event);
+void event_level_game(sfEvent event);
 
 // level 1 var move
 
@@ -313,7 +313,7 @@ void modify_var_move(sfEvent event);
 
 // level 1
 
-void level_1_animations(sfEvent event);
+void level_game_animations(void);
 
 void modify_var_move(sfEvent event);
 
@@ -321,7 +321,7 @@ void move_pos_player(void);
 
 void display_hud(void);
 
-void level_1(sfEvent event);
+void level_game(sfEvent event);
 
 // write map
 
@@ -393,7 +393,7 @@ void le_bon_click_editor (sfEvent event);
 
 void la_bonne_touche_editor (sfEvent event);
 
-void level_map_editor_clock(sfEvent event);
+void level_map_editor_clock(void);
 
 void level_map_editor(sfEvent event);
 
@@ -405,7 +405,7 @@ void level_inventory(sfEvent event);
 
 // ennemis
 
-void move_all_ennemys(void);
+void move_all_ennemies(void);
 
 void get_move_val(enemies *enemy);
 

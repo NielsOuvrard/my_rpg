@@ -23,7 +23,7 @@ void change_scale(sfEvent event)
 
 // E = inventaire
 // A = interaction
-void event_level_1_pressed_next(sfEvent event)
+void event_level_game_pressed_next(sfEvent event)
 {
     if (event.key.code == all_keys()->k_sprint)
         all_infos()->sprint = true;;
@@ -46,15 +46,15 @@ void event_level_1_pressed_next(sfEvent event)
 
 void event_npc(sfEvent event)
 {
-    npcs *expl = all_maps()[all_infos()->map_actual].all_npcs;
-    while (expl) {
-        if (event.key.code == sfKeyF && expl->interaction == 1)
+    npcs *npcs = all_maps()[all_infos()->map_actual].all_npcs;
+    while (npcs) {
+        if (event.key.code == sfKeyF && npcs->interaction == 1)
             all_infos()->level = DIALOGUE;
-        expl = expl->next;
+        npcs = npcs->next;
     }
 }
 
-void event_level_1_pressed(sfEvent event)
+void event_level_game_pressed(sfEvent event)
 {
     if (event.key.code == all_keys()->shoot) {
         all_infos()->last_move = all_infos()->move;
@@ -66,14 +66,14 @@ void event_level_1_pressed(sfEvent event)
             all_sprites()[HUNTER].rect.top = 80;
         all_sprites()[HUNTER].rect.left = 16 * 3;
     }
-    event_level_1_pressed_next(event);
+    event_level_game_pressed_next(event);
     change_scale(event);
     event_npc(event);
 }
 
 // shoot an arrow after all_infos()->move == 'c' &&
 // !sfKeyboard_isKeyPressed(all_keyes()->shoot) JF
-void event_level_1_relased_next (sfEvent event)
+void event_level_game_relased_next (sfEvent event)
 {
     if (!sfKeyboard_isKeyPressed(all_keys()->k_sprint))
         all_infos()->sprint = false;
@@ -92,7 +92,7 @@ void event_level_1_relased_next (sfEvent event)
     all_sprites()[HUNTER].rect);
 }
 
-void event_level_1_relased(sfEvent event)
+void event_level_game_relased(sfEvent event)
 {
     if (all_infos()->move == 'c' &&
     !sfKeyboard_isKeyPressed(all_keys()->shoot)) {
@@ -105,10 +105,10 @@ void event_level_1_relased(sfEvent event)
         else
             all_sprites()[HUNTER].rect.top = 16;
     }
-    event_level_1_relased_next(event);
+    event_level_game_relased_next(event);
 }
 
-void event_level_1(sfEvent event)
+void event_level_game(sfEvent event)
 {
     while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
         if (event.type == sfEvtClosed) {
@@ -116,9 +116,9 @@ void event_level_1(sfEvent event)
             return;
         }
         if (event.type == sfEvtKeyPressed)
-            event_level_1_pressed(event);
+            event_level_game_pressed(event);
         if (event.type == sfEvtKeyReleased)
-            event_level_1_relased(event);
+            event_level_game_relased(event);
     }
     return;
 }
