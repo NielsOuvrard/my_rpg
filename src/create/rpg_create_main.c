@@ -65,6 +65,7 @@ void creat_main (void)
     for (int i = 0; i < 20; i++)
         val = add_to_inventory(val);
     infos->inventory = val;
+    all_infos()->stamina_clock = sfClock_create();
     initialize_main_vals();
     return;
 }

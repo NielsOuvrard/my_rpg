@@ -35,7 +35,7 @@ void move_pos_player_next(char a)
 {
     if (all_infos()->move_l && can_move(-5, 0)) {
         all_infos()->move = 'l';
-        change_pos_and_views(-7, 0);
+        move_sprint(-5, 0);
         if (!all_infos()->move_u && !all_infos()->move_d)
             change_pos_and_views(-3, 0);
     }
@@ -53,21 +53,39 @@ void move_pos_player(void)
     char a = all_infos()->move;
     if (all_infos()->move_d && can_move(0, 5)) {
         all_infos()->move = 'd';
-        change_pos_and_views(0, 7);
+        move_sprint(0, 5);
         if (!all_infos()->move_l && !all_infos()->move_r)
             change_pos_and_views(0, 3);
     }
     if (all_infos()->move_u && can_move(0, -5)) {
         all_infos()->move = 'u';
-        change_pos_and_views(0, -7);
+        move_sprint(0, -5);
         if (!all_infos()->move_l && !all_infos()->move_r)
             change_pos_and_views(0, -3);
     }
     if (all_infos()->move_r && can_move(5, 0)) {
         all_infos()->move = 'r';
-        change_pos_and_views(7, 0);
+        move_sprint(5, 0);
         if (!all_infos()->move_u && !all_infos()->move_d)
             change_pos_and_views(3, 0);
     }
     move_pos_player_next(a);
+}
+
+void move_sprint(int x, int y)
+{
+    int sprint_x = x;
+    int sprint_y = y;
+    if (sprint_x != 0 && sprint_x > 0)
+        sprint_x += 2;
+    if (sprint_y != 0 && sprint_y > 0)
+        sprint_y += 2;
+    if (sprint_x != 0 && sprint_x < 0)
+        sprint_x -= 2;
+    if (sprint_y != 0 && sprint_y < 0)
+        sprint_y -= 2;
+    if (all_infos()->sprint && can_move(sprint_x, sprint_y)) {
+        change_pos_and_views(sprint_x, sprint_y);
+    } else
+        change_pos_and_views(x, y);
 }

@@ -21,6 +21,8 @@ void change_scale(sfEvent event)
 // A = interaction
 void event_level_1_pressed_next(sfEvent event)
 {
+    if (event.key.code == all_keyes()->k_sprint)
+        all_infos()->sprint = true;;
     if (event.key.code == all_keyes()->k_up)
         all_infos()->move_u = true;
     if (event.key.code == all_keyes()->k_left)
@@ -69,6 +71,8 @@ void event_level_1_pressed(sfEvent event)
 // !sfKeyboard_isKeyPressed(all_keyes()->shoot) JF
 void event_level_1_relased_next (sfEvent event)
 {
+    if (!sfKeyboard_isKeyPressed(all_keyes()->k_sprint))
+        all_infos()->sprint = false;
     if (!sfKeyboard_isKeyPressed(all_keyes()->k_left))
         all_infos()->move_l = false;
     if (!sfKeyboard_isKeyPressed(all_keyes()->k_right))

@@ -38,6 +38,7 @@ void while_it_is_open (void)
             move_all_ennemys();
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
         sfRenderWindow_clear(all_infos()->window, sfBlack);
+        increase_stamina();
         animation(event);
         if (all_infos()->level == 0)
             level_0(event);

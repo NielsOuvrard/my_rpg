@@ -115,6 +115,7 @@ typedef struct enemies {
 
 typedef struct struct_keys {
     sfKeyCode k_up;
+    sfKeyCode k_sprint;
     sfKeyCode k_down;
     sfKeyCode k_left;
     sfKeyCode k_right;
@@ -191,6 +192,8 @@ typedef struct main_screen {
     bool move_r;
     bool move_l;
     bool printed;
+    bool sprint;
+    sfClock *stamina_clock;
     char last_move;
     float zoom;
     sfVector2f view_position;
@@ -457,3 +460,7 @@ int is_movable(char my_mg, char my_bg);
 void check_stamina(void);
 
 void disp_stamina(void);
+
+void increase_stamina(void);
+
+void move_sprint(int x, int y);
