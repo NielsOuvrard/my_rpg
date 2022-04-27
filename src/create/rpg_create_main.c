@@ -57,6 +57,7 @@ void create_main(void)
     infos->map_actual = 0;
     infos->pos_player.x = 0;
     infos->pos_player.y = 0;
+    infos->nb_of_zoom = 1;
     infos->zoom = 1;
     infos->move = '\0';
     infos->life = 10;
@@ -65,6 +66,7 @@ void create_main(void)
     for (int i = 0; i < 20; i++)
         val = add_to_inventory(val);
     infos->inventory = val;
+    all_infos()->stamina_clock = sfClock_create();
     initialize_main_vals();
     return;
 }

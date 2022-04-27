@@ -23,7 +23,6 @@ int can_move(int x, int y)
     my_putchar('\n');
     if(!is_movable(all_maps()[all_infos()->map_actual].mg[final_y][final_x],
     all_maps()[all_infos()->map_actual].bg[final_y][final_x])) {
-        my_putchar('0');
         return 0;
     }
     return 1;

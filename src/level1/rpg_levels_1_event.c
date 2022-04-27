@@ -10,10 +10,14 @@
 
 void change_scale(sfEvent event)
 {
-    if (event.key.code == all_keys()->zoom_out)
+    if (event.key.code == all_keys()->zoom_out && all_infos()->nb_of_zoom + 1 != 4) {
         sfView_zoom(all_infos()->view, 0.8);
-    if (event.key.code == all_keys()->zoom_in)
+        all_infos()->nb_of_zoom += 1;
+    }
+    if (event.key.code == all_keys()->zoom_in && all_infos()->nb_of_zoom - 1 > 0) {
         sfView_zoom(all_infos()->view, 1.2);
+        all_infos()->nb_of_zoom -= 1;
+    }
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
 }
 
@@ -21,6 +25,8 @@ void change_scale(sfEvent event)
 // A = interaction
 void event_level_1_pressed_next(sfEvent event)
 {
+    if (event.key.code == all_keys()->k_sprint)
+        all_infos()->sprint = true;;
     if (event.key.code == all_keys()->k_up)
         all_infos()->move_u = true;
     if (event.key.code == all_keys()->k_left)
@@ -69,6 +75,8 @@ void event_level_1_pressed(sfEvent event)
 // !sfKeyboard_isKeyPressed(all_keyes()->shoot) JF
 void event_level_1_relased_next (sfEvent event)
 {
+    if (!sfKeyboard_isKeyPressed(all_keys()->k_sprint))
+        all_infos()->sprint = false;
     if (!sfKeyboard_isKeyPressed(all_keys()->k_left))
         all_infos()->move_l = false;
     if (!sfKeyboard_isKeyPressed(all_keys()->k_right))
