@@ -84,7 +84,7 @@ void move_sprint(int x, int y)
         sprint_x -= 2;
     if (sprint_y != 0 && sprint_y < 0)
         sprint_y -= 2;
-    if (all_infos()->sprint && can_move(sprint_x, sprint_y)) {
+    if (all_infos()->sprint && can_move(sprint_x, sprint_y) && all_infos()->stamina > 0) {
         change_pos_and_views(sprint_x, sprint_y);
     } else
         change_pos_and_views(x, y);
