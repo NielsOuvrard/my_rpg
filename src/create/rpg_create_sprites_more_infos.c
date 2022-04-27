@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg_header.h"
 
-void full_perso (int type, int x, int y)
+void full_perso(int type, int x, int y)
 {
     all_sprites()[type].origin.x = 8;
     all_sprites()[type].origin.y = 16;
@@ -40,7 +40,7 @@ void origin_in_8_8_scale(int sprite)
     all_sprites()[sprite].scale);
 }
 
-void full_list_sprites_more_infos (void)
+void full_list_sprites_more_infos(void)
 {
     full_perso(HUNTER, 10 * 50, 10 * 35);
     full_perso(DEMON, 500, 240);
@@ -65,7 +65,7 @@ void full_list_sprites_more_infos (void)
     // sfSprite_setScale(all_sprites()[BALLON].sprite, all_sprites()[BALLON].scale);
 }
 
-void full_list_sprites_next (void)
+void full_list_sprites_next(void)
 {
     all_sprites()[SPRITE_SHEET].rect.height = 16;
     all_sprites()[SPRITE_SHEET].rect.width = 16;

@@ -10,7 +10,7 @@
 
 static main_screen *infos;
 
-main_screen *all_infos (void)
+main_screen *all_infos(void)
 {
     return infos;
 }
@@ -46,7 +46,7 @@ struct_inventory *add_to_inventory (struct_inventory *list)
     return val;
 }
 
-void creat_main (void)
+void create_main(void)
 {
     infos = malloc(sizeof(main_screen));
     sfVideoMode mode = {SCREEN_MAX_X, SCREEN_MAX_Y, 60};

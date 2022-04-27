@@ -8,10 +8,11 @@
 #include "my.h"
 #include "rpg_header.h"
 
-static struct_maps *my_maps;
+static struct_maps *map_dictionary;
 
-struct_interact *interactions_of_map (char *str, struct_maps autr);
+struct_interact *interactions_of_map(char *str, struct_maps autr);
 
+// sus
 struct_maps edit_bg_pas_gabriel(struct_maps autr)
 {
     int size = 0;
@@ -34,7 +35,7 @@ struct_maps edit_bg_pas_gabriel(struct_maps autr)
     return autr;
 }
 
-char **array_of_printed (char **size)
+char **array_of_printed(char **size)
 {
     int size_x = my_strlen(size[0]);
     int size_y = my_arraylen(size);
@@ -48,31 +49,31 @@ char **array_of_printed (char **size)
     return array;
 }
 
-void list_of_map (char *filepath, int i, char **arr)
+void list_of_map(char *filepath, int i, char **arr)
 {
     my_memset(filepath, 511, '\0');
     my_strcpy(filepath, "map/");
     my_strcat(filepath, arr[i]);
     my_strcat(filepath, "bg");
     int size = my_strlen(filepath);
-    my_maps[i].bg = filepath_to_arr(filepath);
-    my_maps[i] = edit_bg_pas_gabriel(my_maps[i]);
+    map_dictionary[i].bg = filepath_to_arr(filepath);
+    map_dictionary[i] = edit_bg_pas_gabriel(map_dictionary[i]);
     filepath[size - 2] = '\0';
     my_strcat(filepath, "mg");
-    my_maps[i].mg = filepath_to_arr(filepath);
-    my_maps[i].is_printed = array_of_printed(my_maps[i].mg);
+    map_dictionary[i].mg = filepath_to_arr(filepath);
+    map_dictionary[i].is_printed = array_of_printed(map_dictionary[i].mg);
     filepath[size - 2] = '\0';
     my_strcat(filepath, "fg");
-    my_maps[i].fg = filepath_to_arr(filepath);
-    explor_map_find_all_ennemis(i);
-    explor_map_find_all_npcs(i);
+    map_dictionary[i].fg = filepath_to_arr(filepath);
+    explore_map_find_all_ennemis(i);
+    explore_map_find_all_npcs(i);
 }
 
-void full_list_maps(void)
+void fill_map_dictionary(void)
 {
     char **arr = filepath_to_arr("map/list_maps.txt");
     int nbr = my_arraylen(arr), i;
-    my_maps = malloc(sizeof(struct_maps) * (nbr + 1));
+    map_dictionary = malloc(sizeof(struct_maps) * (nbr + 1));
     char *filepath = malloc(sizeof(char) * 512);
     for (i = 0; arr[i]; i++)
         list_of_map(filepath, i, arr);
@@ -81,5 +82,5 @@ void full_list_maps(void)
 
 struct_maps *all_maps(void)
 {
-    return my_maps;
+    return map_dictionary;
 }

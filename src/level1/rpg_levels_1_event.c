@@ -10,9 +10,9 @@
 
 void change_scale(sfEvent event)
 {
-    if (event.key.code == all_keyes()->zoom_out)
+    if (event.key.code == all_keys()->zoom_out)
         sfView_zoom(all_infos()->view, 0.8);
-    if (event.key.code == all_keyes()->zoom_in)
+    if (event.key.code == all_keys()->zoom_in)
         sfView_zoom(all_infos()->view, 1.2);
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
 }
@@ -21,15 +21,15 @@ void change_scale(sfEvent event)
 // A = interaction
 void event_level_1_pressed_next(sfEvent event)
 {
-    if (event.key.code == all_keyes()->k_up)
+    if (event.key.code == all_keys()->k_up)
         all_infos()->move_u = true;
-    if (event.key.code == all_keyes()->k_left)
+    if (event.key.code == all_keys()->k_left)
         all_infos()->move_l = true;
-    if (event.key.code == all_keyes()->k_down)
+    if (event.key.code == all_keys()->k_down)
         all_infos()->move_d = true;
-    if (event.key.code == all_keyes()->k_right)
+    if (event.key.code == all_keys()->k_right)
         all_infos()->move_r = true;
-    if (event.key.code == all_keyes()->k_open_bag)
+    if (event.key.code == all_keys()->k_open_bag)
         all_infos()->level = INVENTORY;
     if (event.key.code == sfKeyP)
         all_infos()->life--;
@@ -50,7 +50,7 @@ void event_npc(sfEvent event)
 
 void event_level_1_pressed(sfEvent event)
 {
-    if (event.key.code == all_keyes()->shoot) {
+    if (event.key.code == all_keys()->shoot) {
         all_infos()->last_move = all_infos()->move;
         all_infos()->move = 'c';
         if (all_sprites()[HUNTER].rect.top == 16 ||
@@ -69,13 +69,13 @@ void event_level_1_pressed(sfEvent event)
 // !sfKeyboard_isKeyPressed(all_keyes()->shoot) JF
 void event_level_1_relased_next (sfEvent event)
 {
-    if (!sfKeyboard_isKeyPressed(all_keyes()->k_left))
+    if (!sfKeyboard_isKeyPressed(all_keys()->k_left))
         all_infos()->move_l = false;
-    if (!sfKeyboard_isKeyPressed(all_keyes()->k_right))
+    if (!sfKeyboard_isKeyPressed(all_keys()->k_right))
         all_infos()->move_r = false;
-    if (!sfKeyboard_isKeyPressed(all_keyes()->k_up))
+    if (!sfKeyboard_isKeyPressed(all_keys()->k_up))
         all_infos()->move_u = false;
-    if (!sfKeyboard_isKeyPressed(all_keyes()->k_down))
+    if (!sfKeyboard_isKeyPressed(all_keys()->k_down))
         all_infos()->move_d = false;
     if (!all_infos()->move_u && !all_infos()->move_d &&
     !all_infos()->move_l && !all_infos()->move_r)
@@ -87,7 +87,7 @@ void event_level_1_relased_next (sfEvent event)
 void event_level_1_relased(sfEvent event)
 {
     if (all_infos()->move == 'c' &&
-    !sfKeyboard_isKeyPressed(all_keyes()->shoot)) {
+    !sfKeyboard_isKeyPressed(all_keys()->shoot)) {
         all_sprites()[HUNTER].rect.left = 0;
         all_infos()->move = all_infos()->last_move;
         if (all_infos()->move == 'l' || all_infos()->move == 'd')

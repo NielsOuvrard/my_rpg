@@ -73,6 +73,12 @@ typedef struct sprite_pictures {
     char anim;
 } sprite_pictures;
 
+
+typedef struct projectile {
+    int damage;
+    sprite_pictures *sprite_picture;
+} projectile_t;
+
 typedef struct struct_inventory {
     char object;
     struct struct_inventory *next;
@@ -213,52 +219,52 @@ typedef struct main_screen {
 
 // keyes
 
-void creat_keyes (void);
+void create_keys (void);
 
-struct_keys *all_keyes (void);
+struct_keys *all_keys (void);
 
 void qwerty_keyes (void);
 
 // create editor
 
-editor_screen *all_editor (void);
+editor_screen *all_editor(void);
 
-char **editor_create_map (int x, int y, char c);
+char **editor_create_map(int x, int y, char c);
 
 void initialize_editor_vals(void);
 
-void creat_editor (void);
+void create_editor(void);
 
 // create main
 
-main_screen *all_infos (void);
+main_screen *all_infos(void);
 
-void creat_main (void);
+void create_main(void);
 
 // create maps
 
-void full_list_maps(void);
+void fill_map_dictionary(void);
 
 struct_maps *all_maps(void);
 
 // create sprite
 
-void full_list_sprites (void);
+void fill_sprite_dictionary(void);
 
-sprite_pictures *all_sprites (void);
+sprite_pictures *all_sprites(void);
 
 // * ////////////// LEVEL1 DIR //////////////////////////////////////////
 // interact change map
 
-void move_to_map (int map, int x, int y);
+void move_to_map(int map, int x, int y);
 
 int player_is_on_case(int x, int y);
 
-void check_all_intecract_map_actual (void);
+void check_all_intecract_map_actual(void);
 
 // disp mg
 
-void disp_mg (void);
+void disp_mg(void);
 
 // disp map
 
@@ -266,11 +272,11 @@ void disp_map(char **map);
 
 // level 1 anim enemis
 
-void anim_all_enemies (void);
+void anim_all_enemies(void);
 
 // level 1 anim hunter
 
-void anim_perso_according_to_int (void);
+void anim_perso_according_to_int(void);
 
 // level 1 anim
 
@@ -282,7 +288,7 @@ void anim_perso (void);
 
 // enevt
 
-void recalculate_the_sprite_perso (void);
+void recalculate_the_sprite_perso(void);
 
 void event_level_1(sfEvent event);
 
@@ -290,7 +296,7 @@ void event_level_1(sfEvent event);
 
 void idle_perso(void);
 
-void move_to_map (int map, int x, int y);
+void move_to_map(int map, int x, int y);
 
 // void move_to_salle_une (void);
 
@@ -308,39 +314,39 @@ void modify_var_move(sfEvent event);
 
 void move_pos_player(void);
 
-void disp_hud (void);
+void disp_hud(void);
 
-void level_1 (sfEvent event);
+void level_1(sfEvent event);
 
 // write map
 
-void write_maps (void);
+void write_maps(void);
 
 // particules
 
-void find_tile_particle (char c, int i, int j);
+void find_tile_particle(char c, int i, int j);
 
-void add_particules (sfVector2f pos, int size, sfColor color);
+void add_particules(sfVector2f pos, int size, sfColor color);
 
-void anim_all_particules (void);
+void anim_all_particules(void);
 
-void print_all_particules (void);
+void print_all_particules(void);
 
 // * ////////////// EDITOR DIR //////////////////////////////////////////
 
 // change size map tools
 
-void add_new_y (char **map, int size, char c);
+void add_new_y(char **map, int size, char c);
 
-void delete_y (char **map, int size);
+void delete_y(char **map, int size);
 
-void add_new_x (char **map, int size, char c);
+void add_new_x(char **map, int size, char c);
 
-void delete_x (char **map, int size);
+void delete_x(char **map, int size);
 
 // change size map
 
-void change_size_map (void);
+void change_size_map(void);
 
 // disp map editor
 
@@ -352,27 +358,27 @@ void disp_value_to_print(void);
 
 // disp right
 
-void disp_boxes (void);
+void disp_boxes(void);
 
-void disp_text_size (void);
+void disp_text_size(void);
 
-void disp_text_and_boxes (void);
+void disp_text_and_boxes(void);
 
 // le bon click editor
 
-void le_bon_click_editor (sfEvent event);
+void le_bon_click_editor(sfEvent event);
 
 // map editor click infos right
 
-void editor_click_infos_right (sfVector2i pos_mouse);
+void editor_click_infos_right(sfVector2i pos_mouse);
 
 // existing file
 
-void edit_existing_file (char *filepath_dir);
+void edit_existing_file(char *filepath_dir);
 
 // map editor
 
-int round_sup (float a);
+int round_sup(float a);
 
 void change_tile_to_print(sfEvent event);
 
@@ -384,7 +390,7 @@ void la_bonne_touche_editor (sfEvent event);
 
 void level_map_editor_clock(sfEvent event);
 
-void level_map_editor (sfEvent event);
+void level_map_editor(sfEvent event);
 
 // * ////////////// INVENTORY DIR //////////////////////////////////////////
 
@@ -394,7 +400,7 @@ void level_inventory(sfEvent event);
 
 // ennemis
 
-void move_all_ennemys (void);
+void move_all_ennemys(void);
 
 void get_move_val(enemies *enemy);
 
@@ -406,15 +412,15 @@ void get_new_vals(enemies *enemy);
 
 void add_enemies_to_list(int map, int value, int x, int y);
 
-void explor_map_find_all_ennemis_next(int map, int i, int j);
+void explore_map_find_all_ennemis_next(int map, int i, int j);
 
-void explor_map_find_all_ennemis(int map);
+void explore_map_find_all_ennemis(int map);
 
-void disp_all_ennemsi (void);
+void display_all_enemies(void);
 
 // npcs
 
-void explor_map_find_all_npcs(int map);
+void explore_map_find_all_npcs(int map);
 
 void disp_all_npcs(void);
 
@@ -424,29 +430,29 @@ void level_quest(void);
 
 // free
 
-void free_map (int i);
+void free_map(int i);
 
-void free_particules (void);
+void free_particules(void);
 
 // level 2 (pause peut-etre)
 
-void level_2 (sfEvent event);
+void level_2(sfEvent event);
 
 // level 0
 
-void level_0 (sfEvent event);
+void level_0(sfEvent event);
 
 // all
 
-int all_levels_game (int ac, char **av);
+int all_levels_game(int ac, char **av);
 
 // open file
 
-char **filepath_to_arr (char *filepath);
+char **filepath_to_arr(char *filepath);
 
 // tools 1
 
-int random_int (int min, int max);
+int random_int(int min, int max);
 
 void get_move_val(enemies *enemy);
 

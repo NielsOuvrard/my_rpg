@@ -49,7 +49,7 @@ void add_enemies_to_list(int map, int value, int x, int y)
     last->next = new_enemy;
 }
 
-void explor_map_find_all_ennemis_next(int map, int i, int j)
+void explore_map_find_all_ennemis_next(int map, int i, int j)
 {
     char *c = &all_maps()[map].fg[i][j];
     if ((*c) >= '0')
@@ -61,15 +61,15 @@ void explor_map_find_all_ennemis_next(int map, int i, int j)
     c[0] = 'R';
 }
 
-void explor_map_find_all_ennemis(int map)
+void explore_map_find_all_ennemis(int map)
 {
     all_maps()[map].all_ennemis = NULL;
     for (int i = 0; all_maps()[map].fg[i]; i++)
         for (int j = 0; all_maps()[map].fg[i][j]; j++)
-            explor_map_find_all_ennemis_next(map, i, j);
+            explore_map_find_all_ennemis_next(map, i, j);
 }
 
-void disp_all_ennemsi (void)
+void display_all_enemies(void)
 {
     enemies *expl = all_maps()[all_infos()->map_actual].all_ennemis;
     while (expl) {

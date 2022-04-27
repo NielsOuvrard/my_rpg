@@ -35,13 +35,13 @@ void la_bonne_touche_editor_move (sfEvent event)
 {
     if (event.key.code == sfKeyN && all_editor()->ptr_map_edit)
         paint_bucket_tool();
-    if (event.key.code == all_keyes()->k_down)
+    if (event.key.code == all_keys()->k_down)
         all_infos()->move_d = true;
-    if (event.key.code == all_keyes()->k_up)
+    if (event.key.code == all_keys()->k_up)
         all_infos()->move_u = true;
-    if (event.key.code == all_keyes()->k_left)
+    if (event.key.code == all_keys()->k_left)
         all_infos()->move_l = true;
-    if (event.key.code == all_keyes()->k_right)
+    if (event.key.code == all_keys()->k_right)
         all_infos()->move_r = true;
 }
 

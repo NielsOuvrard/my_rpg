@@ -10,18 +10,18 @@
 
 void disp_mg_next (int i)
 {
-    enemies *expl = all_maps()[all_infos()->map_actual].all_ennemis;
-    while (expl) {
-        if (!expl->printed && expl->pos.y > (SIZE_TILE * i) + 16) {
-            sfSprite_setPosition(all_sprites()[expl->value].sprite,
-            expl->pos);
-            sfSprite_setTextureRect(all_sprites()[expl->value].sprite,
-            expl->rect);
+    enemies *enemies = all_maps()[all_infos()->map_actual].all_ennemis;
+    while (enemies) {
+        if (!enemies->printed && enemies->pos.y > (SIZE_TILE * i) + 16) {
+            sfSprite_setPosition(all_sprites()[enemies->value].sprite,
+            enemies->pos);
+            sfSprite_setTextureRect(all_sprites()[enemies->value].sprite,
+            enemies->rect);
             sfRenderWindow_drawSprite(all_infos()->window,
-            all_sprites()[expl->value].sprite, NULL);
-            expl->printed = true;
+            all_sprites()[enemies->value].sprite, NULL);
+            enemies->printed = true;
         }
-        expl = expl->next;
+        enemies = enemies->next;
     }
     if (all_sprites()[HUNTER].pos.y > (SIZE_TILE * i) +
     VALEURE_APPROXIMATIVE_POUR_PASSER_DERRIER_UNE_TUILE_EN_MG) {

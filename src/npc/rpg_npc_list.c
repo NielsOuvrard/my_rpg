@@ -40,7 +40,7 @@ void add_npcs_to_list(int map, int value, int x, int y)
     last->next = new_npc;
 }
 
-void explor_map_find_all_npcs_next(int map, int i, int j)
+void explore_map_find_all_npcs_next(int map, int i, int j)
 {
     char *c = &all_maps()[map].fg[i][j];
     // if ((*c) >= '0')
@@ -52,12 +52,12 @@ void explor_map_find_all_npcs_next(int map, int i, int j)
     c[0] = 'R';
 }
 
-void explor_map_find_all_npcs(int map)
+void explore_map_find_all_npcs(int map)
 {
     all_maps()[map].all_npcs = NULL;
     for (int i = 0; all_maps()[map].fg[i]; i++)
         for (int j = 0; all_maps()[map].fg[i][j]; j++)
-            explor_map_find_all_npcs_next(map, i, j);
+            explore_map_find_all_npcs_next(map, i, j);
 }
 
 void disp_all_npcs(void)

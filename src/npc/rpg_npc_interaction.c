@@ -13,7 +13,7 @@ void event_level_quest(void)
     sfEvent event;
     while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
         if (event.type == sfEvtKeyPressed &&
-        event.key.code == all_keyes()->k_interact)
+        event.key.code == all_keys()->k_interact)
             all_infos()->level = GAME;
         if (event.type == sfEvtClosed) {
             all_infos()->quit_main = 1;

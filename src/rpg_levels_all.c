@@ -55,13 +55,13 @@ void while_it_is_open (void)
     }
 }
 
-int all_levels_game (int ac, char **av)
+int all_levels_game(int ac, char **av)
 {
-    full_list_sprites();
-    creat_main();
-    creat_editor();
-    creat_keyes();
-    full_list_maps();
+    fill_sprite_dictionary();
+    create_main();
+    create_editor();
+    create_keys();
+    fill_map_dictionary();
     if (ac > 1 && !my_strcmp(av[1], "-edit") && av[2])
         edit_existing_file(av[2]);
     if (ac > 1 && !my_strcmp(av[1], "-q"))

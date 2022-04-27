@@ -54,7 +54,7 @@ void event_level_inventory(sfEvent event)
 {
     while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
         if (event.type == sfEvtKeyPressed &&
-        event.key.code == all_keyes()->k_open_bag)
+        event.key.code == all_keys()->k_open_bag)
             all_infos()->level = GAME;
         if (event.type == sfEvtClosed) {
             all_infos()->quit_main = 1;

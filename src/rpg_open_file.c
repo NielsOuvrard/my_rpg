@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg_header.h"
 
-char *filepath_to_str (char *filepath)
+char *filepath_to_str(char *filepath)
 {
     int buff_size = 32000, offset = 0, len = 0;
     char *buff = malloc(sizeof(char) * buff_size);
@@ -24,7 +24,7 @@ char *filepath_to_str (char *filepath)
     return buff;
 }
 
-char **filepath_to_arr (char *filepath)
+char **filepath_to_arr(char *filepath)
 {
     char *buff = filepath_to_str(filepath);
     if (!buff)

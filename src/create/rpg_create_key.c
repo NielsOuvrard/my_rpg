@@ -10,12 +10,12 @@
 
 static struct_keys *keyes;
 
-struct_keys *all_keyes (void)
+struct_keys *all_keys(void)
 {
     return keyes;
 }
 
-void creat_keyes (void)
+void create_keys(void)
 {
     keyes = malloc(sizeof(struct_keys));
     keyes->k_down = sfKeyS;
