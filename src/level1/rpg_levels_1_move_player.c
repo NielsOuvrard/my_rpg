@@ -34,6 +34,7 @@ void change_pos_and_views (int x, int y)
 void move_pos_player_next(char a)
 {
     if (all_infos()->move_l && can_move(-5, 0)) {
+        all_infos()->can_move = true;
         all_infos()->move = 'l';
         move_sprint(-5, 0);
         if (!all_infos()->move_u && !all_infos()->move_d)
@@ -43,7 +44,7 @@ void move_pos_player_next(char a)
         recalculate_the_sprite_perso();
     sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
-    if (all_infos()->move != 'c')
+    if (all_infos()->move != 'c' && all_infos()->can_move)
         add_particules(all_sprites()[HUNTER].pos, 10,
         sfColor_fromRGBA(255, 255, 255, 200));
 }
@@ -51,19 +52,23 @@ void move_pos_player_next(char a)
 void move_pos_player(void)
 {
     char a = all_infos()->move;
+    all_infos()->can_move = false;
     if (all_infos()->move_d && can_move(0, 5)) {
+        all_infos()->can_move = true;
         all_infos()->move = 'd';
         move_sprint(0, 5);
         if (!all_infos()->move_l && !all_infos()->move_r)
             change_pos_and_views(0, 3);
     }
     if (all_infos()->move_u && can_move(0, -5)) {
+        all_infos()->can_move = true;
         all_infos()->move = 'u';
         move_sprint(0, -5);
         if (!all_infos()->move_l && !all_infos()->move_r)
             change_pos_and_views(0, -3);
     }
     if (all_infos()->move_r && can_move(5, 0)) {
+        all_infos()->can_move = true;
         all_infos()->move = 'r';
         move_sprint(5, 0);
         if (!all_infos()->move_u && !all_infos()->move_d)

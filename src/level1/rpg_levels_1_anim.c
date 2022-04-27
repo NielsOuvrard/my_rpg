@@ -28,7 +28,7 @@ void idle_perso(void)
 
 void anim_perso(void)
 {
-    if (!all_infos()->move)
+    if (!all_infos()->move || !all_infos()->can_move)
         return;
     if (all_infos()->move == 'c')
         my_printf("on anim car %c\n", all_infos()->move);
