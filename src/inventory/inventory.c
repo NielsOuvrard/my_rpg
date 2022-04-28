@@ -28,6 +28,10 @@ void disp_inventory (void)
     all_sprites()[EMPTY_BOX].scale.y = 3.125;
     sfSprite_setScale(all_sprites()[EMPTY_BOX].sprite,
     all_sprites()[EMPTY_BOX].scale);
+    all_sprites()[APPLE].scale.x = 3.125;
+    all_sprites()[APPLE].scale.y = 3.125;
+    sfSprite_setScale(all_sprites()[APPLE].sprite,
+    all_sprites()[APPLE].scale);
     int size = nmb_inv(), nmb_y = 0, i = 0;
     while (size >= 10) {
         nmb_y++;
@@ -41,6 +45,18 @@ void disp_inventory (void)
         (sfVector2f) {(x * SIZE_TILE) + 50, (y * SIZE_TILE) + 250});
         sfRenderWindow_drawSprite(all_infos()->window,
         all_sprites()[EMPTY_BOX].sprite, NULL);
+        val = val->next;
+    }
+    size = nmb_inv(), nmb_y = 0, i = 0;
+    val = all_infos()->inventory;
+    while (val) {
+        int x = i++, y = 0;
+        while (x >= 10)
+            my_printf("", y++, x -= 10);
+        sfSprite_setPosition(all_sprites()[APPLE].sprite,
+        (sfVector2f) {(x * SIZE_TILE) + 70, (y * SIZE_TILE) + 270});
+        sfRenderWindow_drawSprite(all_infos()->window,
+        all_sprites()[APPLE].sprite, NULL);
         val = val->next;
     }
 }

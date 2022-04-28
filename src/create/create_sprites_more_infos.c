@@ -51,6 +51,7 @@ void full_list_sprites_more_infos(void)
     origin_in_8_8_scale(CHECK_BOX);
     origin_in_8_8_scale(CROSS_BOX);
     origin_in_8_8_scale(SELEC_BOX);
+    origin_in_8_8_scale(APPLE);
     all_sprites()[LIFE].origin.x = 8;
     all_sprites()[LIFE].origin.y = 8;
     sfSprite_setOrigin(all_sprites()[LIFE].sprite, all_sprites()[LIFE].origin);
