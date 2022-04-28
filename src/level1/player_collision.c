@@ -18,9 +18,9 @@ int can_move(int x, int y)
         return 0;
     if (final_y > my_arraylen(all_maps()[all_infos()->map_actual].mg))
         return 0;
-    my_putchar(all_maps()[all_infos()->map_actual].bg[final_y][final_x]);
-    my_putchar(all_maps()[all_infos()->map_actual].mg[final_y][final_x]);
-    my_putchar('\n');
+    // my_putchar(all_maps()[all_infos()->map_actual].bg[final_y][final_x]);
+    // my_putchar(all_maps()[all_infos()->map_actual].mg[final_y][final_x]);
+    // my_putchar('\n');
     if(!is_movable(all_maps()[all_infos()->map_actual].mg[final_y][final_x],
     all_maps()[all_infos()->map_actual].bg[final_y][final_x])) {
         return 0;

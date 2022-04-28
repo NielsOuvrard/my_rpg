@@ -43,11 +43,11 @@ void add_npcs_to_list(int map, int value, int x, int y)
 void explore_map_find_all_npcs_next(int map, int i, int j)
 {
     char *c = &all_maps()[map].fg[i][j];
-    // if ((*c) >= '0')
-    //     return;
-    if (c[0] == 'V')
+    if ((*c) >= '0')
+        return;
+    if (c[0] == '-')
         add_npcs_to_list(map, NPC, j * SIZE_TILE, (i * SIZE_TILE) + 16);
-    if (c[0] == 'H')
+    if (c[0] == ',')
         add_npcs_to_list(map, NPC2, j * SIZE_TILE, (i * SIZE_TILE) + 16);
     c[0] = 'R';
 }
