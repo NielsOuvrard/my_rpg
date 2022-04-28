@@ -12,4 +12,5 @@ pictures/Characters/Villager/Villager.png
 pictures/HUD/F_key.png
 pictures/Characters/Villager/Villager_2.png
 pictures/HUD/ballon.png
+pictures/Characters/Villager/Villager_3.png
 pictures/HUD/Icons/Apple.png

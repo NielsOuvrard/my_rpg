@@ -59,7 +59,8 @@
 #define INTERACTION_BT 11
 #define NPC2           12
 #define BALLON         13
-#define APPLE          14
+#define NPC3           14
+#define APPLE          15
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
