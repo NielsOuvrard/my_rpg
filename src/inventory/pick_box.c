@@ -24,13 +24,14 @@ void pick_inventorybox(int x, int y, int run)
     return;
 }
 
-int get_nbofelem(void)
-{
-    
-}
-
 void change_val_box(int val)
 {
-    if (val == 1 && all_keys) {
+    if (val == 1 && all_infos()->inventory_move + 1 < nmb_inv()) {
+        all_infos()->inventory_move += 1;
+        return;
+    }
+    if (val == 2 && all_infos()->inventory_move - 1 >= 0) {
+        all_infos()->inventory_move -= 1;
+        return;
     }
 }

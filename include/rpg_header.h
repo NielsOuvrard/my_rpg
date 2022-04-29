@@ -218,6 +218,8 @@ typedef struct main_screen {
     bool can_move;
     int nb_of_zoom;
     sfClock *stamina_clock;
+    sfClock *text_clock;
+    int text_char;
     char last_move;
     float zoom;
     sfVector2f view_position;
@@ -506,3 +508,9 @@ void add_to_inventory (struct_inventory **list, int value);
 void scale_inventorybox(void);
 
 void pick_inventorybox(int x, int y, int run);
+
+void change_val_box(int val);
+
+int nmb_inv(void);
+
+char *my_strdup_to (char const *src, int len);

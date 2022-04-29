@@ -74,10 +74,10 @@ void event_level_inventory(sfEvent event)
             all_infos()->level = GAME;
         if (event.type == sfEvtKeyPressed &&
             event.key.code == all_keys()->k_inv_right)
-                all_infos()->inventory_move += 1;
+                change_val_box(1);
         if (event.type == sfEvtKeyPressed &&
             event.key.code == all_keys()->k_inv_left)
-                all_infos()->inventory_move -= 1;
+                change_val_box(2);
         if (event.type == sfEvtClosed) {
             all_infos()->quit_main = 1;
             return;

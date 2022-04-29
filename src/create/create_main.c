@@ -81,8 +81,15 @@ void create_main(void)
     add_to_inventory(&val, 15);
     add_to_inventory(&val, 3);
     add_to_inventory(&val, 15);
+    add_to_inventory(&val, 15);
+    add_to_inventory(&val, 3);
+    add_to_inventory(&val, 15);
+    add_to_inventory(&val, 3);
+    add_to_inventory(&val, 15);
     infos->inventory = val;
     all_infos()->stamina_clock = sfClock_create();
+    all_infos()->text_clock = sfClock_create();
+    all_infos()->text_char = 0;
     initialize_main_vals();
     return;
 }

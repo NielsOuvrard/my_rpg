@@ -13,8 +13,10 @@ void event_level_quest(void)
     sfEvent event;
     while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
         if (event.type == sfEvtKeyPressed &&
-        event.key.code == all_keys()->k_interact)
+        event.key.code == all_keys()->k_interact) {
+            all_infos()->text_char = 0;
             all_infos()->level = GAME;
+        }
         if (event.type == sfEvtClosed) {
             all_infos()->quit_main = 1;
             return;
@@ -25,8 +27,16 @@ void event_level_quest(void)
 
 void print_quest(char *text)
 {
+    int i = 4, j = all_infos()->text_char;
+    sfTime time = sfClock_getElapsedTime(all_infos()->text_clock);
+    if (sfTime_asMilliseconds(time) > 0.6) {
+        if (j + 1 < my_strlen(text))
+            all_infos()->text_char += 1;
+        sfClock_restart(all_infos()->text_clock);
+    }
+    char *tmp = my_strdup_to(text, j);
     sfText_setCharacterSize(all_texts()->simple_text, 50);
-    sfText_setString(all_texts()->simple_text, text);
+    sfText_setString(all_texts()->simple_text, tmp);
     sfText_setPosition(all_texts()->simple_text, (sfVector2f) {610, 777});
     sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
 }
