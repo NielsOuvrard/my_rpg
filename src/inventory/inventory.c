@@ -24,11 +24,8 @@ int nmb_inv(void)
 void disp_inventory (void)
 {
     struct_inventory *val = all_infos()->inventory;
-    all_sprites()[EMPTY_BOX].scale.x = 3.125;
-    all_sprites()[EMPTY_BOX].scale.y = 3.125;
-    sfSprite_setScale(all_sprites()[EMPTY_BOX].sprite,
-    all_sprites()[EMPTY_BOX].scale);
-    int size = nmb_inv(), nmb_y = 0, i = 0;
+    scale_inventorybox();
+    int size = nmb_inv(), nmb_y = 0, i = 0, run = 0;
     while (size >= 10) {
         nmb_y++;
         size -= 10;
@@ -37,10 +34,8 @@ void disp_inventory (void)
         int x = i++, y = 0;
         while (x >= 10)
             my_printf("", y++, x -= 10);
-        sfSprite_setPosition(all_sprites()[EMPTY_BOX].sprite,
-        (sfVector2f) {(x * SIZE_TILE) + 50, (y * SIZE_TILE) + 250});
-        sfRenderWindow_drawSprite(all_infos()->window,
-        all_sprites()[EMPTY_BOX].sprite, NULL);
+        pick_inventorybox(x, y, run);
+        run++;
         val = val->next;
     }
     fill_inventory();
@@ -77,6 +72,12 @@ void event_level_inventory(sfEvent event)
         if (event.type == sfEvtKeyPressed &&
         event.key.code == all_keys()->k_open_bag)
             all_infos()->level = GAME;
+        if (event.type == sfEvtKeyPressed &&
+            event.key.code == all_keys()->k_inv_right)
+                all_infos()->inventory_move += 1;
+        if (event.type == sfEvtKeyPressed &&
+            event.key.code == all_keys()->k_inv_left)
+                all_infos()->inventory_move -= 1;
         if (event.type == sfEvtClosed) {
             all_infos()->quit_main = 1;
             return;

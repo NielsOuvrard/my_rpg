@@ -26,6 +26,7 @@ void initialize_main_vals(void)
     infos->clock_val = 0;
     infos->particules = NULL;
     infos->view_position.x = 960;
+    infos->inventory_move = 0;
     infos->view_position.y = 540;
     infos->view = sfView_create();
     infos->hud_view = sfView_create();
@@ -40,12 +41,19 @@ void initialize_main_vals(void)
     sfRenderWindow_setView(infos->window, infos->view);
 }
 
-struct_inventory *add_to_inventory (struct_inventory *list, int value)
+void add_to_inventory (struct_inventory **list, int value)
 {
-    struct_inventory *val = malloc(sizeof(struct_inventory));
-    val->object = value;
-    val->next = list;
-    return val;
+    struct_inventory *new_node = malloc(sizeof(struct_inventory));
+    new_node->object = value;
+    new_node->next = NULL;
+    if (*list == NULL) {
+        *list = new_node;
+        return;
+    }
+    struct_inventory *last = *list;
+    while (last->next)
+        last = last->next;
+    last->next = new_node;
 }
 
 void create_main(void)
@@ -65,8 +73,14 @@ void create_main(void)
     infos->life = 10;
     infos->stamina = 10;
     struct_inventory *val = NULL;
-    for (int i = 0; i < 20; i++)
-        val = add_to_inventory(val, 3);
+    add_to_inventory(&val, 3);
+    add_to_inventory(&val, 15);
+    add_to_inventory(&val, 3);
+    add_to_inventory(&val, 15);
+    add_to_inventory(&val, 3);
+    add_to_inventory(&val, 15);
+    add_to_inventory(&val, 3);
+    add_to_inventory(&val, 15);
     infos->inventory = val;
     all_infos()->stamina_clock = sfClock_create();
     initialize_main_vals();

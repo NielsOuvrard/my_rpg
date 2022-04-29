@@ -141,6 +141,8 @@ typedef struct struct_keys {
     sfKeyCode shoot;
     sfKeyCode zoom_in;
     sfKeyCode zoom_out;
+    sfKeyCode k_inv_right;
+    sfKeyCode k_inv_left;
 } struct_keys;
 
 typedef struct struct_particule {
@@ -219,7 +221,7 @@ typedef struct main_screen {
     float zoom;
     sfVector2f view_position;
     sfVector2u size_window;
-
+    int inventory_move;
     // particules :
     struct_particule *particules;
 
@@ -498,4 +500,8 @@ void move_sprint(int x, int y);
 
 void fill_inventory(void);
 
-struct_inventory *add_to_inventory (struct_inventory *list, int value);
+void add_to_inventory (struct_inventory **list, int value);
+
+void scale_inventorybox(void);
+
+void pick_inventorybox(int x, int y, int run);

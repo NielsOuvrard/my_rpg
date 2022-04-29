@@ -30,6 +30,8 @@ void create_keys(void)
     keyes->shoot = sfKeySpace;
     keyes->zoom_in = sfKeyUp;
     keyes->zoom_out = sfKeyDown;
+    keyes->k_inv_right = sfKeyRight;
+    keyes->k_inv_left = sfKeyLeft;
     return;
 }
 
