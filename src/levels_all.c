@@ -52,6 +52,8 @@ void game_loop(void)
             level_inventory(event);
         if (all_infos()->level == DIALOGUE)
             level_quest();
+        if (all_infos()->level == MISSIONS)
+            level_missions();
         if (all_infos()->quit_main)
             return;
         sfRenderWindow_display(all_infos()->window);

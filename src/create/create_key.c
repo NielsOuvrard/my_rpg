@@ -26,6 +26,7 @@ void create_keys(void)
     keyes->k_map = sfKeyTab;
     keyes->k_open_bag = sfKeyE;
     keyes->k_interact = sfKeyF;
+    keyes->k_open_missions = sfKeyI;
     keyes->shoot = sfKeySpace;
     keyes->zoom_in = sfKeyUp;
     keyes->zoom_out = sfKeyDown;
@@ -36,5 +37,4 @@ void qwerty_keyes (void)
 {
     keyes->k_up = sfKeyW;
     keyes->k_left = sfKeyA;
-    keyes->k_interact = sfKeyQ;
 }
