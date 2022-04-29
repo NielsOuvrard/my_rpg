@@ -52,6 +52,8 @@ void game_loop(void)
             level_inventory(event);
         if (all_infos()->level == DIALOGUE)
             level_quest();
+        if (all_infos()->level == MISSIONS)
+            level_missions();
         if (all_infos()->quit_main)
             return;
         sfRenderWindow_display(all_infos()->window);
@@ -74,6 +76,7 @@ int start_game(int ac, char **av)
     create_main();
     create_editor();
     create_keys();
+    create_texts();
     fill_map_dictionary();
     if (ac > 1 && !my_strcmp(av[1], "-edit") && av[2])
         edit_existing_file(av[2]);

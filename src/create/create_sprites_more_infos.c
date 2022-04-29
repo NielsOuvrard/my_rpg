@@ -60,12 +60,24 @@ void full_list_sprites_more_infos(void)
     all_sprites()[LIFE].scale.x = 3.125;
     all_sprites()[LIFE].scale.y = 3.125;
     sfSprite_setScale(all_sprites()[LIFE].sprite, all_sprites()[LIFE].scale);
-    // all_sprites()[BALLON].origin.x = 8;
-    // all_sprites()[BALLON].origin.y = 8;
-    // sfSprite_setOrigin(all_sprites()[BALLON].sprite, all_sprites()[BALLON].origin);
-    // all_sprites()[BALLON].scale.x = 3.125;
-    // all_sprites()[BALLON].scale.y = 3.125;
-    // sfSprite_setScale(all_sprites()[BALLON].sprite, all_sprites()[BALLON].scale);
+    all_sprites()[BALLON].scale.x = 1.8;
+    all_sprites()[BALLON].scale.y = 1.8;
+    sfSprite_setScale(all_sprites()[BALLON].sprite, all_sprites()[BALLON].scale);
+    all_sprites()[BALLON].rect.height = 350;
+    all_sprites()[BALLON].rect.width = 820;
+    all_sprites()[BALLON].rect.left = 0;
+    all_sprites()[BALLON].rect.top = 0;
+    sfSprite_setTextureRect(all_sprites()[BALLON].sprite, all_sprites()[BALLON].rect);
+    sfSprite_setPosition(all_sprites()[BALLON].sprite, (sfVector2f) {550, 437});
+    all_sprites()[PARCHMENT].scale.x = 1.5;
+    all_sprites()[PARCHMENT].scale.y = 1.5;
+    sfSprite_setScale(all_sprites()[PARCHMENT].sprite, all_sprites()[PARCHMENT].scale);
+    all_sprites()[PARCHMENT].rect.height = 357;
+    all_sprites()[PARCHMENT].rect.width = 500;
+    all_sprites()[PARCHMENT].rect.left = 0;
+    all_sprites()[PARCHMENT].rect.top = 0;
+    sfSprite_setTextureRect(all_sprites()[PARCHMENT].sprite, all_sprites()[PARCHMENT].rect);
+    sfSprite_setPosition(all_sprites()[PARCHMENT].sprite, (sfVector2f) {620, 270});
 }
 
 void full_list_sprites_next(void)

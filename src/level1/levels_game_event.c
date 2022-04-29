@@ -54,6 +54,12 @@ void event_npc(sfEvent event)
     }
 }
 
+void event_level_mission_pressed(sfEvent event)
+{
+    if (event.key.code == all_keys()->k_open_missions)
+        all_infos()->level = MISSIONS;
+}
+
 void event_level_game_pressed(sfEvent event)
 {
     if (event.key.code == all_keys()->shoot) {
@@ -69,6 +75,7 @@ void event_level_game_pressed(sfEvent event)
     event_level_game_pressed_next(event);
     change_scale(event);
     event_npc(event);
+    event_level_mission_pressed(event);
 }
 
 // shoot an arrow after all_infos()->move == 'c' &&

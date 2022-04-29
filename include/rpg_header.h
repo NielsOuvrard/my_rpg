@@ -25,6 +25,7 @@
 #define MAP_EDITOR 2
 #define INVENTORY 3
 #define DIALOGUE 4
+#define MISSIONS 5
 
 #define BUFF_SIZE 512
 
@@ -61,9 +62,15 @@
 #define BALLON         13
 #define NPC3           14
 #define APPLE          15
+#define PARCHMENT      16
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
+
+typedef struct sf_text {
+    sfText *simple_text;
+    sfFont *font;
+} sf_text;
 
 typedef struct sprite_pictures {
     sfSprite *sprite;
@@ -130,6 +137,7 @@ typedef struct struct_keys {
     sfKeyCode k_map;
     sfKeyCode k_interact;
     sfKeyCode k_open_bag;
+    sfKeyCode k_open_missions;
     sfKeyCode shoot;
     sfKeyCode zoom_in;
     sfKeyCode zoom_out;
@@ -195,6 +203,9 @@ typedef struct main_screen {
     int life;
     float stamina;
     char move;
+    int quest_id;
+    bool doing_quest;
+    int nb_of_enemies_outside;
     bool move_u;
     bool move_d;
     bool move_r;
@@ -253,6 +264,12 @@ void create_main(void);
 void fill_map_dictionary(void);
 
 struct_maps *all_maps(void);
+
+// create texts
+
+sf_text *all_texts(void);
+
+void create_texts(void);
 
 // create sprite
 
@@ -434,6 +451,10 @@ void disp_all_npcs(void);
 void disp_interaction_button(void);
 
 void level_quest(void);
+
+// missions
+
+void level_missions(void);
 
 // free
 

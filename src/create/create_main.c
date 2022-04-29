@@ -29,8 +29,10 @@ void initialize_main_vals(void)
     infos->view_position.y = 540;
     infos->view = sfView_create();
     infos->hud_view = sfView_create();
-    sfView_setCenter(infos->hud_view, (sfVector2f) {1920 / 4, 1080 / 4});
-    sfView_setSize(infos->hud_view, (sfVector2f) {1920 / 2, 1080 / 2});
+    infos->quest_id = 0;
+    infos->nb_of_enemies_outside = 0;
+    sfView_setCenter(infos->hud_view, (sfVector2f) {1920 / 2, 1080 / 2});
+    sfView_setSize(infos->hud_view, (sfVector2f) {1920, 1080});
     sfRenderWindow_setView(infos->window, infos->hud_view);
     infos->last_move = 'd';
     sfView_setCenter(infos->view, (sfVector2f) {10 * 50, (10 * 35) - 16});

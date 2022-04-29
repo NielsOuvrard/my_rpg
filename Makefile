@@ -10,7 +10,8 @@ SRC = 	src/*.c \
 		src/editor/*.c \
 		src/inventory/*.c \
 		src/level1/*.c \
-		src/npc/*c
+		src/npc/*c \
+		src/missions/*c \
 
 CSFML = -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system
 

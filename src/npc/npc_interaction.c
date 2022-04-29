@@ -23,14 +23,45 @@ void event_level_quest(void)
     return;
 }
 
+void print_quest(char *text)
+{
+    sfText_setCharacterSize(all_texts()->simple_text, 50);
+    sfText_setString(all_texts()->simple_text, text);
+    sfText_setPosition(all_texts()->simple_text, (sfVector2f) {610, 777});
+    sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
+}
+
 void npc_quest(void)
 {
     npcs *expl = all_maps()[all_infos()->map_actual].all_npcs;
     while (expl) {
-        if (expl->value == 10 && expl->interaction == 1)
-            ;
-        if (expl->value == 12 && expl->interaction == 1)
-            ;
+        if (expl->value == 10 && expl->interaction == 1) {
+            if (all_infos()->doing_quest == false || all_infos()->quest_id == expl->value) {
+                all_infos()->quest_id = expl->value;
+                all_infos()->doing_quest = true;
+                print_quest("Hello hero,\nI'm glad you are here! The demons and ninjas\nare attacking our village.. \nPlease kill them!");
+            } else {
+                print_quest("You are already in a quest...\nCome back later!\n");
+            }
+        }
+        if (expl->value == 12 && expl->interaction == 1) {
+            if (all_infos()->doing_quest == false || all_infos()->quest_id == expl->value) {
+                all_infos()->quest_id = expl->value;
+                all_infos()->doing_quest = true;
+                print_quest("Please my hero, SAVE US!!!!\nSince when the Demon Lord arrived in\nyour village, we do not have 1 day of peace...\nPlease, Kill him!\n");
+            } else {
+                print_quest("You are already in a quest...\nCome back later!\n");
+            }
+        }
+        if (expl->value == 14 && expl->interaction == 1) {
+            if (all_infos()->doing_quest == false || all_infos()->quest_id == expl->value) {
+                all_infos()->quest_id = expl->value;
+                all_infos()->doing_quest = true;
+                print_quest("My son went to the dungeon!!!\nI need someone to save him and I do not know\nwhat to do...\nCould you help me?\n");
+            } else {
+                print_quest("You are already in a quest...\nCome back later!\n");
+            }
+        }
         expl = expl->next;
     }
 }
@@ -60,10 +91,6 @@ void disp_interaction_button(void)
 void level_quest(void)
 {
     event_level_quest();
-    npc_quest();
-    // sfSprite_setPosition(all_sprites()[BALLON].sprite, (sfVector2f) {400, 400});
-    // sfRenderWindow_drawSprite(all_infos()->window,
-    // all_sprites()[BALLON].sprite, NULL);
     if (all_infos()->quit_main == 1)
         return;
     disp_map(all_maps()[all_infos()->map_actual].bg);
@@ -74,6 +101,9 @@ void level_quest(void)
     disp_interaction_button();
     sfRenderWindow_setView(all_infos()->window, all_infos()->hud_view);
     display_hud();
+    sfRenderWindow_drawSprite(all_infos()->window,
+    all_sprites()[BALLON].sprite, NULL);
+    npc_quest();
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);
     return;
 }
