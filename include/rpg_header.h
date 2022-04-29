@@ -63,6 +63,7 @@
 #define NPC3           14
 #define APPLE          15
 #define PARCHMENT      16
+#define NPC4           17
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920

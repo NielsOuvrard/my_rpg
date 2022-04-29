@@ -62,6 +62,13 @@ void npc_quest(void)
                 print_quest("You are already in a quest...\nCome back later!\n");
             }
         }
+        if (expl->value == 17 && expl->interaction == 1) {
+            if (all_infos()->doing_quest == true && all_infos()->quest_id == 14) {
+                all_infos()->doing_quest = false;
+                all_infos()->quest_id = 0;
+            }
+            print_quest("Finally someone came!\nThanks for saving me!\n");
+        }
         expl = expl->next;
     }
 }

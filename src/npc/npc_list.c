@@ -51,6 +51,8 @@ void explore_map_find_all_npcs_next(int map, int i, int j)
         add_npcs_to_list(map, NPC2, j * SIZE_TILE, (i * SIZE_TILE) + 16);
     if (c[0] == '+')
         add_npcs_to_list(map, NPC3, j * SIZE_TILE, (i * SIZE_TILE) + 16);
+    if (c[0] == '*')
+        add_npcs_to_list(map, NPC4, j * SIZE_TILE, (i * SIZE_TILE) + 16);
     c[0] = 'R';
 }
 
