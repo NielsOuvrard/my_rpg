@@ -25,34 +25,28 @@ void event_level_missions(void)
 
 void display_mission(void)
 {
-    sfText *quest;
-    sfFont *font;
     char *text;
-    font = sfFont_createFromFile("font/AncientModernTales-a7Po.ttf");
-    quest = sfText_create();
     sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[PARCHMENT].sprite, NULL);
-    sfText_setFont(quest, font);
-    sfText_setCharacterSize(quest, 50);
-    sfText_setPosition(quest, (sfVector2f) {790, 510});
-    sfText_setColor(quest, sfBlack);
+    sfText_setCharacterSize(all_texts()->simple_text, 50);
+    sfText_setPosition(all_texts()->simple_text, (sfVector2f) {790, 510});
     if (all_infos()->doing_quest == false) {
-        sfText_setString(quest, "No quest at the moment!\n");
+        sfText_setString(all_texts()->simple_text, "No quest at the moment!\n");
     }
     if (all_infos()->quest_id == 10) {
-        sfText_setPosition(quest, (sfVector2f) {790, 460});
+        sfText_setPosition(all_texts()->simple_text, (sfVector2f) {790, 460});
         text = my_strdup("Kill all enemies in the outer\narea of the map!\nEnemies remaining:");
         text = my_strcat(text, my_int_to_str(all_infos()->nb_of_enemies_outside));
-        sfText_setString(quest, text);
+        sfText_setString(all_texts()->simple_text, text);
     }
     if (all_infos()->quest_id == 12) {
-        sfText_setPosition(quest, (sfVector2f) {840, 520});
-        sfText_setString(quest, "KILL THE BOSS!\n");
+        sfText_setPosition(all_texts()->simple_text, (sfVector2f) {840, 520});
+        sfText_setString(all_texts()->simple_text, "KILL THE BOSS!\n");
     }
     if (all_infos()->quest_id == 14) {
-        sfText_setPosition(quest, (sfVector2f) {820, 480});
-        sfText_setString(quest, "Save the villager's son\nfrom the dungeon!\n");
+        sfText_setPosition(all_texts()->simple_text, (sfVector2f) {820, 480});
+        sfText_setString(all_texts()->simple_text, "Save the villager's son\nfrom the dungeon!\n");
     }
-    sfRenderWindow_drawText(all_infos()->window, quest, NULL);
+    sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
 }
 
 void level_missions(void)

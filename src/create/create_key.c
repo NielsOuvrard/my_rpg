@@ -33,7 +33,7 @@ void create_keys(void)
     return;
 }
 
-void qwerty_keyes (void)
+void qwerty_keyes(void)
 {
     keyes->k_up = sfKeyW;
     keyes->k_left = sfKeyA;

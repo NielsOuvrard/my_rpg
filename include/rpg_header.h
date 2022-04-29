@@ -67,6 +67,11 @@
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
 
+typedef struct sf_text {
+    sfText *simple_text;
+    sfFont *font;
+} sf_text;
+
 typedef struct sprite_pictures {
     sfSprite *sprite;
     sfTexture *texture;
@@ -259,6 +264,12 @@ void create_main(void);
 void fill_map_dictionary(void);
 
 struct_maps *all_maps(void);
+
+// create texts
+
+sf_text *all_texts(void);
+
+void create_texts(void);
 
 // create sprite
 

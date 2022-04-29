@@ -25,16 +25,10 @@ void event_level_quest(void)
 
 void print_quest(char *text)
 {
-    sfText *quest;
-    sfFont *font;
-    font = sfFont_createFromFile("font/AncientModernTales-a7Po.ttf");
-    quest = sfText_create();
-    sfText_setFont(quest, font);
-    sfText_setCharacterSize(quest, 50);
-    sfText_setString(quest, text);
-    sfText_setPosition(quest, (sfVector2f) {610, 777});
-    sfText_setColor(quest, sfBlack);
-    sfRenderWindow_drawText(all_infos()->window, quest, NULL);
+    sfText_setCharacterSize(all_texts()->simple_text, 50);
+    sfText_setString(all_texts()->simple_text, text);
+    sfText_setPosition(all_texts()->simple_text, (sfVector2f) {610, 777});
+    sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
 }
 
 void npc_quest(void)
