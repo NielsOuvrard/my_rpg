@@ -38,10 +38,10 @@ void initialize_main_vals(void)
     sfRenderWindow_setView(infos->window, infos->view);
 }
 
-struct_inventory *add_to_inventory (struct_inventory *list)
+struct_inventory *add_to_inventory (struct_inventory *list, int value)
 {
     struct_inventory *val = malloc(sizeof(struct_inventory));
-    val->object = '0';
+    val->object = value;
     val->next = list;
     return val;
 }
@@ -64,7 +64,7 @@ void create_main(void)
     infos->stamina = 10;
     struct_inventory *val = NULL;
     for (int i = 0; i < 20; i++)
-        val = add_to_inventory(val);
+        val = add_to_inventory(val, 3);
     infos->inventory = val;
     all_infos()->stamina_clock = sfClock_create();
     initialize_main_vals();

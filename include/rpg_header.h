@@ -82,7 +82,7 @@ typedef struct projectile {
 } projectile_t;
 
 typedef struct struct_inventory {
-    char object;
+    int object;
     struct struct_inventory *next;
 } struct_inventory;
 
@@ -474,3 +474,7 @@ void display_stamina(void);
 void increase_stamina(void);
 
 void move_sprint(int x, int y);
+
+void fill_inventory(void);
+
+struct_inventory *add_to_inventory (struct_inventory *list, int value);
