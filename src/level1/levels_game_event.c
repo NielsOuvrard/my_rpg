@@ -99,9 +99,15 @@ void event_level_game_relased_next (sfEvent event)
     all_sprites()[HUNTER].rect);
 
     // shooting arrows example
+
+    // position from where the projectile start
     vec2d_t origin_pos = {all_infos()->pos_player.x, all_infos()->pos_player.y};
+    // velocity the projectile is being shot with, matterfor speed and direction
     vec2d_t velocity = {5, 8.5};
+    // create the projectile object
     projectile_t *projectile = new_projectile(origin_pos, velocity, 10, ARROW);
+    // insert projectile object into projectile_manager, the moment you call this funtion it will
+    // start rendering and handling the physics of this projectile object
     shoot_projectile(projectile);
 }
 
