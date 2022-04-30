@@ -24,6 +24,7 @@ void on_clock_update()
     if (!clock_cycle_update()) {
         return;
     }
+    projectile_game_tick();
     increase_stamina();
     if (all_infos()->level == GAME) {
         level_game_animations();
@@ -48,6 +49,7 @@ void game_loop(void)
             level_game(event);
         if (all_infos()->level == MAP_EDITOR)
             level_map_editor(event);
+        projectile_render_tick();
         if (all_infos()->level == INVENTORY)
             level_inventory(event);
         if (all_infos()->level == DIALOGUE)
@@ -72,6 +74,7 @@ int start_game_loop(void)
 
 int start_game(int ac, char **av)
 {
+    new_projectile_manager();
     fill_sprite_dictionary();
     create_main();
     create_editor();

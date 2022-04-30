@@ -16,3 +16,4 @@ pictures/Characters/Villager/Villager_3.png
 pictures/HUD/Icons/Apple.png
 pictures/HUD/parchment.png
 pictures/Characters/Villager/Villager_4.png
+pictures/Characters/Hunter/Hunter.png

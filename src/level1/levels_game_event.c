@@ -97,6 +97,12 @@ void event_level_game_relased_next (sfEvent event)
         all_infos()->move = '\0';
     sfSprite_setTextureRect(all_sprites()[HUNTER].sprite,
     all_sprites()[HUNTER].rect);
+
+    // shooting arrows example
+    vec2d_t origin_pos = {all_infos()->pos_player.x, all_infos()->pos_player.y};
+    vec2d_t velocity = {5, 8.5};
+    projectile_t *projectile = new_projectile(origin_pos, velocity, 10, ARROW);
+    shoot_projectile(projectile);
 }
 
 void event_level_game_relased(sfEvent event)

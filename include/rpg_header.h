@@ -21,6 +21,8 @@
 #include <SFML/GPUPreference.h>
 #include <SFML/OpenGL.h>
 
+#define PI 3.14159265359
+
 #define GAME 1
 #define MAP_EDITOR 2
 #define INVENTORY 3
@@ -64,6 +66,7 @@
 #define APPLE          15
 #define PARCHMENT      16
 #define NPC4           17
+#define ARROW          18
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -83,10 +86,15 @@ typedef struct sprite_pictures {
     char anim;
 } sprite_pictures;
 
+typedef struct vec2d {
+    float x;
+    float y;
+} vec2d_t;
 
 typedef struct projectile {
+    sprite_pictures sprite_picture;
     int damage;
-    sprite_pictures *sprite_picture;
+    vec2d_t velocity;
 } projectile_t;
 
 typedef struct struct_inventory {
@@ -514,3 +522,18 @@ void change_val_box(int val);
 int nmb_inv(void);
 
 char *my_strdup_to (char const *src, int len);
+
+void new_projectile_manager(void);
+
+projectile_t *new_projectile(vec2d_t position, vec2d_t velocity, int damage, int type);
+
+projectile_t **get_projectile_dictionary();
+
+void shoot_projectile(projectile_t *projectile);
+
+void projectile_game_tick(void);
+
+void projectile_render_tick(void);
+vec2d_t create_vector(float x, float y);
+float get_angle_in_degrees(projectile_t *projectile);
+void update_projectile_rotation(projectile_t *projectile);
