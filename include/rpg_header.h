@@ -549,7 +549,13 @@ void shoot_projectile(projectile_t *projectile);
 void projectile_game_tick(void);
 
 void projectile_render_tick(void);
+
 vec2d_t create_vector(float x, float y);
+
 float get_angle_in_degrees(projectile_t *projectile);
+
 void update_projectile_rotation(projectile_t *projectile);
+
 void print_infos(int run, struct_inventory *obj, int x, int y);
+
+void check_enemies_collision(projectile_t *projectile);
