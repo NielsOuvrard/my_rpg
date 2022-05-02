@@ -23,30 +23,37 @@ void event_level_missions(void)
     return;
 }
 
+void display_mission_2(void)
+{
+    if (all_infos()->quest_id == 14) {
+        sfText_setPosition(all_texts()->simple_text, (sfVector2f) {820, 480});
+        sfText_setString(all_texts()->simple_text,
+        "Save the villager's son\nfrom the dungeon!\n");
+    }
+    sfRenderWindow_drawText(all_infos()->window,
+    all_texts()->simple_text, NULL);
+}
+
 void display_mission(void)
 {
-    char *text;
-    sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[PARCHMENT].sprite, NULL);
+    char *text = malloc(sizeof(char) * 100);
+    sfRenderWindow_drawSprite(all_infos()->window,
+    all_sprites()[PARCHMENT].sprite, NULL);
     sfText_setCharacterSize(all_texts()->simple_text, 50);
     sfText_setPosition(all_texts()->simple_text, (sfVector2f) {790, 510});
     if (all_infos()->doing_quest == false) {
-        sfText_setString(all_texts()->simple_text, "No quest at the moment!\n");
+        sfText_setString(all_texts()->simple_text,
+        "No quest at the moment!\n");
     }
     if (all_infos()->quest_id == 10) {
         sfText_setPosition(all_texts()->simple_text, (sfVector2f) {790, 460});
-        text = my_strdup("Kill all enemies in the outer\narea of the map!\nEnemies remaining:");
-        text = my_strcat(text, my_int_to_str(all_infos()->nb_of_enemies_outside));
+        text = my_strcpy(text, "Kill all enemies in the outer\n");
+        text = my_strcat(text, "area of the map!\nEnemies remaining: ");
+        text = my_strcat(text,
+        my_int_to_str(all_infos()->nb_of_enemies_outside));
         sfText_setString(all_texts()->simple_text, text);
     }
-    // if (all_infos()->quest_id == 12) {
-    //     sfText_setPosition(all_texts()->simple_text, (sfVector2f) {840, 520});
-    //     sfText_setString(all_texts()->simple_text, "KILL THE BOSS!\n");
-    // }
-    if (all_infos()->quest_id == 14) {
-        sfText_setPosition(all_texts()->simple_text, (sfVector2f) {820, 480});
-        sfText_setString(all_texts()->simple_text, "Save the villager's son\nfrom the dungeon!\n");
-    }
-    sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
+    display_mission_2();
 }
 
 void level_missions(void)

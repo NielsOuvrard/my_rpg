@@ -34,6 +34,6 @@ void check_enemies_collision(projectile_t *projectile)
             enemies->health_points -= projectile->damage;
             projectile->should_render = false;
         }
-        enemies = enemies->next;    
+        enemies = enemies->next;
     }
 }

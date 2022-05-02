@@ -40,6 +40,42 @@ void origin_in_8_8_scale(int sprite)
     all_sprites()[sprite].scale);
 }
 
+void full_list_sprites_more_infos_3(void)
+{
+    all_sprites()[WRITE_BOX].scale.x = 2;
+    all_sprites()[WRITE_BOX].scale.y = 2;
+    sfSprite_setScale(all_sprites()[WRITE_BOX].sprite, all_sprites()[WRITE_BOX].scale);
+    all_sprites()[WRITE_BOX].rect.height = 300;
+    all_sprites()[WRITE_BOX].rect.width = 500;
+    all_sprites()[WRITE_BOX].rect.left = 0;
+    all_sprites()[WRITE_BOX].rect.top = 0;
+    sfSprite_setTextureRect(all_sprites()[WRITE_BOX].sprite, all_sprites()[WRITE_BOX].rect);
+    sfSprite_setPosition(all_sprites()[WRITE_BOX].sprite, (sfVector2f) {500, 250});
+}
+
+void full_list_sprites_more_infos_2(void)
+{
+    all_sprites()[BALLON].scale.x = 1.8;
+    all_sprites()[BALLON].scale.y = 1.8;
+    sfSprite_setScale(all_sprites()[BALLON].sprite, all_sprites()[BALLON].scale);
+    all_sprites()[BALLON].rect.height = 350;
+    all_sprites()[BALLON].rect.width = 820;
+    all_sprites()[BALLON].rect.left = 0;
+    all_sprites()[BALLON].rect.top = 0;
+    sfSprite_setTextureRect(all_sprites()[BALLON].sprite, all_sprites()[BALLON].rect);
+    sfSprite_setPosition(all_sprites()[BALLON].sprite, (sfVector2f) {550, 437});
+    all_sprites()[PARCHMENT].scale.x = 1.5;
+    all_sprites()[PARCHMENT].scale.y = 1.5;
+    sfSprite_setScale(all_sprites()[PARCHMENT].sprite, all_sprites()[PARCHMENT].scale);
+    all_sprites()[PARCHMENT].rect.height = 357;
+    all_sprites()[PARCHMENT].rect.width = 500;
+    all_sprites()[PARCHMENT].rect.left = 0;
+    all_sprites()[PARCHMENT].rect.top = 0;
+    sfSprite_setTextureRect(all_sprites()[PARCHMENT].sprite, all_sprites()[PARCHMENT].rect);
+    sfSprite_setPosition(all_sprites()[PARCHMENT].sprite, (sfVector2f) {620, 270});
+    full_list_sprites_more_infos_3();
+}
+
 void full_list_sprites_more_infos(void)
 {
     full_perso(HUNTER, 10 * 50, 10 * 35);
@@ -61,34 +97,7 @@ void full_list_sprites_more_infos(void)
     all_sprites()[LIFE].scale.x = 3.125;
     all_sprites()[LIFE].scale.y = 3.125;
     sfSprite_setScale(all_sprites()[LIFE].sprite, all_sprites()[LIFE].scale);
-    all_sprites()[BALLON].scale.x = 1.8;
-    all_sprites()[BALLON].scale.y = 1.8;
-    sfSprite_setScale(all_sprites()[BALLON].sprite, all_sprites()[BALLON].scale);
-    all_sprites()[BALLON].rect.height = 350;
-    all_sprites()[BALLON].rect.width = 820;
-    all_sprites()[BALLON].rect.left = 0;
-    all_sprites()[BALLON].rect.top = 0;
-    origin_in_8_8_scale(INFO);
-    sfSprite_setTextureRect(all_sprites()[BALLON].sprite, all_sprites()[BALLON].rect);
-    sfSprite_setPosition(all_sprites()[BALLON].sprite, (sfVector2f) {550, 437});
-    all_sprites()[PARCHMENT].scale.x = 1.5;
-    all_sprites()[PARCHMENT].scale.y = 1.5;
-    sfSprite_setScale(all_sprites()[PARCHMENT].sprite, all_sprites()[PARCHMENT].scale);
-    all_sprites()[PARCHMENT].rect.height = 357;
-    all_sprites()[PARCHMENT].rect.width = 500;
-    all_sprites()[PARCHMENT].rect.left = 0;
-    all_sprites()[PARCHMENT].rect.top = 0;
-    sfSprite_setTextureRect(all_sprites()[PARCHMENT].sprite, all_sprites()[PARCHMENT].rect);
-    sfSprite_setPosition(all_sprites()[PARCHMENT].sprite, (sfVector2f) {620, 270});
-    all_sprites()[WRITE_BOX].scale.x = 2;
-    all_sprites()[WRITE_BOX].scale.y = 2;
-    sfSprite_setScale(all_sprites()[WRITE_BOX].sprite, all_sprites()[WRITE_BOX].scale);
-    all_sprites()[WRITE_BOX].rect.height = 300;
-    all_sprites()[WRITE_BOX].rect.width = 500;
-    all_sprites()[WRITE_BOX].rect.left = 0;
-    all_sprites()[WRITE_BOX].rect.top = 0;
-    sfSprite_setTextureRect(all_sprites()[WRITE_BOX].sprite, all_sprites()[WRITE_BOX].rect);
-    sfSprite_setPosition(all_sprites()[WRITE_BOX].sprite, (sfVector2f) {500, 250});
+    full_list_sprites_more_infos_2();
 }
 
 void full_list_sprites_next(void)
