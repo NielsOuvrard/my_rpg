@@ -43,7 +43,8 @@ sprite_pictures get_sprite_by_type(int type)
     return result;
 }
 
-projectile_t *new_projectile(vec2d_t origin_pos, vec2d_t velocity, int damage, int type)
+projectile_t *new_projectile
+(vec2d_t origin_pos, vec2d_t velocity, int damage, int type)
 {
     projectile_t *projectile = malloc(sizeof(projectile_t));
     projectile->sprite_picture = get_sprite_by_type(type);
