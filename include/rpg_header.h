@@ -98,6 +98,7 @@ typedef struct vec2d {
 
 typedef struct projectile {
     sprite_pictures sprite_picture;
+    bool should_render;
     int damage;
     vec2d_t velocity;
 } projectile_t;
