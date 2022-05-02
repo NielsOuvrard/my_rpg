@@ -69,6 +69,7 @@
 #define NPC4           17
 #define ARROW          18
 #define WRITE_BOX      19
+#define INFO           20
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
@@ -550,5 +551,4 @@ void projectile_render_tick(void);
 vec2d_t create_vector(float x, float y);
 float get_angle_in_degrees(projectile_t *projectile);
 void update_projectile_rotation(projectile_t *projectile);
-
-void check_enemies_collision(projectile_t *projectile);
+void print_infos(int run, struct_inventory *obj, int x, int y);
