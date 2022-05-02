@@ -103,7 +103,7 @@ void event_level_game_relased_next (sfEvent event)
     // position from where the projectile start
     vec2d_t origin_pos = {all_infos()->pos_player.x + 1920 / 4, (all_infos()->pos_player.y + 1080 / 4) + 48};
     // velocity the projectile is being shot with, matter for speed and direction
-    vec2d_t velocity = {8.5, 0};
+    vec2d_t velocity = {15.5, 0};
     // create the projectile object, later on this will be useful for more parameters
     projectile_t *projectile = new_projectile(origin_pos, velocity, 10, ARROW);
     // insert projectile object into projectile_manager, the moment you call this funtion it will

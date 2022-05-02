@@ -10,22 +10,27 @@
 
 void apply_air_friction(projectile_t *projectile)
 {
-    projectile->velocity.x *= 0.99;
-    projectile->velocity.y *= 0.99;
+    projectile->velocity.x *= 0.96;
+    projectile->velocity.x += projectile->velocity.x > 0 ? -0.01 : 0.01;
+    projectile->velocity.y *= 0.96;
+    projectile->velocity.y += projectile->velocity.y > 0 ? -0.01 : 0.01;
 }
 
 // this basically prevent projectile slowly decreasing forever to super small values
 void clamp_velocity(projectile_t *projectile)
 {
-    if (projectile->velocity.x <= 0.1) {
+    if (projectile->velocity.x <= 0.25) {
         projectile->velocity.x = 0;
     }
-    if (projectile->velocity.y <= 0.1) {
+    if (projectile->velocity.y <= 0.25) {
         projectile->velocity.y = 0;
+    }
+    if (projectile->velocity.y == 0 && projectile->velocity.x == 0) {
+        projectile->should_render = false;
     }
 }
 
-// TODO: collision with enemies to apply damage & maybe walls?
+// TODO: collision with walls?
 void move_projectile(projectile_t *projectile)
 {
     projectile->sprite_picture.pos.x += projectile->velocity.x;
