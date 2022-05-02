@@ -10,14 +10,18 @@
 
 void update_projectile_rotation(projectile_t *projectile)
 {
-    sfSprite_setRotation(projectile->sprite_picture.sprite, get_angle_in_degrees(projectile));
+    sfSprite_setRotation(projectile->sprite_picture.sprite,
+    get_angle_in_degrees(projectile));
 }
 
 void update_projectile_render_data(projectile_t *projectile)
 {
-    sfSprite_setScale(projectile->sprite_picture.sprite, projectile->sprite_picture.scale);
-    sfSprite_setTextureRect(projectile->sprite_picture.sprite, projectile->sprite_picture.rect);
-    sfSprite_setPosition(projectile->sprite_picture.sprite, projectile->sprite_picture.pos);
+    sfSprite_setScale(projectile->sprite_picture.sprite,
+    projectile->sprite_picture.scale);
+    sfSprite_setTextureRect(projectile->sprite_picture.sprite,
+    projectile->sprite_picture.rect);
+    sfSprite_setPosition(projectile->sprite_picture.sprite,
+    projectile->sprite_picture.pos);
 }
 
 void projectile_render_tick(void)
@@ -28,6 +32,7 @@ void projectile_render_tick(void)
             continue;
         }
         update_projectile_render_data(projectile);
-        sfRenderWindow_drawSprite(all_infos()->window, projectile->sprite_picture.sprite, NULL);
+        sfRenderWindow_drawSprite(all_infos()->window,
+        projectile->sprite_picture.sprite, NULL);
     }
 }
