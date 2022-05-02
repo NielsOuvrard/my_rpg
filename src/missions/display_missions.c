@@ -38,10 +38,10 @@ void display_mission(void)
         text = my_strcat(text, my_int_to_str(all_infos()->nb_of_enemies_outside));
         sfText_setString(all_texts()->simple_text, text);
     }
-    if (all_infos()->quest_id == 12) {
-        sfText_setPosition(all_texts()->simple_text, (sfVector2f) {840, 520});
-        sfText_setString(all_texts()->simple_text, "KILL THE BOSS!\n");
-    }
+    // if (all_infos()->quest_id == 12) {
+    //     sfText_setPosition(all_texts()->simple_text, (sfVector2f) {840, 520});
+    //     sfText_setString(all_texts()->simple_text, "KILL THE BOSS!\n");
+    // }
     if (all_infos()->quest_id == 14) {
         sfText_setPosition(all_texts()->simple_text, (sfVector2f) {820, 480});
         sfText_setString(all_texts()->simple_text, "Save the villager's son\nfrom the dungeon!\n");

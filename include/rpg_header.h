@@ -28,6 +28,7 @@
 #define INVENTORY 3
 #define DIALOGUE 4
 #define MISSIONS 5
+#define BONUS 6
 
 #define BUFF_SIZE 512
 
@@ -152,6 +153,8 @@ typedef struct struct_keys {
     sfKeyCode zoom_out;
     sfKeyCode k_inv_right;
     sfKeyCode k_inv_left;
+    sfKeyCode k_no;
+    sfKeyCode k_yes;
 } struct_keys;
 
 typedef struct struct_particule {
@@ -215,6 +218,7 @@ typedef struct main_screen {
     float stamina;
     char move;
     int quest_id;
+    int entering_password;
     bool doing_quest;
     int nb_of_enemies_outside;
     bool move_u;
@@ -468,6 +472,10 @@ void level_quest(void);
 // missions
 
 void level_missions(void);
+
+// bonus
+
+void level_bonus(void);
 
 // free
 
