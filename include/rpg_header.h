@@ -137,7 +137,6 @@ typedef struct enemies {
     int y;
     int og_x;
     int og_y;
-
     bool printed;
     char anim;
     sfIntRect rect;
@@ -523,6 +522,8 @@ void increase_stamina(void);
 void move_sprint(int x, int y);
 
 void fill_inventory(void);
+
+void print_infos(int run, struct_inventory *obj, int x, int y);
 
 void add_to_inventory (struct_inventory **list, int value);
 
