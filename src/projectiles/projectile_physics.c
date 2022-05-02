@@ -36,18 +36,7 @@ void move_projectile(projectile_t *projectile)
     projectile->sprite_picture.pos.x += projectile->velocity.x;
     projectile->sprite_picture.pos.y += projectile->velocity.y;
 
-    enemies *enemies = all_maps()[all_infos()->map_actual].all_ennemis;
-    while (enemies != NULL) {
-        sfFloatRect rect_projectile = sfSprite_getGlobalBounds(projectile->sprite_picture.sprite);
-        sfFloatRect rect_enemy = sfSprite_getGlobalBounds(all_sprites()[enemies->value].sprite);
-        rect_enemy.top += 2;
-        rect_enemy.height = 40;
-        rect_enemy.width = 16;
-        if (sfFloatRect_intersects(&rect_projectile, &rect_enemy, NULL)) {
-            enemies->health_points -= projectile->damage;
-        }
-        enemies = enemies->next;    
-    }
+    check_enemies_collision(projectile);
 
     /*if (collide_with_wall) {
         projectile->velocity.x = 0;

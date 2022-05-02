@@ -43,7 +43,7 @@ void disp_inventory (void)
 
 void fill_inventory(void)
 {
-    int size = nmb_inv(), nmb_y = 0, i = 0;
+    int size = nmb_inv(), nmb_y = 0, i = 0, run = 0;
     struct_inventory *val = all_infos()->inventory;
     while (val) {
         all_sprites()[val->object].scale.x = 3.125;
@@ -53,11 +53,13 @@ void fill_inventory(void)
         int x = i++, y = 0;
         while (x >= 10)
             my_printf("", y++, x -= 10);
+        print_infos(run, val, x, y);
         sfSprite_setPosition(all_sprites()[val->object].sprite,
         (sfVector2f) {(x * SIZE_TILE) + 70, (y * SIZE_TILE) + 270});
         sfRenderWindow_drawSprite(all_infos()->window,
         all_sprites()[val->object].sprite, NULL);
         val = val->next;
+        run++;
     }
 }
 
