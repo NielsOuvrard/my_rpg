@@ -10,8 +10,10 @@
 
 bool intersects(sfFloatRect projectile, sfFloatRect target)
 {
-    bool horizontal = projectile.left >= target.left && projectile.left <= target.left + target.width;
-    bool vertical = projectile.top >= target.top && projectile.top <= target.top + target.height;
+    bool horizontal = projectile.left >= target.left
+    && projectile.left <= target.left + target.width;
+    bool vertical = projectile.top >= target.top &&
+    projectile.top <= target.top + target.height;
     return horizontal && vertical;
 }
 
@@ -22,6 +24,8 @@ void check_enemies_collision(projectile_t *projectile)
         sfFloatRect rect_projectile = sfSprite_getGlobalBounds(projectile->sprite_picture.sprite);
         // this rect isn't accurate with some enemies for some
         sfFloatRect rect_enemy = sfSprite_getGlobalBounds(all_sprites()[enemies->value].sprite);
+
+
         rect_enemy.top += 2;
         rect_enemy.height = 40 + projectile->velocity.y;
         rect_enemy.width = 16 + projectile->velocity.x;
