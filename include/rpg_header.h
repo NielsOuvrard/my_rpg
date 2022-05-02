@@ -68,13 +68,17 @@
 #define PARCHMENT      16
 #define NPC4           17
 #define ARROW          18
+#define WRITE_BOX      19
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
 
 typedef struct sf_text {
     sfText *simple_text;
+    sfText *code;
     sfFont *font;
+    char *text;
+    int pos_text;
 } sf_text;
 
 typedef struct sprite_pictures {
