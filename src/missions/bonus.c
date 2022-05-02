@@ -37,7 +37,7 @@ void event_level_bonus(void)
         }
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyEnter) {
             if (my_strcmp(all_texts()->text, "niels grade B") == 0)
-                printf("CORRECT\n");
+                my_putstr("CORRECT\n");
         }
     }
     return;
