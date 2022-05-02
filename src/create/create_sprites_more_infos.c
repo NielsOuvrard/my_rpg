@@ -80,6 +80,15 @@ void full_list_sprites_more_infos(void)
     all_sprites()[PARCHMENT].rect.top = 0;
     sfSprite_setTextureRect(all_sprites()[PARCHMENT].sprite, all_sprites()[PARCHMENT].rect);
     sfSprite_setPosition(all_sprites()[PARCHMENT].sprite, (sfVector2f) {620, 270});
+    all_sprites()[WRITE_BOX].scale.x = 2;
+    all_sprites()[WRITE_BOX].scale.y = 2;
+    sfSprite_setScale(all_sprites()[WRITE_BOX].sprite, all_sprites()[WRITE_BOX].scale);
+    all_sprites()[WRITE_BOX].rect.height = 300;
+    all_sprites()[WRITE_BOX].rect.width = 500;
+    all_sprites()[WRITE_BOX].rect.left = 0;
+    all_sprites()[WRITE_BOX].rect.top = 0;
+    sfSprite_setTextureRect(all_sprites()[WRITE_BOX].sprite, all_sprites()[WRITE_BOX].rect);
+    sfSprite_setPosition(all_sprites()[WRITE_BOX].sprite, (sfVector2f) {500, 250});
 }
 
 void full_list_sprites_next(void)

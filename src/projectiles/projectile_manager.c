@@ -51,6 +51,7 @@ projectile_t *new_projectile(vec2d_t origin_pos, vec2d_t velocity, int damage, i
     projectile->damage = damage;
     projectile->sprite_picture.pos.x = origin_pos.x;
     projectile->sprite_picture.pos.y = origin_pos.y;
+    projectile->should_render = true;
     return projectile;
 }
 

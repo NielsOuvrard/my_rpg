@@ -22,9 +22,11 @@ void update_projectile_render_data(projectile_t *projectile)
 
 void projectile_render_tick(void)
 {
-    sfRenderWindow_setView(all_infos()->window, all_infos()->view);
     for (int y = 0; get_projectile_dictionary()[y] != NULL; y++) {
         projectile_t *projectile = get_projectile_dictionary()[y];
+        if (!projectile->should_render) {
+            continue;
+        }
         update_projectile_render_data(projectile);
         sfRenderWindow_drawSprite(all_infos()->window, projectile->sprite_picture.sprite, NULL);
     }

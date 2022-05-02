@@ -68,14 +68,18 @@
 #define PARCHMENT      16
 #define NPC4           17
 #define ARROW          18
-#define INFO           19
+#define WRITE_BOX      19
+#define INFO           20
 
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
 
 typedef struct sf_text {
     sfText *simple_text;
+    sfText *code;
     sfFont *font;
+    char *text;
+    int pos_text;
 } sf_text;
 
 typedef struct sprite_pictures {
@@ -95,6 +99,7 @@ typedef struct vec2d {
 
 typedef struct projectile {
     sprite_pictures sprite_picture;
+    bool should_render;
     int damage;
     vec2d_t velocity;
 } projectile_t;
