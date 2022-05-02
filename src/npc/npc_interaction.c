@@ -8,6 +8,24 @@
 #include "my.h"
 #include "rpg_header.h"
 
+void check_for_easter_egg(sfEvent event)
+{
+    npcs *expl = all_maps()[all_infos()->map_actual].all_npcs;
+    while (expl) {
+        if (event.type == sfEvtKeyPressed &&
+        event.key.code == all_keys()->k_yes && all_infos()->entering_password == 1) {
+            all_infos()->text_char = 0;
+            all_infos()->level = BONUS;
+        }
+        if (event.type == sfEvtKeyPressed &&
+        event.key.code == all_keys()->k_no && all_infos()->entering_password == 1) {
+            all_infos()->text_char = 0;
+            all_infos()->level = GAME;
+        }
+        expl = expl->next;
+    }
+}
+
 void event_level_quest(void)
 {
     sfEvent event;
@@ -21,6 +39,7 @@ void event_level_quest(void)
             all_infos()->quit_main = 1;
             return;
         }
+        check_for_easter_egg(event);
     }
     return;
 }
@@ -44,6 +63,7 @@ void print_quest(char *text)
 void npc_quest(void)
 {
     npcs *expl = all_maps()[all_infos()->map_actual].all_npcs;
+    all_infos()->entering_password = 0;
     while (expl) {
         if (expl->value == 10 && expl->interaction == 1) {
             if (all_infos()->doing_quest == false || all_infos()->quest_id == expl->value) {
@@ -55,13 +75,8 @@ void npc_quest(void)
             }
         }
         if (expl->value == 12 && expl->interaction == 1) {
-            if (all_infos()->doing_quest == false || all_infos()->quest_id == expl->value) {
-                all_infos()->quest_id = expl->value;
-                all_infos()->doing_quest = true;
-                print_quest("Please my hero, SAVE US!!!!\nSince when the Demon Lord arrived in\nyour village, we do not have 1 day of peace...\nPlease, Kill him!\n");
-            } else {
-                print_quest("You are already in a quest...\nCome back later!\n");
-            }
+            print_quest("Do you have the password?\nPress Y for 'yes' and N for 'no'\n");
+            all_infos()->entering_password = 1;
         }
         if (expl->value == 14 && expl->interaction == 1) {
             if (all_infos()->doing_quest == false || all_infos()->quest_id == expl->value) {
