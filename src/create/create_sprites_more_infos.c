@@ -68,6 +68,7 @@ void full_list_sprites_more_infos(void)
     all_sprites()[BALLON].rect.width = 820;
     all_sprites()[BALLON].rect.left = 0;
     all_sprites()[BALLON].rect.top = 0;
+    origin_in_8_8_scale(INFO);
     sfSprite_setTextureRect(all_sprites()[BALLON].sprite, all_sprites()[BALLON].rect);
     sfSprite_setPosition(all_sprites()[BALLON].sprite, (sfVector2f) {550, 437});
     all_sprites()[PARCHMENT].scale.x = 1.5;

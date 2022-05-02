@@ -35,3 +35,21 @@ void change_val_box(int val)
         return;
     }
 }
+
+void print_infos(int run, struct_inventory *obj, int x, int y)
+{
+    if (run != all_infos()->inventory_move)
+        return;
+    all_sprites()[obj->object].scale.x = 5.125;
+    all_sprites()[obj->object].scale.y = 5.125;
+    sfSprite_setScale(all_sprites()[obj->object].sprite,
+    all_sprites()[obj->object].scale);
+    sfSprite_setPosition(all_sprites()[INFO].sprite,
+    (sfVector2f) {(x * SIZE_TILE) + 50, (y * SIZE_TILE) + 310});
+    sfRenderWindow_drawSprite(all_infos()->window,
+    all_sprites()[INFO].sprite, NULL);
+    sfSprite_setPosition(all_sprites()[obj->object].sprite,
+    (sfVector2f) {(x * SIZE_TILE) + 115, (y * SIZE_TILE) + 450});
+    sfRenderWindow_drawSprite(all_infos()->window,
+    all_sprites()[obj->object].sprite, NULL);
+}
