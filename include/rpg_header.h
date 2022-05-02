@@ -550,3 +550,5 @@ void projectile_render_tick(void);
 vec2d_t create_vector(float x, float y);
 float get_angle_in_degrees(projectile_t *projectile);
 void update_projectile_rotation(projectile_t *projectile);
+
+void check_enemies_collision(projectile_t *projectile);
