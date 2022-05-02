@@ -59,7 +59,7 @@ projectile_t *new_projectile
 void shoot_projectile(projectile_t *projectile)
 {
     if (dictionary_size > MAX_PROJECTILES - 5) {
-        my_printf("%s", "Failed to insert projectile, reached maximum capacity");   
+        my_printf("%s", "Failed to insert projectile, reached maximum capacity");
         return;
     }
     projectile_dictionary[dictionary_size++] = projectile;

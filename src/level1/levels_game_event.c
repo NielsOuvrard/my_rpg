@@ -101,7 +101,8 @@ void event_level_game_relased_next (sfEvent event)
     // shooting arrows example
 
     // position from where the projectile start
-    vec2d_t origin_pos = {all_infos()->pos_player.x + 1920 / 4, (all_infos()->pos_player.y + 1080 / 4) + 48};
+    sfVector2f pos = sfSprite_getPosition(all_sprites()[HUNTER].sprite);
+    vec2d_t origin_pos = {pos.x, (pos.y - 30)};
     // velocity the projectile is being shot with, matter for speed and direction
     vec2d_t velocity = {15.5, 0};
     // create the projectile object, later on this will be useful for more parameters
