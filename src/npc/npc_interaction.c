@@ -8,6 +8,15 @@
 #include "my.h"
 #include "rpg_header.h"
 
+bool check_if_mission_was_done(char find)
+{
+    for (int i = 0; all_infos()->quest_done[i] != '\0'; i++) {
+        if (all_infos()->quest_done[i] == find)
+            return true;
+    }
+    return false;
+}
+
 void check_for_easter_egg(sfEvent event)
 {
     npcs *expl = all_maps()[all_infos()->map_actual].all_npcs;
@@ -68,6 +77,7 @@ void npc_check_quest_3(npcs *expl)
         if (all_infos()->doing_quest == true && all_infos()->quest_id == 14) {
             all_infos()->doing_quest = false;
             all_infos()->quest_id = 0;
+            all_infos()->quest_done[my_strlen(all_infos()->quest_done)] = '2';
         }
         print_quest("Finally someone came!\nThanks for saving me!\n");
     }
@@ -76,6 +86,10 @@ void npc_check_quest_3(npcs *expl)
 void npc_check_quest_2(npcs *expl, char *text)
 {
     if (expl->value == 14 && expl->interaction == 1) {
+        if (check_if_mission_was_done('2') == true) {
+            print_quest("Thanks for your help!\n");
+            return;
+        }
         if (all_infos()->doing_quest == false ||
         all_infos()->quest_id == expl->value) {
             all_infos()->quest_id = expl->value;
@@ -94,6 +108,10 @@ void npc_check_quest_2(npcs *expl, char *text)
 void npc_check_quest(npcs *expl, char *text)
 {
     if (expl->value == 10 && expl->interaction == 1) {
+        if (check_if_mission_was_done('1') == true) {
+            print_quest("Thanks for your help!\n");
+            return;
+        }
         if (all_infos()->doing_quest == false ||
         all_infos()->quest_id == expl->value) {
             all_infos()->quest_id = expl->value;
@@ -107,6 +125,10 @@ void npc_check_quest(npcs *expl, char *text)
         }
     }
     if (expl->value == 12 && expl->interaction == 1) {
+        if (check_if_mission_was_done('3') == true) {
+            print_quest("Password already done!\n");
+            return;
+        }
         text = my_strcpy(text, "Do you have the password?\nPress");
         text = my_strcat(text, " Y for 'yes' and N for 'no'\n");
         print_quest(text);

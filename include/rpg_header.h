@@ -226,6 +226,7 @@ typedef struct main_screen {
     int quest_id;
     int entering_password;
     bool doing_quest;
+    char quest_done[3];
     int nb_of_enemies_outside;
     bool move_u;
     bool move_d;
