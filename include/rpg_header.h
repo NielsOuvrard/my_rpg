@@ -70,8 +70,8 @@
 #define ARROW          18
 #define WRITE_BOX      19
 #define INFO           20
-#define BANANA_INFO    "The best bananas of our\n village !\n Gives you 2 health points\n and full stamina !\n Press 'E' to eat\n Press 'Q' to drop\n"
-#define APPLE_INFO    "The best apples of our\n village !\n Gives you 1 health points\n and half stamina !\n Press 'E' to eat\n Press 'Q' to drop\n"
+#define BANANA_INFO    "The best bananas of our\n village !\n Gives you 2 health points\n and full stamina !\n Press 'L' to eat\n Press 'Q' to drop\n"
+#define APPLE_INFO    "The best apples of our\n village !\n Gives you 1 health points\n and half stamina !\n Press 'L' to eat\n Press 'Q' to drop\n"
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
 
