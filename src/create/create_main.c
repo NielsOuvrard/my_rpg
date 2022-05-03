@@ -72,6 +72,7 @@ void create_main(void)
     infos->move = '\0';
     infos->life = 10;
     infos->stamina = 10;
+    infos->quest_done[0] = '\0';
     struct_inventory *val = NULL;
     add_to_inventory(&val, 3);
     add_to_inventory(&val, 15);
