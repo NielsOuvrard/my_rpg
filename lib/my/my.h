@@ -14,6 +14,7 @@
 #define EXIT_SUCCESS 0
 #define SYNTAX_ERROR_MSG "syntax error"
 #define ERROR_MSG  "error"
+#include <stdlib.h>
 
 typedef struct formats_str {
     int b_plus;
@@ -99,3 +100,7 @@ int my_unsintlen (unsigned int nbr);
 int nbsize(int tmp);
 
 char *nbtstr (int tmp);
+
+char *my_itoa(int nb);
+
+char *my_strstr(char *str, const char *to_find);

@@ -44,8 +44,10 @@ void display_stamina(void)
 void level_game(sfEvent event)
 {
     event_level_game(event);
-    if (all_infos()->quit_main == 1)
+    if (all_infos()->quit_main == 1) {
+        write_infos_to_file();
         return;
+    }
     disp_map(all_maps()[all_infos()->map_actual].bg);
     disp_mg();
     disp_map(all_maps()[all_infos()->map_actual].fg);

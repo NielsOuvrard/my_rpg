@@ -43,6 +43,7 @@ void level_0 (sfEvent event)
 {
     event_level_0(event);
     if (all_infos()->quit_main == 1) {
+        write_infos_to_file();
         return;
     }
     return;

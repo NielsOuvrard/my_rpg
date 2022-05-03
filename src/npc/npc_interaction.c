@@ -175,8 +175,10 @@ void disp_interaction_button(void)
 void level_quest(void)
 {
     event_level_quest();
-    if (all_infos()->quit_main == 1)
+    if (all_infos()->quit_main == 1) {
+        write_infos_to_file();
         return;
+    }
     disp_map(all_maps()[all_infos()->map_actual].bg);
     print_all_particules();
     disp_mg();

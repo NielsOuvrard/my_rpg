@@ -59,8 +59,10 @@ void display_mission(void)
 void level_missions(void)
 {
     event_level_missions();
-    if (all_infos()->quit_main == 1)
+    if (all_infos()->quit_main == 1) {
+        write_infos_to_file();
         return;
+    }
     disp_map(all_maps()[all_infos()->map_actual].bg);
     print_all_particules();
     disp_mg();

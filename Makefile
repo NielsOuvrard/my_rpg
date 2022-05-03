@@ -6,6 +6,7 @@
 ##
 
 SRC = 	src/*.c \
+		src/save/*.c \
 		src/create/*.c \
 		src/editor/*.c \
 		src/inventory/*.c \

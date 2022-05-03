@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include <math.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include <SFML/Audio.h>
 #include <SFML/Graphics.h>
@@ -563,3 +564,23 @@ void print_infos(int run, struct_inventory *obj, int x, int y);
 void check_enemies_collision(projectile_t *projectile);
 
 void print_item_infos(struct_inventory *obj, int x, int y);
+
+void write_infos_to_file(void);
+
+void save_position_to_file(FILE *fd);
+
+void save_view_to_file(FILE *fd);
+
+void save_inventory_to_file(FILE *fd);
+
+int does_save_exists(void);
+
+void handle_player_pos(char *buffer, int *type, int run);
+
+sfVector2f handle_view_pos(char *buffer, int *type, int run, sfVector2f pos);
+
+void get_info_save(void);
+
+void save_map_actual(FILE *fd);
+
+void handle_map_actual(int *type, char *buffer);

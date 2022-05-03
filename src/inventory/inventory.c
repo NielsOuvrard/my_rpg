@@ -81,6 +81,7 @@ void event_level_inventory(sfEvent event)
             event.key.code == all_keys()->k_inv_left)
                 change_val_box(2);
         if (event.type == sfEvtClosed) {
+            write_infos_to_file();
             all_infos()->quit_main = 1;
             return;
         }
@@ -96,8 +97,10 @@ void event_level_inventory(sfEvent event)
 void level_inventory(sfEvent event)
 {
     event_level_inventory(event);
-    if (all_infos()->quit_main == 1)
+    if (all_infos()->quit_main == 1) {
+        write_infos_to_file();
         return;
+    }
     disp_map(all_maps()[all_infos()->map_actual].bg);
     print_all_particules();
     disp_mg();
