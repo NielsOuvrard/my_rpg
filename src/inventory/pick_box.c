@@ -49,7 +49,24 @@ void print_infos(int run, struct_inventory *obj, int x, int y)
     sfRenderWindow_drawSprite(all_infos()->window,
     all_sprites()[INFO].sprite, NULL);
     sfSprite_setPosition(all_sprites()[obj->object].sprite,
-    (sfVector2f) {(x * SIZE_TILE) + 115, (y * SIZE_TILE) + 450});
+    (sfVector2f) {(x * SIZE_TILE) + 180, (y * SIZE_TILE) + 430});
     sfRenderWindow_drawSprite(all_infos()->window,
     all_sprites()[obj->object].sprite, NULL);
+    print_item_infos(obj, x, y);
+
+}
+
+void print_item_infos(struct_inventory *obj, int x, int y)
+{
+    char *text;
+    if (obj->object == BANANA)
+        text = BANANA_INFO;
+    if (obj->object == APPLE)
+        text = APPLE_INFO;
+    sfText_setCharacterSize(all_texts()->simple_text, 17);
+    sfText_setString(all_texts()->simple_text, text);
+    sfText_setPosition(all_texts()->simple_text,
+    (sfVector2f) {(x * SIZE_TILE) + 70, (y * SIZE_TILE) + 450});
+    sfRenderWindow_drawText(all_infos()->window,
+    all_texts()->simple_text, NULL);
 }
