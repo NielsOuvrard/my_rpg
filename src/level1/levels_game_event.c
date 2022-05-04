@@ -62,9 +62,10 @@ void event_level_mission_pressed(sfEvent event)
 
 void event_level_game_pressed(sfEvent event)
 {
-    if (event.key.code == all_keys()->shoot) {
+    if (all_infos()->move != 'c')
         all_infos()->last_move = all_infos()->move;
         printf("lastmove: %c\n", all_infos()->last_move);
+    if (event.key.code == all_keys()->shoot) {
         all_infos()->move = 'c';
         if (all_sprites()[HUNTER].rect.top == 16 ||
         all_sprites()[HUNTER].rect.top == 2 * 16) {
@@ -91,7 +92,6 @@ void event_level_game_relased_next (sfEvent event)
         vec2d_t velocity = {15.5, 0};
         projectile_t *projectile = new_projectile(origin_pos, velocity, 10, ARROW);
         shoot_projectile(projectile);
-        //printf("lastmove: %c\n", all_infos()->last_move);
     }
     if (!sfKeyboard_isKeyPressed(all_keys()->k_sprint))
         all_infos()->sprint = false;
@@ -104,8 +104,8 @@ void event_level_game_relased_next (sfEvent event)
     if (!sfKeyboard_isKeyPressed(all_keys()->k_down))
         all_infos()->move_d = false;
     if (!all_infos()->move_u && !all_infos()->move_d &&
-    !all_infos()->move_l && !all_infos()->move_r)
-        all_infos()->move = '\0';
+     !all_infos()->move_l && !all_infos()->move_r)
+         all_infos()->move = '\0';
     sfSprite_setTextureRect(all_sprites()[HUNTER].sprite,
     all_sprites()[HUNTER].rect);
 
