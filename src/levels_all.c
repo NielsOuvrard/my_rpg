@@ -38,6 +38,7 @@ void game_loop(void)
 {
     sfEvent event;
     while (sfRenderWindow_isOpen(all_infos()->window)) {
+        is_onchest();
         if (all_infos()->level == GAME)
             move_all_ennemies();
         all_infos()->size_window = sfRenderWindow_getSize(all_infos()->window);
@@ -58,6 +59,8 @@ void game_loop(void)
             level_missions();
         if (all_infos()->level == BONUS)
             level_bonus();
+        if (all_infos()->level == CHEST)
+            chest_level();
         if (all_infos()->quit_main)
             return;
         sfRenderWindow_display(all_infos()->window);

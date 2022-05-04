@@ -41,7 +41,10 @@ void check_all_intecract_map_actual (void)
 {
     struct_interact *list = all_maps()[all_infos()->map_actual].interact;
     while (list) {
-        if (player_is_on_case(list->x, list->y))
+        if (player_is_on_case(list->x, list->y) && list->type == 1) {
+            my_putstr("coffre");
+        }
+        if (player_is_on_case(list->x, list->y) && list->type != 1)
             move_to_map(list->data, list->a_x, list->a_y);
         list = list->next;
     }

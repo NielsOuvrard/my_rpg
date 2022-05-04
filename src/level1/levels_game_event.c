@@ -75,6 +75,7 @@ void event_level_game_pressed(sfEvent event)
     event_level_game_pressed_next(event);
     change_scale(event);
     event_npc(event);
+    check_interact_chest(event);
     event_level_mission_pressed(event);
 }
 

@@ -53,6 +53,7 @@ void level_game(sfEvent event)
     disp_map(all_maps()[all_infos()->map_actual].fg);
     disp_all_npcs();
     disp_interaction_button();
+    is_onchest();
     sfRenderWindow_setView(all_infos()->window, all_infos()->hud_view);
     display_hud();
     sfRenderWindow_setView(all_infos()->window, all_infos()->view);

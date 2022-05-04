@@ -60,5 +60,4 @@ void save_inventory_to_file(FILE *fd)
             fwrite("\n", 1, 1, fd);
         inv = inv->next;
     }
-    fwrite("\n", 1, 1, fd);
 }

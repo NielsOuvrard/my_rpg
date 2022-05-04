@@ -39,11 +39,26 @@ void get_info_save(void)
             run = 1;
             continue;
         }
+        if (my_strstr(line, "#inventory")) {
+            type = 4;
+            run = 1;
+            continue;
+        }
         handle_map_actual(&type, line);
         handle_player_pos(line, &type, run);
         pos = handle_view_pos(line, &type, run, pos);
+        handle_inventory(line, &type);
         run++;
     }
+}
+
+void handle_inventory(char *buffer, int *type)
+{
+    int nb = 0;
+    if (*type != 4)
+        return;
+    add_to_inventory(&all_infos()->inventory, my_getnbr(buffer));
+    return;
 }
 
 void handle_player_pos(char *buffer, int *type, int run)

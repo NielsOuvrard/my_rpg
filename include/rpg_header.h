@@ -73,6 +73,7 @@
 #define INFO           20
 #define BANANA_INFO    "The best bananas of our\n village !\n Gives you 2 health points\n and full stamina !\n Press 'L' to eat\n Press 'Q' to drop\n"
 #define APPLE_INFO    "The best apples of our\n village !\n Gives you 1 health points\n and half stamina !\n Press 'L' to eat\n Press 'Q' to drop\n"
+#define CHEST          21
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
 
@@ -236,7 +237,10 @@ typedef struct main_screen {
     bool printed;
     bool sprint;
     bool can_move;
+    bool opened_chest;
     int nb_of_zoom;
+    int banana_nb;
+    int apple_nb;
     sfClock *stamina_clock;
     sfClock *text_clock;
     int text_char;
@@ -584,3 +588,23 @@ void get_info_save(void);
 void save_map_actual(FILE *fd);
 
 void handle_map_actual(int *type, char *buffer);
+
+void is_onchest(void);
+
+void chest_level(void);
+
+void event_level_chest(void);
+
+void check_interact_chest(sfEvent event);
+
+void add_item(int pick);
+
+void print_items(void);
+
+void print_quest(char *text);
+
+void print_chestmsg(void);
+
+void handle_inventory(char *buffer, int *type);
+
+int is_onlynb(char *nb);
