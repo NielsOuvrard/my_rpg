@@ -15,6 +15,7 @@ void write_infos_to_file(void)
     save_view_to_file(fd);
     save_map_actual(fd);
     save_inventory_to_file(fd);
+    save_opened_chests(fd);
 }
 
 void save_map_actual(FILE *fd)
@@ -27,12 +28,13 @@ void save_map_actual(FILE *fd)
 
 void save_position_to_file(FILE *fd)
 {
-    char *x = my_itoa(all_sprites()[HUNTER].pos.x);
-    char *y = my_itoa(all_sprites()[HUNTER].pos.y);
+    int tmp_x = (int)all_sprites()[HUNTER].pos.x, tmp_y = (int)all_sprites()[HUNTER].pos.y;
+    char *x = my_itoa(tmp_x);
+    char *y = my_itoa(tmp_y);
     fwrite("#player_pos\n", 1, my_strlen("#player_pos\n"), fd);
     fwrite(x, 1, my_strlen(x), fd);
     fwrite("\n", 1, 1, fd);
-    fwrite(y, 1, my_strlen(x), fd);
+    fwrite(y, 1, my_strlen(y), fd);
     fwrite("\n", 1, 1, fd);
 }
 
@@ -44,7 +46,7 @@ void save_view_to_file(FILE *fd)
     char *y = my_itoa(pos.y);
     fwrite(x, 1, my_strlen(x), fd);
     fwrite("\n", 1, 1, fd);
-    fwrite(y, 1, my_strlen(x), fd);
+    fwrite(y, 1, my_strlen(y), fd);
     fwrite("\n", 1, 1, fd);
 }
 

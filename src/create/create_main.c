@@ -38,7 +38,6 @@ void initialize_main_vals(void)
     infos->last_move = 'd';
     sfView_setCenter(infos->view, (sfVector2f) {10 * 50, (10 * 35) - 16});
     sfView_setSize(infos->view, (sfVector2f) {1920 / 2, 1080 / 2});
-    does_save_exists();
     sfRenderWindow_setView(infos->window, infos->view);
 }
 

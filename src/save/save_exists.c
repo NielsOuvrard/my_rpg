@@ -44,10 +44,16 @@ void get_info_save(void)
             run = 1;
             continue;
         }
+        if (my_strstr(line, "#closed_chests")) {
+            type = 5;
+            run = 1;
+            continue;
+        }
         handle_map_actual(&type, line);
         handle_player_pos(line, &type, run);
         pos = handle_view_pos(line, &type, run, pos);
         handle_inventory(line, &type);
+        handle_save_chests(line, &type);
         run++;
     }
 }

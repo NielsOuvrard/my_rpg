@@ -608,3 +608,11 @@ void print_chestmsg(void);
 void handle_inventory(char *buffer, int *type);
 
 int is_onlynb(char *nb);
+
+void save_opened_chests(FILE *fd);
+
+void write_opened_chests(FILE *fd, int map_nb);
+
+void check_openedchests(FILE *fd, int map_nb, int x, int y);
+
+void handle_save_chests(char *buffer, int *type);
