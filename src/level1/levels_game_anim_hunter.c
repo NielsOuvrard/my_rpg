@@ -94,4 +94,5 @@ void anim_perso_according_to_int (void)
         return;
     }
     anim_perso_up_and_down();
+    
 }
