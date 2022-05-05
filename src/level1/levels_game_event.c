@@ -65,7 +65,6 @@ void event_level_game_pressed(sfEvent event)
     if (event.key.code == all_keys()->shoot) {
         all_infos()->loading_bow = true;
         all_infos()->charging_ticks++;
-        printf("\nCharging: %d", all_infos()->charging_ticks);
         all_infos()->move = 'c';
         if (all_sprites()[HUNTER].rect.top == 16 ||
         all_sprites()[HUNTER].rect.top == 2 * 16) {
