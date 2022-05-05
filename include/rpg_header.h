@@ -274,6 +274,7 @@ typedef struct main_screen {
     sfVector2f view_position;
     sfVector2u size_window;
     int inventory_move;
+    int ennemy_id;
     // particules :
     struct_particule *particules;
 
@@ -647,3 +648,7 @@ void increase_health_and_stamina(int health, int stamina);
 void use_elem(struct_inventory *node);
 
 void print_emptyinv(void);
+
+void save_quests(FILE *fd);
+
+void restore_quests(char *buffer, int *type);

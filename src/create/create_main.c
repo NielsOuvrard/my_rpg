@@ -63,6 +63,7 @@ void create_main(void)
     infos->window = sfRenderWindow_create(mode, "RPG",
     sfResize | sfClose, NULL);
     infos->level = 0;
+    infos->ennemy_id = 0;
     infos->quit_main = 0;
     infos->map_actual = 0;
     infos->pos_player.x = 0;
@@ -74,6 +75,8 @@ void create_main(void)
     infos->stamina = 10;
     infos->opened_chest = false;
     infos->quest_done[0] = '\0';
+    infos->quest_done[1] = '\0';
+    infos->quest_done[2] = '\0';
     all_infos()->banana_nb = 0;
     all_infos()->apple_nb = 0;
     struct_inventory *val = NULL;
