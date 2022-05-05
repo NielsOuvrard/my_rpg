@@ -19,6 +19,7 @@ void create_keys(void)
 {
     keyes = malloc(sizeof(struct_keys));
     keyes->k_down = sfKeyS;
+    keyes->k_drop = sfKeyU;
     keyes->k_sprint = sfKeyLShift;
     keyes->k_up = sfKeyZ;
     keyes->k_left = sfKeyQ;

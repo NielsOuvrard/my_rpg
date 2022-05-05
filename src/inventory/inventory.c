@@ -45,6 +45,10 @@ void fill_inventory(void)
 {
     int size = nmb_inv(), nmb_y = 0, i = 0, run = 0;
     struct_inventory *val = all_infos()->inventory;
+    if (!val) {
+        print_emptyinv();
+        return;
+    }
     while (val) {
         all_sprites()[val->object].scale.x = 3.125;
         all_sprites()[val->object].scale.y = 3.125;
@@ -72,8 +76,14 @@ void event_level_inventory(sfEvent event)
 {
     while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
         if (event.type == sfEvtKeyPressed &&
-        event.key.code == all_keys()->k_open_bag)
+        event.key.code == all_keys()->k_interact) {
+            delete_element_inv(all_infos()->inventory_move);
+        }
+        if (event.type == sfEvtKeyPressed &&
+        event.key.code == all_keys()->k_open_bag) {
+            all_infos()->text_char = 0;
             all_infos()->level = GAME;
+        }
         if (event.type == sfEvtKeyPressed &&
             event.key.code == all_keys()->k_inv_right)
                 change_val_box(1);

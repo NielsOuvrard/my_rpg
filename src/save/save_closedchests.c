@@ -12,7 +12,7 @@ void save_opened_chests(FILE *fd)
 {
     char **arr = filepath_to_arr("map/list_maps.txt");
     int nb_of_maps = my_arraylen(arr);
-    fwrite("\n#closed_chests\n", 1, my_strlen("\n#closed_chests\n"), fd);
+    fwrite("#closed_chests\n", 1, my_strlen("#closed_chests\n"), fd);
     for (int i = 0; i != nb_of_maps; i++) {
         write_opened_chests(fd, i);
     }

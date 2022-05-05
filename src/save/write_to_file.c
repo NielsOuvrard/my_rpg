@@ -52,14 +52,19 @@ void save_view_to_file(FILE *fd)
 
 void save_inventory_to_file(FILE *fd)
 {
-    fwrite("#inventory\n", 1, my_strlen("#view_info\n"), fd);
+    fwrite("#inventory\n", 1, my_strlen("#inventory\n"), fd);
     struct_inventory *inv = all_infos()->inventory;
     char *obj;
-    while (inv) {
+    int run = 0;
+    for (;inv; inv = inv->next) {
+        if (inv->object != BANANA && inv->object != APPLE)
+            continue;
+        run ++;
         obj = my_itoa(inv->object);
         fwrite(obj, 1, my_strlen(obj), fd);
         if (inv->next != NULL)
             fwrite("\n", 1, 1, fd);
-        inv = inv->next;
     }
+    if (run != 0)
+        fwrite("\n", 1, 1, fd);
 }

@@ -71,12 +71,12 @@
 #define ARROW          18
 #define WRITE_BOX      19
 #define INFO           20
-#define BANANA_INFO    "The best bananas of our\n village !\n Gives you 2 health points\n and full stamina !\n Press 'L' to eat\n Press 'Q' to drop\n"
-#define APPLE_INFO    "The best apples of our\n village !\n Gives you 1 health points\n and half stamina !\n Press 'L' to eat\n Press 'Q' to drop\n"
+#define BANANA_INFO    "The best bananas of our\n village !\n Gives you 2 health points\n and full stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
+#define APPLE_INFO    "The best apples of our\n village !\n Gives you 1 health points\n and half stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
 #define CHEST          21
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
-
+#define EMPTY_INVENTORY     "Unfortunatly, your inventory is empty.\n"
 typedef struct sf_text {
     sfText *simple_text;
     sfText *code;
@@ -163,6 +163,7 @@ typedef struct struct_keys {
     sfKeyCode k_inv_left;
     sfKeyCode k_no;
     sfKeyCode k_yes;
+    sfKeyCode k_drop;
 } struct_keys;
 
 typedef struct struct_particule {
@@ -448,7 +449,6 @@ void level_map_editor(sfEvent event);
 // * ////////////// INVENTORY DIR //////////////////////////////////////////
 
 void level_inventory(sfEvent event);
-
 // * ////////////// SRC DIR //////////////////////////////////////////
 
 // ennemis
@@ -510,7 +510,6 @@ int start_game(int ac, char **av);
 // open file
 
 char **filepath_to_arr(char *filepath);
-
 // tools 1
 
 int random_int(int min, int max);
@@ -616,3 +615,11 @@ void write_opened_chests(FILE *fd, int map_nb);
 void check_openedchests(FILE *fd, int map_nb, int x, int y);
 
 void handle_save_chests(char *buffer, int *type);
+
+void delete_element_inv(int position);
+
+void increase_health_and_stamina(int health, int stamina);
+
+void use_elem(struct_inventory *node);
+
+void print_emptyinv(void);
