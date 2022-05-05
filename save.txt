@@ -1,11 +1,11 @@
 #player_pos
-867
-760
+304
+279
 #view_info
-867
-760
+304
+279
 #map_actual
-4
+0
 #inventory
 0
 3

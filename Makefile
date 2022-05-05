@@ -15,6 +15,7 @@ SRC = 	src/*.c \
 		src/missions/*.c \
 		src/projectiles/*.c \
 		src/chests/*.c \
+		src/menu/*.c \
 
 CSFML = -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system
 
