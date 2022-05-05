@@ -249,6 +249,8 @@ typedef struct main_screen {
     sfVector2f pos_player;
     int life;
     float stamina;
+    bool loading_bow;
+    int charging_ticks;
     char move;
     int quest_id;
     int entering_password;
@@ -384,6 +386,8 @@ void move_to_map(int map, int x, int y);
 void modify_var_move_next(sfEvent event, char a);
 
 void modify_var_move(sfEvent event);
+
+void bow_release(void);
 
 // level 1
 

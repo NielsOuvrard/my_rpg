@@ -31,6 +31,7 @@ void projectile_render_tick(void)
         if (!projectile->should_render) {
             continue;
         }
+        update_projectile_rotation(projectile);
         update_projectile_render_data(projectile);
         sfRenderWindow_drawSprite(all_infos()->window,
         projectile->sprite_picture.sprite, NULL);

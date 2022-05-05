@@ -63,6 +63,9 @@ void event_level_mission_pressed(sfEvent event)
 void event_level_game_pressed(sfEvent event)
 {
     if (event.key.code == all_keys()->shoot) {
+        all_infos()->loading_bow = true;
+        all_infos()->charging_ticks++;
+        printf("\nCharging: %d", all_infos()->charging_ticks);
         all_infos()->move = 'c';
         if (all_sprites()[HUNTER].rect.top == 16 ||
         all_sprites()[HUNTER].rect.top == 2 * 16) {
@@ -83,14 +86,7 @@ void event_level_game_pressed(sfEvent event)
 // !sfKeyboard_isKeyPressed(all_keyes()->shoot) JF
 void event_level_game_relased_next (sfEvent event)
 {
-    if (all_infos()->move == 'c' && !sfKeyboard_isKeyPressed(all_keys()->shoot)) {
-        all_infos()->move = all_infos()->last_move;
-        sfVector2f pos = sfSprite_getPosition(all_sprites()[HUNTER].sprite);
-        vec2d_t origin_pos = {pos.x, (pos.y - 30)};
-        vec2d_t velocity = {15.5, 0};
-        projectile_t *projectile = new_projectile(origin_pos, velocity, 10, ARROW);
-        shoot_projectile(projectile);
-    }
+    bow_release();
     if (!sfKeyboard_isKeyPressed(all_keys()->k_sprint))
         all_infos()->sprint = false;
     if (!sfKeyboard_isKeyPressed(all_keys()->k_left))
@@ -106,19 +102,6 @@ void event_level_game_relased_next (sfEvent event)
          all_infos()->move = '\0';
     sfSprite_setTextureRect(all_sprites()[HUNTER].sprite,
     all_sprites()[HUNTER].rect);
-
-    // shooting arrows example
-
-    // position from where the projectile start
-    sfVector2f pos = sfSprite_getPosition(all_sprites()[HUNTER].sprite);
-    vec2d_t origin_pos = {pos.x, (pos.y - 30)};
-    // velocity the projectile is being shot with, matter for speed and direction
-    vec2d_t velocity = {15.5, 0};
-    // create the projectile object, later on this will be useful for more parameters
-    projectile_t *projectile = new_projectile(origin_pos, velocity, 10, ARROW);
-    // insert projectile object into projectile_manager, the moment you call this funtion it will
-    // start rendering and handling the physics of this projectile object
-    //shoot_projectile(projectile);
 }
 
 void event_level_game_relased(sfEvent event)
