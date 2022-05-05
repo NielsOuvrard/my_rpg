@@ -74,6 +74,30 @@
 #define BANANA_INFO    "The best bananas of our\n village !\n Gives you 2 health points\n and full stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
 #define APPLE_INFO    "The best apples of our\n village !\n Gives you 1 health points\n and half stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
 #define CHEST          21
+#define FRAME_30       22
+#define FRAME_30_2     23
+#define FRAME_30_3     24
+#define FRAME_60       25
+#define FRAME_60_2     26
+#define FRAME_60_3     27
+#define MENU           28
+#define MENU_2         29
+#define MENU_3         30
+#define OPTIONS        31
+#define OPTIONS_2      32
+#define OPTIONS_3      33
+#define PLAY           34
+#define PLAY_2         35
+#define PLAY_3         36
+#define QUIT           37
+#define QUIT_2         38
+#define QUIT_3         39
+#define RESUME         40
+#define RESUME_2       41
+#define RESUME_3       42
+#define SCOREBOARD     43
+#define SCOREBOARD_2   44
+#define SCOREBOARD_3   45
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
 #define EMPTY_INVENTORY     "Unfortunatly, your inventory is empty.\n"

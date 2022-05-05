@@ -40,6 +40,8 @@ void move_pos_player_next(char a)
         if (!all_infos()->move_u && !all_infos()->move_d)
             change_pos_and_views(-3, 0);
     }
+    if (all_infos()->move != 'c' && all_infos()->move != '\0')
+        all_infos()->last_move = all_infos()->move;
     if (a != all_infos()->move)
         recalculate_the_sprite_perso();
     sfSprite_setPosition(all_sprites()[HUNTER].sprite, all_sprites()[HUNTER].pos);

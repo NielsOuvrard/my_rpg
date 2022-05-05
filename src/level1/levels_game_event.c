@@ -63,13 +63,13 @@ void event_level_mission_pressed(sfEvent event)
 void event_level_game_pressed(sfEvent event)
 {
     if (event.key.code == all_keys()->shoot) {
-        all_infos()->last_move = all_infos()->move;
         all_infos()->move = 'c';
         if (all_sprites()[HUNTER].rect.top == 16 ||
-        all_sprites()[HUNTER].rect.top == 2 * 16)
+        all_sprites()[HUNTER].rect.top == 2 * 16) {
             all_sprites()[HUNTER].rect.top = 64;
-        else
+        } else {
             all_sprites()[HUNTER].rect.top = 80;
+        }
         all_sprites()[HUNTER].rect.left = 16 * 3;
     }
     event_level_game_pressed_next(event);
@@ -83,6 +83,14 @@ void event_level_game_pressed(sfEvent event)
 // !sfKeyboard_isKeyPressed(all_keyes()->shoot) JF
 void event_level_game_relased_next (sfEvent event)
 {
+    if (all_infos()->move == 'c' && !sfKeyboard_isKeyPressed(all_keys()->shoot)) {
+        all_infos()->move = all_infos()->last_move;
+        sfVector2f pos = sfSprite_getPosition(all_sprites()[HUNTER].sprite);
+        vec2d_t origin_pos = {pos.x, (pos.y - 30)};
+        vec2d_t velocity = {15.5, 0};
+        projectile_t *projectile = new_projectile(origin_pos, velocity, 10, ARROW);
+        shoot_projectile(projectile);
+    }
     if (!sfKeyboard_isKeyPressed(all_keys()->k_sprint))
         all_infos()->sprint = false;
     if (!sfKeyboard_isKeyPressed(all_keys()->k_left))
@@ -94,8 +102,8 @@ void event_level_game_relased_next (sfEvent event)
     if (!sfKeyboard_isKeyPressed(all_keys()->k_down))
         all_infos()->move_d = false;
     if (!all_infos()->move_u && !all_infos()->move_d &&
-    !all_infos()->move_l && !all_infos()->move_r)
-        all_infos()->move = '\0';
+     !all_infos()->move_l && !all_infos()->move_r)
+         all_infos()->move = '\0';
     sfSprite_setTextureRect(all_sprites()[HUNTER].sprite,
     all_sprites()[HUNTER].rect);
 
@@ -110,7 +118,7 @@ void event_level_game_relased_next (sfEvent event)
     projectile_t *projectile = new_projectile(origin_pos, velocity, 10, ARROW);
     // insert projectile object into projectile_manager, the moment you call this funtion it will
     // start rendering and handling the physics of this projectile object
-    shoot_projectile(projectile);
+    //shoot_projectile(projectile);
 }
 
 void event_level_game_relased(sfEvent event)
@@ -119,12 +127,13 @@ void event_level_game_relased(sfEvent event)
     !sfKeyboard_isKeyPressed(all_keys()->shoot)) {
         all_sprites()[HUNTER].rect.left = 0;
         all_infos()->move = all_infos()->last_move;
-        if (all_infos()->move == 'l' || all_infos()->move == 'd')
+        if (all_infos()->move == 'l' || all_infos()->move == 'd') {
             all_sprites()[HUNTER].rect.top = 32;
-        else if (all_infos()->move == 'r' || all_infos()->move == 'u')
+        } else if (all_infos()->move == 'r' || all_infos()->move == 'u') {
             all_sprites()[HUNTER].rect.top = 48;
-        else
+        } else {
             all_sprites()[HUNTER].rect.top = 16;
+        }
     }
     event_level_game_relased_next(event);
 }
