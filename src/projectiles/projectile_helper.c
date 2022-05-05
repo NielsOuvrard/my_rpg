@@ -18,3 +18,10 @@ float get_angle_in_degrees(projectile_t *projectile)
 {
     return atan2(projectile->velocity.y, projectile->velocity.x) * 180.0 / PI;
 }
+
+float distance_to(sfVector2f origin, sfVector2f other)
+{
+    float x = origin.x - other.x;
+    float y = origin.y - other.y;
+    return sqrt(x * x + y * y);
+}

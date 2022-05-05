@@ -10,19 +10,14 @@
 
 void apply_air_friction(projectile_t *projectile)
 {
-    projectile->velocity.x *= 0.96;
-    projectile->velocity.x += projectile->velocity.x > 0.01 ? -0.01 : 0.01;
-    projectile->velocity.y *= 0.96;
-    projectile->velocity.y += projectile->velocity.y > 0.01 ? -0.01 : 0.01;
+    projectile->velocity.x *= projectile->friction;
+    projectile->velocity.y *= projectile->friction;
 }
 
-// this basically prevent projectile slowly decreasing forever to super small values
 void clamp_velocity(projectile_t *projectile)
 {
-    if (ABS(projectile->velocity.x) <= 0.25) {
+    if (ABS(projectile->velocity.x) + ABS(projectile->velocity.y) <= 0.25) {
         projectile->velocity.x = 0;
-    }
-    if (ABS(projectile->velocity.y) <= 0.25) {
         projectile->velocity.y = 0;
     }
     if (projectile->velocity.y == 0 && projectile->velocity.x == 0) {
@@ -36,6 +31,7 @@ void move_projectile(projectile_t *projectile)
     projectile->sprite_picture.pos.x += projectile->velocity.x;
     projectile->sprite_picture.pos.y += projectile->velocity.y;
 
+    check_hunter_collision(projectile);
     check_enemies_collision(projectile);
 
     /*if (collide_with_wall) {
@@ -48,6 +44,9 @@ void projectile_game_tick(void)
 {
     for (int y = 0; get_projectile_dictionary()[y] != NULL; y++) {
         projectile_t *projectile = get_projectile_dictionary()[y];
+        if (++projectile->tick_existed >= projectile->max_existed) {
+            projectile->should_render = false;
+        }
         move_projectile(projectile);
         clamp_velocity(projectile);
         apply_air_friction(projectile);

@@ -127,7 +127,11 @@ typedef struct vec2d {
 typedef struct projectile {
     sprite_pictures sprite_picture;
     bool should_render;
+    bool from_hunter;
     int damage;
+    double friction;
+    int tick_existed;
+    int max_existed;
     vec2d_t velocity;
 } projectile_t;
 
@@ -168,6 +172,7 @@ typedef struct enemies {
     bool printed;
     char anim;
     sfIntRect rect;
+    int clock_ticks;
 } enemies;
 
 typedef struct struct_keys {
@@ -595,6 +600,10 @@ void print_infos(int run, struct_inventory *obj, int x, int y);
 
 void check_enemies_collision(projectile_t *projectile);
 
+void check_hunter_collision(projectile_t *projectile);
+
+void enemy_shoot_hunter(enemies *enemy);
+
 void print_item_infos(struct_inventory *obj, int x, int y);
 
 void write_infos_to_file(void);
@@ -656,3 +665,5 @@ void print_emptyinv(void);
 void save_quests(FILE *fd);
 
 void restore_quests(char *buffer, int *type);
+
+float distance_to(sfVector2f origin, sfVector2f other);

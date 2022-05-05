@@ -10,7 +10,7 @@
 
 static projectile_t **projectile_dictionary;
 static int dictionary_size;
-static int MAX_PROJECTILES = 10000;
+static int MAX_PROJECTILES = 100000;
 
 void new_projectile_manager(void)
 {
@@ -53,13 +53,17 @@ projectile_t *new_projectile
     projectile->sprite_picture.pos.x = origin_pos.x;
     projectile->sprite_picture.pos.y = origin_pos.y;
     projectile->should_render = true;
+    projectile->from_hunter = false;
+    projectile->friction = 0.95;
+    projectile->tick_existed = 0;
+    projectile->max_existed = 10000;
     return projectile;
 }
 
 void shoot_projectile(projectile_t *projectile)
 {
     if (dictionary_size > MAX_PROJECTILES - 5) {
-        my_printf("%s", "Failed to insert projectile, reached maximum capacity");
+        my_printf("%s", "Failed to insert projectile, maximum capacity");
         return;
     }
     projectile_dictionary[dictionary_size++] = projectile;

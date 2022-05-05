@@ -14,6 +14,7 @@ void move_all_ennemies(void)
     while (enemies) {
         sfTime time_anim = sfClock_getElapsedTime(enemies->clock);
         if (time_anim.microseconds > 1000) {
+            enemy_shoot_hunter(enemies);
             get_move_val(enemies);
             sfClock_restart(enemies->clock);
         }
