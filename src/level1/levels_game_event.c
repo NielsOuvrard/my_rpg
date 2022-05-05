@@ -62,9 +62,6 @@ void event_level_mission_pressed(sfEvent event)
 
 void event_level_game_pressed(sfEvent event)
 {
-    if (all_infos()->move != 'c')
-        all_infos()->last_move = all_infos()->move;
-        printf("lastmove: %c\n", all_infos()->last_move);
     if (event.key.code == all_keys()->shoot) {
         all_infos()->move = 'c';
         if (all_sprites()[HUNTER].rect.top == 16 ||
@@ -87,6 +84,7 @@ void event_level_game_pressed(sfEvent event)
 void event_level_game_relased_next (sfEvent event)
 {
     if (all_infos()->move == 'c' && !sfKeyboard_isKeyPressed(all_keys()->shoot)) {
+        all_infos()->move = all_infos()->last_move;
         sfVector2f pos = sfSprite_getPosition(all_sprites()[HUNTER].sprite);
         vec2d_t origin_pos = {pos.x, (pos.y - 30)};
         vec2d_t velocity = {15.5, 0};
