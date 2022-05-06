@@ -96,6 +96,7 @@ void level_inventory(sfEvent event)
 {
     event_level_inventory(event);
     if (all_infos()->quit_main == 1) {
+        close_sounds();
         write_infos_to_file();
         return;
     }

@@ -60,6 +60,7 @@ void level_missions(void)
 {
     event_level_missions();
     if (all_infos()->quit_main == 1) {
+        close_sounds();
         write_infos_to_file();
         return;
     }

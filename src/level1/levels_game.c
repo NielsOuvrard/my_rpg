@@ -45,6 +45,7 @@ void level_game(sfEvent event)
 {
     event_level_game(event);
     if (all_infos()->quit_main == 1) {
+        close_sounds();
         write_infos_to_file();
         return;
     }

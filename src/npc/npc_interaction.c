@@ -177,6 +177,7 @@ void level_quest(void)
 {
     event_level_quest();
     if (all_infos()->quit_main == 1) {
+        close_sounds();
         write_infos_to_file();
         return;
     }

@@ -12,6 +12,7 @@ void chest_level(void)
 {
     event_level_chest();
     if (all_infos()->quit_main == 1) {
+        close_sounds();
         write_infos_to_file();
         return;
     }

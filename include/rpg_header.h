@@ -766,3 +766,9 @@ void initialize_options_game(tags *game);
 void inicialize_sprite_option(tags *game);
 
 void inicialize_variables_option(tags *game);
+
+void close_sounds(void);
+
+void close_soundbuffer(sfSound const *sound);
+
+void reset_save(void);
