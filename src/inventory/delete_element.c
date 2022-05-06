@@ -40,7 +40,7 @@ void use_elem(struct_inventory *node)
 
 void increase_health_and_stamina(int health, int stamina)
 {
-    if (all_infos()->life + health <= 10)
+    if (all_infos()->life + health <= all_infos()->life_size / 15)
         all_infos()->life += health;
     if (stamina == 1) {
         all_infos()->stamina = 10;

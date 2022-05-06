@@ -59,8 +59,9 @@ void game_loop(void)
             level_missions();
         if (all_infos()->level == BONUS)
             level_bonus();
-        if (all_infos()->level == CHEST)
+        if (all_infos()->level == CHEST) {
             chest_level();
+        }
         if (all_infos()->quit_main)
             return;
         sfRenderWindow_display(all_infos()->window);

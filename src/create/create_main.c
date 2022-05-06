@@ -21,6 +21,7 @@ void initialize_main_vals(void)
     infos->move_d = false;
     infos->move_l = false;
     infos->move_r = false;
+    infos->life_size = 150;
     infos->doing_quest = false;
     infos->clock = sfClock_create();
     infos->clock_val = 0;
@@ -59,6 +60,7 @@ void add_to_inventory (struct_inventory **list, int value)
 void create_main(void)
 {
     infos = malloc(sizeof(main_screen));
+    create_sounds();
     sfVideoMode mode = {SCREEN_MAX_X, SCREEN_MAX_Y, 60};
     infos->window = sfRenderWindow_create(mode, "RPG",
     sfResize | sfClose, NULL);

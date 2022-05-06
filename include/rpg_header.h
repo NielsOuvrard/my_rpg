@@ -111,6 +111,13 @@ typedef struct sf_text {
     int pos_text;
 } sf_text;
 
+struct sounds {
+    sfSound *stone;
+    sfSound *grass;
+    sfSound *wood;
+    sfSound *open_chest;
+} typedef t_sounds;
+
 typedef struct sprite_pictures {
     sfSprite *sprite;
     sfTexture *texture;
@@ -280,17 +287,18 @@ typedef struct main_screen {
     int text_char;
     char last_move;
     float zoom;
+    t_sounds *sounds;
     sfVector2f view_position;
     sfVector2u size_window;
     int inventory_move;
     int ennemy_id;
+    int life_size;
     // particules :
     struct_particule *particules;
-
+    int killed_ennemys;
     //view
     sfView *view;
     sfView *hud_view;
-
     // sound
     sfMusic *music;
     sfSoundBuffer *click_sound_buffer;
@@ -674,3 +682,19 @@ float distance_to(sfVector2f origin, sfVector2f other);
 void save_quests_id(FILE *fd);
 
 void restore_quests_done(char *buffer, int *type);
+
+void increase_life(void);
+
+void create_sounds(void);
+
+void check_status(sfSound *sound);
+
+void stop_sound(sfSound *sound);
+
+void stop_all_sounds(char c, char mg);
+
+void play_sound(void);
+
+int is_moving(void);
+
+sfSound *create_sound(char *path);

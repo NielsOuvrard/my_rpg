@@ -14,7 +14,7 @@ void display_hud(void)
     sfRectangleShape *rectan = sfRectangleShape_create();
     sfRectangleShape_setPosition(rectan, pos);
     sfRectangleShape_setFillColor(rectan, sfBlack);
-    sfRectangleShape_setSize(rectan, (sfVector2f){150, 15});
+    sfRectangleShape_setSize(rectan, (sfVector2f){all_infos()->life_size, 15});
     sfRenderWindow_drawRectangleShape(all_infos()->window, rectan, NULL);
     sfRectangleShape_setFillColor(rectan, sfRed);
     sfRectangleShape_setSize(rectan, (sfVector2f){all_infos()->life * 15, 15});
@@ -50,6 +50,7 @@ void level_game(sfEvent event)
     }
     disp_map(all_maps()[all_infos()->map_actual].bg);
     disp_mg();
+    play_sound();
     disp_map(all_maps()[all_infos()->map_actual].fg);
     disp_all_npcs();
     disp_interaction_button();

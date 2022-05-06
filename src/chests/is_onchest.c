@@ -35,6 +35,7 @@ void check_interact_chest(sfEvent event)
         return;
     if (all_maps()[all_infos()->map_actual].mg[final_y][final_x] == 'P'
     && event.key.code == sfKeyF) {
+        sfSound_play(all_infos()->sounds->open_chest);
         all_maps()[all_infos()->map_actual].mg[final_y][final_x] = 'Q';
         all_infos()->level = CHEST;
     }

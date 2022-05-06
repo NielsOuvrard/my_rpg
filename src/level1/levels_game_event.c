@@ -39,8 +39,9 @@ void event_level_game_pressed_next(sfEvent event)
         all_infos()->level = INVENTORY;
     if (event.key.code == sfKeyP)
         all_infos()->life--;
-    if (event.key.code == sfKeyM && all_infos()->life + 1 <= 10)
-        all_infos()->life++;
+    if (event.key.code == sfKeyM) {
+        increase_life();
+    }
     check_stamina();
 }
 
