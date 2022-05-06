@@ -1,0 +1,17 @@
+#player_pos
+701
+790
+#view_info
+701
+790
+#map_actual
+0
+#inventory
+15
+15
+3
+#closed_chests
+2 1 6
+4 11 5
+4 13 18
+4 14 1
