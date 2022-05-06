@@ -22,6 +22,7 @@ void initialize_main_vals(void)
     infos->move_d = false;
     infos->move_l = false;
     infos->move_r = false;
+    infos->doing_quest = false;
     infos->clock = sfClock_create();
     infos->clock_val = 0;
     infos->particules = NULL;

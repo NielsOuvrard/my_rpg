@@ -667,3 +667,7 @@ void save_quests(FILE *fd);
 void restore_quests(char *buffer, int *type);
 
 float distance_to(sfVector2f origin, sfVector2f other);
+
+void save_quests_id(FILE *fd);
+
+void restore_quests_done(char *buffer, int *type);

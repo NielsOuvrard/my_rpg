@@ -16,6 +16,7 @@ void write_infos_to_file(void)
     save_map_actual(fd);
     save_inventory_to_file(fd);
     save_quests(fd);
+    save_quests_id(fd);
     save_opened_chests(fd);
 }
 

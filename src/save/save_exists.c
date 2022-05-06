@@ -49,8 +49,13 @@ void get_info_save(void)
             run = 1;
             continue;
         }
-        if (my_strstr(line, "#quest")) {
+        if (my_strstr(line, "#quest") && !my_strstr(line, "#quest_done")) {
             type = 6;
+            run = 1;
+            continue;
+        }
+        if (my_strstr(line, "#quest_done")) {
+            type = 7;
             run = 1;
             continue;
         }
@@ -60,6 +65,7 @@ void get_info_save(void)
         handle_inventory(line, &type);
         handle_save_chests(line, &type);
         restore_quests(line, &type);
+        restore_quests_done(line, &type);
         run++;
     }
 }

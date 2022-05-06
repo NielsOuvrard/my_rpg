@@ -11,8 +11,9 @@
 bool check_if_mission_was_done(char find)
 {
     for (int i = 0; all_infos()->quest_done[i] != '\0'; i++) {
-        if (all_infos()->quest_done[i] == find)
+        if (all_infos()->quest_done[i] == find) {
             return true;
+        }
     }
     return false;
 }
