@@ -19,7 +19,6 @@ void write_infos_to_file(void)
     save_quests_id(fd);
     save_opened_chests(fd);
     fclose(fd);
-    reset_save();
 }
 
 void save_map_actual(FILE *fd)
