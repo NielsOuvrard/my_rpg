@@ -30,6 +30,8 @@
 #define DIALOGUE 4
 #define MISSIONS 5
 #define BONUS 6
+#define CHEST 7
+#define OPTIONS 8
 
 #define BUFF_SIZE 512
 
@@ -75,34 +77,52 @@
  health points\n and full stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
 #define APPLE_INFO    "The best apples of our\n village !\n Gives you 1\
  health points\n and half stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
-#define CHEST          21
-#define FRAME_30       22
-#define FRAME_30_2     23
-#define FRAME_30_3     24
-#define FRAME_60       25
-#define FRAME_60_2     26
-#define FRAME_60_3     27
-#define MENU           28
-#define MENU_2         29
-#define MENU_3         30
-#define OPTIONS        31
-#define OPTIONS_2      32
-#define OPTIONS_3      33
-#define PLAY           34
-#define PLAY_2         35
-#define PLAY_3         36
-#define QUIT           37
-#define QUIT_2         38
-#define QUIT_3         39
-#define RESUME         40
-#define RESUME_2       41
-#define RESUME_3       42
-#define SCOREBOARD     43
-#define SCOREBOARD_2   44
-#define SCOREBOARD_3   45
 #define SCREEN_MAX_Y 1080
 #define SCREEN_MAX_X 1920
 #define EMPTY_INVENTORY     "Unfortunatly, your inventory is empty.\n"
+
+struct texture {
+    sfTexture *tbackground;
+    sfTexture *tlogo;
+    sfTexture *tstart;
+    sfTexture *tquit;
+    sfTexture *trestart;
+    sfTexture *tscoreboard;
+    sfTexture *toption;
+    sfTexture *tframe;
+    sfTexture *tframe2;
+    sfTexture *tresume;
+} typedef t_text;
+
+struct sprites {
+    sfSprite *sbackground;
+    sfSprite *slogo;
+    sfSprite *sstart;
+    sfSprite *sscoreboard;
+    sfSprite *squit;
+    sfSprite *srestart;
+    sfSprite *soption;
+    sfSprite *sframe;
+    sfSprite *sframe2;
+    sfSprite *sresume;
+} typedef t_sprites;
+
+struct float_rect {
+    sfFloatRect quit_button_b;
+    sfFloatRect start_button_b;
+    sfFloatRect option_button_b;
+    sfFloatRect frame30_button_b;
+    sfFloatRect frame60_button_b;
+    sfFloatRect menu_button_b;
+    sfFloatRect scoreboard_button_b;
+} typedef f_rect;
+
+typedef struct {
+    t_text *text;
+    t_sprites *sprites;
+    f_rect *f_rects;
+} tags;
+
 typedef struct sf_text {
     sfText *simple_text;
     sfText *code;
@@ -125,6 +145,7 @@ typedef struct sprite_pictures {
     sfVector2f pos;
     sfVector2f origin;
     sfIntRect rect;
+    sfFloatRect bound;
     char anim;
 } sprite_pictures;
 
@@ -255,6 +276,7 @@ typedef struct main_screen {
     // window
     sfRenderWindow* window;
     int level;
+    int frame_rate;
     int quit_main;
     sfClock *clock;
     int clock_val;
@@ -293,6 +315,8 @@ typedef struct main_screen {
     int inventory_move;
     int ennemy_id;
     int life_size;
+    sfVector2i mouse_position;
+    sfVector2i mouse_click;
     // particules :
     struct_particule *particules;
     int killed_ennemys;
@@ -461,6 +485,44 @@ void display_boxes(void);
 void disp_text_size(void);
 
 void disp_text_and_boxes(void);
+
+// menu
+
+void create_menu(void);
+
+void level_menu(tags *game, sfEvent event);
+
+sfTexture *create_texture(char *path);
+
+void mouse_position_menu(tags *game);
+
+void mouse_position_util_menu(tags *game);
+
+void initialize_sprite_menu(tags *game);
+
+void manage_mouse_click_menu(tags *game);
+
+void analyse_events_menu(tags *game, sfEvent event);
+
+void set_sprite(tags *game);
+
+void initialize_bounds_menu(tags *game);
+
+void render_menu(tags *game);
+
+void manage_click_welcome_util(tags *game);
+
+void level_option(tags *game);
+
+void mouse_position_option(tags *game);
+
+void manage_mouse_click_util(tags *game);
+
+void manage_mouse_click_option(tags *game);
+
+void analyse_events_option(tags *game);
+
+void render_option(tags *game);
 
 // le bon click editor
 
@@ -698,3 +760,9 @@ void play_sound(void);
 int is_moving(void);
 
 sfSound *create_sound(char *path);
+
+void initialize_options_game(tags *game);
+
+void inicialize_sprite_option(tags *game);
+
+void inicialize_variables_option(tags *game);

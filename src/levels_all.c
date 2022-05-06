@@ -34,7 +34,7 @@ void on_clock_update()
 }
 
 // sfMusic_play(my_main.music);
-void game_loop(void)
+void game_loop(tags *game)
 {
     sfEvent event;
     while (sfRenderWindow_isOpen(all_infos()->window)) {
@@ -45,7 +45,7 @@ void game_loop(void)
         sfRenderWindow_clear(all_infos()->window, sfBlack);
         on_clock_update();
         if (all_infos()->level == 0)
-            level_0(event);
+            level_menu(game, event);
         if (all_infos()->level == GAME)
             level_game(event);
         if (all_infos()->level == MAP_EDITOR)
@@ -59,22 +59,38 @@ void game_loop(void)
             level_missions();
         if (all_infos()->level == BONUS)
             level_bonus();
-        if (all_infos()->level == CHEST) {
+        if (all_infos()->level == CHEST)
             chest_level();
-        }
+        if (all_infos()->level == OPTIONS)
+            level_option(game);
         if (all_infos()->quit_main)
             return;
         sfRenderWindow_display(all_infos()->window);
     }
 }
 
+void malloc_all(tags *game)
+{
+    game->f_rects = malloc(sizeof(f_rect));
+    game->sprites = malloc(sizeof(t_sprites));
+    game->text = malloc(sizeof(t_text));
+    initialize_sprite_menu(game);
+    initialize_bounds_menu(game);
+    inicialize_variables_option(game);
+    inicialize_sprite_option(game);
+    initialize_options_game(game);
+}
+
 int start_game_loop(void)
 {
-    game_loop();
+    tags *game = malloc(sizeof(tags));
+    malloc_all(game);
+    game_loop(game);
     free_particules();
     free(all_infos());
     free_map(0);
     free_map(1);
+    free(game);
     free(all_maps());
 }
 

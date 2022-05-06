@@ -1,12 +1,12 @@
 /*
 ** EPITECH PROJECT, 2022
-** B-MUL-200-MAR-2-1-myrpg-niels.ouvrard
+** my_rpg
 ** File description:
 ** create_menu
 */
 
-// #include "my.h"
-// #include "rpg_header.h"
+#include "my.h"
+#include "rpg_header.h"
 
 // static sf_text *game_texts;
 
@@ -15,19 +15,14 @@
 //     return game_texts;
 // }
 
-// void create_texts(void)
+// void create_menu(void)
 // {
-//     game_texts = malloc(sizeof(main_screen));
-//     game_texts->font = sfFont_createFromFile("font/AncientModernTales-a7Po.ttf");
-//     game_texts->simple_text = sfText_create();
-//     sfText_setFont(game_texts->simple_text, game_texts->font);
-//     sfText_setColor(game_texts->simple_text, sfBlack);
-//     game_texts->code = sfText_create();
-//     sfText_setFont(game_texts->code, game_texts->font);
-//     sfText_setColor(game_texts->code, sfWhite);
-//     sfText_setCharacterSize(game_texts->code, 80);
-//     game_texts->pos_text = 0;
-//     game_texts->text = malloc(sizeof(char) * 100);
+//     for (int i = 21; i < 28; i++) {
+//         sfSprite_setPosition(all_sprites()[i].sprite, (sfVector2f) {400, 400});
+//         all_sprites()[i].scale = (sfVector2f) {0.5, 0.5};
+//         sfSprite_setScale(all_sprites()[i].sprite, all_sprites()[i].scale);
+//         all_sprites()[i].bound = sfSprite_getGlobalBounds(all_sprites()[i].sprite);
+//         all_sprites()[i].bound.width = 420;
+//     }
 //     return;
 // }
-
