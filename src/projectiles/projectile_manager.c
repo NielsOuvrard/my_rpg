@@ -22,7 +22,6 @@ projectile_t **get_projectile_dictionary()
     return projectile_dictionary;
 }
 
-// maybe later w'ell have different types of projectile ?
 sprite_pictures get_sprite_by_type(int type)
 {
     sprite_pictures result;

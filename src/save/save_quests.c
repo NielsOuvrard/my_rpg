@@ -24,7 +24,8 @@ void save_quests_id(FILE *fd)
     if (!all_infos()->quest_id)
         return;
     fwrite("#quest_done\n", 1, my_strlen("#quest_done\n"), fd);
-    fwrite(my_itoa(all_infos()->quest_id), 1, my_strlen(my_itoa(all_infos()->quest_id)), fd);
+    fwrite(my_itoa(all_infos()->quest_id), 1,
+    my_strlen(my_itoa(all_infos()->quest_id)), fd);
     fwrite("\n", 1, 1, fd);
     return;
 }
@@ -34,7 +35,7 @@ void restore_quests(char *buffer, int *type)
     if (*type != 6)
         return;
     int i = 0;
-    for(; buffer[i] != '\n'; i++);
+    for (; buffer[i] != '\n'; i++);
     for (int j = 0; j != i; j++) {
         all_infos()->quest_done[j] = buffer[j];
     }

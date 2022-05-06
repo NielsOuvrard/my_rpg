@@ -1,9 +1,9 @@
-// /*
-// ** EPITECH PROJECT, 2022
-// ** my_rpg
-// ** File description:
-// ** create_menu
-// */
+/*
+** EPITECH PROJECT, 2022
+** B-MUL-200-MAR-2-1-myrpg-niels.ouvrard
+** File description:
+** create_menu
+*/
 
 // #include "my.h"
 // #include "rpg_header.h"

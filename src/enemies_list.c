@@ -8,15 +8,6 @@
 #include "my.h"
 #include "rpg_header.h"
 
-// int size_list(enemies *expl)
-// {
-//     int a = 0;
-//     while (expl) {
-//         a++;
-//         expl = expl->next;
-//     }
-//     return a;
-// }
 void add_enemies_to_list_next(enemies *new_enemy, int value, int x, int y)
 {
     new_enemy->pos.x = x;

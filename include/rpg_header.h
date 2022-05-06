@@ -71,8 +71,10 @@
 #define ARROW          18
 #define WRITE_BOX      19
 #define INFO           20
-#define BANANA_INFO    "The best bananas of our\n village !\n Gives you 2 health points\n and full stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
-#define APPLE_INFO    "The best apples of our\n village !\n Gives you 1 health points\n and half stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
+#define BANANA_INFO    "The best bananas of our\n village !\n Gives you 2\
+ health points\n and full stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
+#define APPLE_INFO    "The best apples of our\n village !\n Gives you 1\
+ health points\n and half stamina !\n Press 'F' to eat\n Press 'U' to drop\n"
 #define CHEST          21
 #define FRAME_30       22
 #define FRAME_30_2     23
@@ -580,7 +582,8 @@ char *my_strdup_to (char const *src, int len);
 
 void new_projectile_manager(void);
 
-projectile_t *new_projectile(vec2d_t position, vec2d_t velocity, int damage, int type);
+projectile_t *new_projectile(vec2d_t position, vec2d_t velocity,
+int damage, int type);
 
 projectile_t **get_projectile_dictionary();
 

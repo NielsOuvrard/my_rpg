@@ -81,8 +81,6 @@ void event_level_game_pressed(sfEvent event)
     event_level_mission_pressed(event);
 }
 
-// shoot an arrow after all_infos()->move == 'c' &&
-// !sfKeyboard_isKeyPressed(all_keyes()->shoot) JF
 void event_level_game_relased_next (sfEvent event)
 {
     bow_release();
@@ -97,8 +95,8 @@ void event_level_game_relased_next (sfEvent event)
     if (!sfKeyboard_isKeyPressed(all_keys()->k_down))
         all_infos()->move_d = false;
     if (!all_infos()->move_u && !all_infos()->move_d &&
-     !all_infos()->move_l && !all_infos()->move_r)
-         all_infos()->move = '\0';
+    !all_infos()->move_l && !all_infos()->move_r)
+        all_infos()->move = '\0';
     sfSprite_setTextureRect(all_sprites()[HUNTER].sprite,
     all_sprites()[HUNTER].rect);
 }

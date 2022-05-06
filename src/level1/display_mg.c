@@ -30,8 +30,6 @@ void disp_mg_next (int i)
     }
 }
 
-// lmn
-// rst
 void disp_priorit(int i)
 {
     for (int j = 0; all_maps()[all_infos()->map_actual].mg[i][j]; j++) {

@@ -30,9 +30,9 @@ void check_hunter_collision(projectile_t *projectile)
     }
     sfSprite_setPosition(projectile->sprite_picture.sprite,
     projectile->sprite_picture.pos);
-    sfFloatRect rect_projectile = 
+    sfFloatRect rect_projectile =
     sfSprite_getGlobalBounds(projectile->sprite_picture.sprite);
-    sfFloatRect rect_hunter = 
+    sfFloatRect rect_hunter =
     sfSprite_getGlobalBounds(all_sprites()[HUNTER].sprite);
     if (intersects(rect_projectile, rect_hunter)) {
         all_infos()->life -= projectile->damage;

@@ -24,8 +24,6 @@ void change_size_map_next (int old_size_y, int old_size_x)
     }
 }
 
-// pb valgrind, augmente size bg en y pas de texture
-// sur la derniere tile de droite
 void change_size_map (void)
 {
     int old_size_y = my_arraylen(all_editor()->map_bg);

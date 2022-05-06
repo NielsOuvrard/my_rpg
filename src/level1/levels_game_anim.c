@@ -30,8 +30,6 @@ void anim_perso(void)
 {
     if (!all_infos()->move || !all_infos()->can_move)
         return;
-    // if (all_infos()->move == 'c')
-    //     my_printf("on anim car %c\n", all_infos()->move);
     anim_perso_according_to_int();
     sfSprite_setTextureRect(all_sprites()[HUNTER].sprite,
     all_sprites()[HUNTER].rect);

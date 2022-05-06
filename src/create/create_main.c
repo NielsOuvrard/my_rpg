@@ -15,7 +15,6 @@ main_screen *all_infos(void)
     return infos;
 }
 
-// sfView_setCenter(infos->view, (sfVector2f) {1920 / 4, 1080 / 4});
 void initialize_main_vals(void)
 {
     infos->move_u = false;

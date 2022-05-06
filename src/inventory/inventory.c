@@ -19,8 +19,6 @@ int nmb_inv(void)
     return i;
 }
 
-// sfSprite_setPosition(all_sprites()[EMPTY_BOX].sprite, (sfVector2f){1920 / 4, 1080 / 3});
-// sfRenderWindow_drawSprite(all_infos()->window, all_sprites()[EMPTY_BOX].sprite, NULL);
 void disp_inventory (void)
 {
     struct_inventory *val = all_infos()->inventory;
@@ -67,11 +65,6 @@ void fill_inventory(void)
     }
 }
 
-// if (event.type == sfEvtKeyPressed)
-//     event_level_game_pressed(event);
-// if (event.type == sfEvtKeyReleased)
-//     event_level_game_relased(event);
-// modify_var_move(event);
 void event_level_inventory(sfEvent event)
 {
     while (sfRenderWindow_pollEvent(all_infos()->window, &event)) {
@@ -99,11 +92,6 @@ void event_level_inventory(sfEvent event)
     return;
 }
 
-// my_printf("top : %d\tleft : %d\n", all_sprites()[HUNTER].rect.top,
-// all_sprites()[HUNTER].rect.left);
-// if (all_sprites()[BANANA].anim)
-//     sfRenderWindow_drawSprite(all_infos()->window,
-//     all_sprites()[BANANA].sprite, NULL);
 void level_inventory(sfEvent event)
 {
     event_level_inventory(event);

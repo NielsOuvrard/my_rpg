@@ -38,7 +38,7 @@ void bow_release(void)
         sfVector2f pos = sfSprite_getPosition(all_sprites()[HUNTER].sprite);
         vec2d_t origin_pos = {pos.x, (pos.y - 30)};
         vec2d_t velocity = {all_infos()->move == 'r' ? 15 : -15, 0};
-        projectile_t *projectile = 
+        projectile_t *projectile =
         new_projectile(origin_pos, velocity, 10, ARROW);
         projectile->from_hunter = true;
         shoot_projectile(projectile);
