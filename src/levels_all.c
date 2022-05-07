@@ -33,7 +33,6 @@ void on_clock_update()
     }
 }
 
-// sfMusic_play(my_main.music);
 void game_loop(tags *game)
 {
     sfEvent event;
@@ -63,8 +62,11 @@ void game_loop(tags *game)
             chest_level();
         if (all_infos()->level == OPTIONS)
             level_option(game);
+        if (all_infos()->level == CHOSE_NPC)
+            level_selection(game);
         if (all_infos()->quit_main)
             return;
+        check_win_lose();
         sfRenderWindow_display(all_infos()->window);
     }
 }

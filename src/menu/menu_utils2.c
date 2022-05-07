@@ -76,5 +76,7 @@ void initialize_sprite_menu(tags *game)
     game->sprites->sstart = sfSprite_create();
     game->text->tquit = create_texture("pictures/menu_buttons/Quit.png");
     game->sprites->squit = sfSprite_create();
+    game->text->teditor = create_texture("pictures/menu_buttons/Play.png");
+    game->sprites->seditor = sfSprite_create();
     set_sprite(game);
 }

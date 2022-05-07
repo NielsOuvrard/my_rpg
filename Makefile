@@ -17,6 +17,8 @@ SRC = 	src/*.c \
 		src/projectiles/*.c \
 		src/chests/*.c \
 		src/menu/*.c \
+		src/win_lose/*.c \
+		src/select_player/*.c \
 
 CSFML = -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system
 

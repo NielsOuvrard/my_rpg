@@ -32,6 +32,9 @@
 #define BONUS 6
 #define CHEST 7
 #define OPTIONS 8
+#define PAUSE 9
+#define END 10
+#define CHOSE_NPC 11
 
 #define BUFF_SIZE 512
 
@@ -92,6 +95,7 @@ struct texture {
     sfTexture *tframe;
     sfTexture *tframe2;
     sfTexture *tresume;
+    sfTexture *teditor;
 } typedef t_text;
 
 struct sprites {
@@ -105,6 +109,7 @@ struct sprites {
     sfSprite *sframe;
     sfSprite *sframe2;
     sfSprite *sresume;
+    sfSprite *seditor;
 } typedef t_sprites;
 
 struct float_rect {
@@ -115,6 +120,7 @@ struct float_rect {
     sfFloatRect frame60_button_b;
     sfFloatRect menu_button_b;
     sfFloatRect scoreboard_button_b;
+    sfFloatRect editor_button_b;
 } typedef f_rect;
 
 typedef struct {
@@ -367,9 +373,17 @@ sf_text *all_texts(void);
 
 void create_texts(void);
 
+void check_win_lose(void);
+
 // create sprite
 
 void fill_sprite_dictionary(void);
+
+void initialize_sprite_level(tags *game);
+
+void manage_mouse_click_level(tags *game);
+
+void full_perso(int type, int x, int y);
 
 sprite_pictures *all_sprites(void);
 
@@ -389,6 +403,8 @@ void disp_mg(void);
 // disp map
 
 void disp_map(char **map);
+
+void level_selection(tags *game);
 
 // level 1 anim enemis
 

@@ -35,6 +35,8 @@ void render_menu(tags *game)
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->squit, NULL);
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->soption, NULL);
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->sscoreboard, NULL);
+    sfRenderWindow_drawSprite(all_infos()->window, game->sprites->seditor, NULL);
+    sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
     sfRenderWindow_display(all_infos()->window);
 }
 
@@ -52,6 +54,9 @@ void initialize_bounds_menu(tags *game)
     game->f_rects->scoreboard_button_b =
     sfSprite_getGlobalBounds(game->sprites->sscoreboard);
     game->f_rects->scoreboard_button_b.width = 420;
+    game->f_rects->editor_button_b =
+    sfSprite_getGlobalBounds(game->sprites->seditor);
+    game->f_rects->editor_button_b.width = 420;
 }
 
 void set_sprite(tags *game)
@@ -60,16 +65,19 @@ void set_sprite(tags *game)
     game->text->tbackground, sfTrue);
     sfSprite_setTexture(game->sprites->sstart, game->text->tstart, sfTrue);
     sfSprite_setScale(game->sprites->sstart, (sfVector2f) {1, 1});
-    sfSprite_setPosition(game->sprites->sstart, (sfVector2f) {780, 440});
+    sfSprite_setPosition(game->sprites->sstart, (sfVector2f) {780, 280});
     sfSprite_setTexture(game->sprites->sscoreboard,
     game->text->tscoreboard, sfTrue);
     sfSprite_setScale(game->sprites->sscoreboard, (sfVector2f) {1, 1});
-    sfSprite_setPosition(game->sprites->sscoreboard, (sfVector2f) {780, 600});
+    sfSprite_setPosition(game->sprites->sscoreboard, (sfVector2f) {780, 440});
     sfSprite_setTexture(game->sprites->squit, game->text->tquit, sfTrue);
     sfSprite_setScale(game->sprites->squit, (sfVector2f) {1, 1});
     sfSprite_setPosition(game->sprites->squit, (sfVector2f) {780, 920});
     sfSprite_setScale(game->sprites->soption, (sfVector2f) {1, 1});
     sfSprite_setScale(game->sprites->sbackground, (sfVector2f) {2.3, 2.1});
     sfSprite_setPosition(game->sprites->soption, (sfVector2f) {780, 760});
-    sfSprite_setTexture(game->sprites->soption, game->text->toption, sfTrue);
+    sfSprite_setTexture(game->sprites->soption, game->text->teditor, sfTrue);
+    sfSprite_setScale(game->sprites->seditor, (sfVector2f) {1, 1});
+    sfSprite_setPosition(game->sprites->seditor, (sfVector2f) {780, 600});
+    sfSprite_setTexture(game->sprites->seditor, game->text->teditor, sfTrue);
 }

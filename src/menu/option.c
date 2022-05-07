@@ -66,6 +66,8 @@ void level_option(tags *game)
 {
     mouse_position_option(game);
     analyse_events_option(game);
+    sfText_setString(all_texts()->simple_text, "Frame Rate:");
+    sfText_setPosition(all_texts()->simple_text, (sfVector2f) {180, 380});
     sfRenderWindow_setView(all_infos()->window, all_infos()->hud_view);
     render_option(game);
 }
