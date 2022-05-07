@@ -15,6 +15,7 @@ void manage_mouse_click_menu(tags *game)
     all_infos()->mouse_click.x, all_infos()->mouse_click.y)) {
         game->text->tstart = create_texture("pictures/menu_buttons/Play3.png");
         sfSprite_setTexture(game->sprites->sstart, game->text->tstart, sfTrue);
+        reset_save();
         all_infos()->level = 1;
     }
     if (sfFloatRect_contains(&game->f_rects->option_button_b,

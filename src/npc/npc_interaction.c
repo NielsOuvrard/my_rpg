@@ -95,7 +95,7 @@ void npc_check_quest_2(npcs *expl, char *text)
         all_infos()->quest_id == expl->value) {
             all_infos()->quest_id = expl->value;
             all_infos()->doing_quest = true;
-            text = my_strcpy(text, "My son went to the dungeon!!!\nI need ");
+            text = my_strcpy(text, "My son went to the dungeon!!!\n ");
             text = my_strcat(text, "I need someone to save him and\nI do not");
             text = my_strcat(text, " know what to do!\nCould you help me?\n");
             print_quest(text);

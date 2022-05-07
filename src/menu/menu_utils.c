@@ -22,7 +22,8 @@ void manage_click_welcome_util(tags *game)
         create_texture("pictures/menu_buttons/Scoreboard3.png");
         sfSprite_setTexture(game->sprites->sscoreboard,
         game->text->tscoreboard, sfTrue);
-        // game->vals->action = 4;
+        does_save_exists();
+        all_infos()->level = 1;
     }
 }
 
