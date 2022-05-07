@@ -15,7 +15,8 @@ void mouse_position_util_menu_2(tags *game)
         game->text->teditor = create_texture("pictures/menu_buttons/map_editor2.png");
         sfSprite_setTexture(game->sprites->seditor, game->text->teditor, sfTrue);
     } else {
-        game->text->teditor = create_texture("pictures/menu_buttons/map_editor.png");
+        game->text->teditor =
+        create_texture("pictures/menu_buttons/map_editor.png");
         sfSprite_setTexture(game->sprites->seditor, game->text->teditor, sfTrue);
     }
 }

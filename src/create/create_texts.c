@@ -22,6 +22,12 @@ void create_texts(void)
     game_texts->simple_text = sfText_create();
     sfText_setFont(game_texts->simple_text, game_texts->font);
     sfText_setColor(game_texts->simple_text, sfBlack);
+    game_texts->simple_text2 = sfText_create();
+    sfText_setFont(game_texts->simple_text2, game_texts->font);
+    sfText_setColor(game_texts->simple_text2, sfBlack);
+    game_texts->simple_text3 = sfText_create();
+    sfText_setFont(game_texts->simple_text3, game_texts->font);
+    sfText_setColor(game_texts->simple_text3, sfBlack);
     game_texts->code = sfText_create();
     sfText_setFont(game_texts->code, game_texts->font);
     sfText_setColor(game_texts->code, sfWhite);

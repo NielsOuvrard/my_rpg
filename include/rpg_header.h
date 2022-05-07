@@ -86,6 +86,8 @@
 
 struct texture {
     sfTexture *tbackground;
+    sfTexture *tsound;
+    sfTexture *tkeyboard;
     sfTexture *tlogo;
     sfTexture *tstart;
     sfTexture *tquit;
@@ -110,6 +112,8 @@ struct sprites {
     sfSprite *sframe2;
     sfSprite *sresume;
     sfSprite *seditor;
+    sfSprite *ssound;
+    sfSprite *skeyboard;
 } typedef t_sprites;
 
 struct float_rect {
@@ -121,6 +125,9 @@ struct float_rect {
     sfFloatRect menu_button_b;
     sfFloatRect scoreboard_button_b;
     sfFloatRect editor_button_b;
+    sfFloatRect sound_button_b;
+    sfFloatRect keyboard_button_b;
+    int sound;
 } typedef f_rect;
 
 typedef struct {
@@ -131,6 +138,8 @@ typedef struct {
 
 typedef struct sf_text {
     sfText *simple_text;
+    sfText *simple_text2;
+    sfText *simple_text3;
     sfText *code;
     sfFont *font;
     char *text;
@@ -367,6 +376,8 @@ void fill_map_dictionary(void);
 
 struct_maps *all_maps(void);
 
+void manage_mouse_click_util_2(tags *game);
+
 // create texts
 
 sf_text *all_texts(void);
@@ -376,6 +387,8 @@ void create_texts(void);
 void check_win_lose(void);
 
 // create sprite
+
+void inicialize_sprite_option_2(tags *game);
 
 void fill_sprite_dictionary(void);
 

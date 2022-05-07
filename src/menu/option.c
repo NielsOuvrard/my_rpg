@@ -15,18 +15,30 @@ void render_option(tags *game)
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->sframe, NULL);
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->sframe2, NULL);
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->srestart, NULL);
+    sfRenderWindow_drawSprite(all_infos()->window, game->sprites->ssound, NULL);
     sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
+    sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text2, NULL);
+    sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text3, NULL);
     sfRenderWindow_display(all_infos()->window);
 }
 
 void inicialize_variables_option(tags *game)
 {
     all_texts()->simple_text = sfText_create();
-    all_texts()->font = sfFont_createFromFile("font/AncientModernTales-a7Po.ttf");
     sfText_setString(all_texts()->simple_text, "Frame Rate:");
     sfText_setFont(all_texts()->simple_text, all_texts()->font);
     sfText_setCharacterSize(all_texts()->simple_text, 90);
-    sfText_setPosition(all_texts()->simple_text, (sfVector2f) {180, 380});
+    sfText_setPosition(all_texts()->simple_text, (sfVector2f) {180, 10});
+    all_texts()->simple_text2 = sfText_create();
+    sfText_setString(all_texts()->simple_text2, "Sound:");
+    sfText_setFont(all_texts()->simple_text2, all_texts()->font);
+    sfText_setCharacterSize(all_texts()->simple_text2, 90);
+    sfText_setPosition(all_texts()->simple_text2, (sfVector2f) {180, 120});
+    all_texts()->simple_text3 = sfText_create();
+    sfText_setString(all_texts()->simple_text3, "Keyoard:");
+    sfText_setFont(all_texts()->simple_text3, all_texts()->font);
+    sfText_setCharacterSize(all_texts()->simple_text3, 90);
+    sfText_setPosition(all_texts()->simple_text3, (sfVector2f) {180, 650});
 }
 
 void inicialize_sprite_option(tags *game)
@@ -45,7 +57,8 @@ void inicialize_sprite_option(tags *game)
     sfSprite_setPosition(game->sprites->sframe2, (sfVector2f) {1150, 380});
     sfSprite_setTexture(game->sprites->srestart, game->text->trestart, sfTrue);
     sfSprite_setScale(game->sprites->srestart, (sfVector2f) {1.3, 1.3});
-    sfSprite_setPosition(game->sprites->srestart, (sfVector2f) {750, 700});
+    sfSprite_setPosition(game->sprites->srestart, (sfVector2f) {750, 900});
+    inicialize_sprite_option_2(game);
 }
 
 void initialize_options_game(tags *game)
@@ -60,6 +73,8 @@ void initialize_options_game(tags *game)
     game->f_rects->menu_button_b =
     sfSprite_getGlobalBounds(game->sprites->srestart);
     game->f_rects->menu_button_b.width = 420;
+    game->f_rects->sound_button_b =
+    sfSprite_getGlobalBounds(game->sprites->ssound);
 }
 
 void level_option(tags *game)

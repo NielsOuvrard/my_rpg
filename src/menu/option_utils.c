@@ -42,6 +42,7 @@ void manage_mouse_click_util(tags *game)
         game->text->trestart, sfTrue);
         all_infos()->level = 0;
     }
+    manage_mouse_click_util_2(game);
 }
 
 void manage_mouse_click_option(tags *game)
