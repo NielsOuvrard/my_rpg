@@ -13,10 +13,11 @@ int does_save_exists(void)
     FILE *fd = fopen("save.txt", "r");
     if (fd == NULL)
         return 0;
-    get_info_save();
+    if (!get_info_save())
+        return 0;
 }
 
-void get_info_save(void)
+int get_info_save(void)
 {
     FILE *fd = fopen("save.txt", "r");
     char *line = NULL;
@@ -68,6 +69,7 @@ void get_info_save(void)
         restore_quests_done(line, &type);
         run++;
     }
+    return type;
 }
 
 void handle_inventory(char *buffer, int *type)

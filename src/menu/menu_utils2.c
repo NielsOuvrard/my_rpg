@@ -49,18 +49,7 @@ void mouse_position_util_menu(tags *game)
         game->text->tquit = create_texture("pictures/menu_buttons/Quit.png");
         sfSprite_setTexture(game->sprites->squit, game->text->tquit, sfTrue);
     }
-    if (sfFloatRect_contains(&game->f_rects->scoreboard_button_b,
-    all_infos()->mouse_position.x, all_infos()->mouse_position.y)) {
-        game->text->tscoreboard = create_texture
-        ("pictures/menu_buttons/Scoreboard2.png");
-        sfSprite_setTexture(game->sprites->sscoreboard,
-        game->text->tscoreboard, sfTrue);
-    } else {
-        game->text->tscoreboard =
-        create_texture("pictures/menu_buttons/Scoreboard.png");
-        sfSprite_setTexture(game->sprites->sscoreboard,
-        game->text->tscoreboard, sfTrue);
-    }
+    load_game_utils(game);
 }
 
 void initialize_sprite_menu(tags *game)
@@ -79,4 +68,28 @@ void initialize_sprite_menu(tags *game)
     game->text->teditor = create_texture("pictures/menu_buttons/Play.png");
     game->sprites->seditor = sfSprite_create();
     set_sprite(game);
+}
+
+void load_game_utils(tags *game)
+{
+    if (!does_save_exists()) {
+        game->text->tscoreboard =
+        create_texture("pictures/menu_buttons/Scoreboard3.png");
+        sfSprite_setTexture(game->sprites->sscoreboard,
+        game->text->tscoreboard, sfTrue);
+        return;
+    }
+    if (sfFloatRect_contains(&game->f_rects->scoreboard_button_b,
+        all_infos()->mouse_position.x, all_infos()->mouse_position.y) &&
+        does_save_exists()) {
+            game->text->tscoreboard = create_texture
+            ("pictures/menu_buttons/Scoreboard2.png");
+            sfSprite_setTexture(game->sprites->sscoreboard,
+            game->text->tscoreboard, sfTrue);
+    } else {
+            game->text->tscoreboard =
+            create_texture("pictures/menu_buttons/Scoreboard.png");
+            sfSprite_setTexture(game->sprites->sscoreboard,
+            game->text->tscoreboard, sfTrue);
+    }
 }

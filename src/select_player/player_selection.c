@@ -16,7 +16,6 @@ void render_level(tags *game)
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->squit, NULL);
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->sstart, NULL);
     sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
-    sfRenderWindow_display(all_infos()->window);
 }
 
 void level_event(tags *game)

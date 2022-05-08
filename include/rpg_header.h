@@ -722,7 +722,7 @@ void handle_player_pos(char *buffer, int *type, int run);
 
 sfVector2f handle_view_pos(char *buffer, int *type, int run, sfVector2f pos);
 
-void get_info_save(void);
+int get_info_save(void);
 
 void save_map_actual(FILE *fd);
 

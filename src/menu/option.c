@@ -19,7 +19,6 @@ void render_option(tags *game)
     sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
     sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text2, NULL);
     sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text3, NULL);
-    sfRenderWindow_display(all_infos()->window);
 }
 
 void inicialize_variables_option(tags *game)

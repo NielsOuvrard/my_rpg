@@ -17,12 +17,12 @@ void manage_click_welcome_util(tags *game)
         all_infos()->quit_main = 1;
     }
     if (sfFloatRect_contains(&game->f_rects->scoreboard_button_b,
-    all_infos()->mouse_click.x, all_infos()->mouse_click.y)) {
+    all_infos()->mouse_click.x, all_infos()->mouse_click.y) &&
+    does_save_exists()) {
         game->text->tscoreboard =
         create_texture("pictures/menu_buttons/Scoreboard3.png");
         sfSprite_setTexture(game->sprites->sscoreboard,
         game->text->tscoreboard, sfTrue);
-        does_save_exists();
         all_infos()->level = 1;
     }
 }
@@ -37,7 +37,6 @@ void render_menu(tags *game)
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->sscoreboard, NULL);
     sfRenderWindow_drawSprite(all_infos()->window, game->sprites->seditor, NULL);
     sfRenderWindow_drawText(all_infos()->window, all_texts()->simple_text, NULL);
-    sfRenderWindow_display(all_infos()->window);
 }
 
 void initialize_bounds_menu(tags *game)
