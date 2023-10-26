@@ -42,13 +42,20 @@ The game can be played using the following controls:
 
 For a better idea of the game, here are some screenshots:
 ![Screenshot 1](
-    https://raw.githubusercontent.com/NielsOuvrard/my_rpg/main/screenshot/map1.png
-)
+    https://raw.githubusercontent.com/NielsOuvrard/my_rpg/main/screenshot/inside_green_room.png)
+![Screenshot 1](
+    https://raw.githubusercontent.com/NielsOuvrard/my_rpg/main/screenshot/inside_wood_room.png)
+![Screenshot 1](
+    https://raw.githubusercontent.com/NielsOuvrard/my_rpg/main/screenshot/map1.png)
+![Screenshot 1](
+    https://raw.githubusercontent.com/NielsOuvrard/my_rpg/main/screenshot/map_after_bridge.png)
+![Screenshot 1](
+    https://raw.githubusercontent.com/NielsOuvrard/my_rpg/main/screenshot/talk_to_pnj.png)
 
 ## Credits
 
 This game was developed by :
-[Niels Ouvrard](https://github.com/NielsOuvrard).
-[Gabriel Morais](https://github.com/gabrielmorais4).
-[Adam Elmourai](https://github.com/AdamLBS).
-[Jean-Francois Mileno](https://github.com/JFMINEO).
+- [Niels Ouvrard](https://github.com/NielsOuvrard).
+- [Gabriel Morais](https://github.com/gabrielmorais4).
+- [Adam Elmourai](https://github.com/AdamLBS).
+- [Jean-Francois Mileno](https://github.com/JFMINEO).
