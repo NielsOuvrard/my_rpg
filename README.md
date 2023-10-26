@@ -1,6 +1,9 @@
 # My RPG
 
-This is a role-playing game developed as part of an EPITECH project.
+This is a role-playing game developed as part of an EPITECH project, as our **first year** final graphical project.
+We had to develop a game using the CSFML library, in C language.
+We was a team of 4 people, and we had 7 weeks to develop this game.
+
 
 ## Installation
 
