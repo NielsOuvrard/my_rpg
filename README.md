@@ -42,6 +42,7 @@ The game can be played using the following controls:
 
 For a better idea of the game, here are some screenshots:
 ![Screenshot 1](
+    https://raw.githubusercontent.com/NielsOuvrard/my_rpg/main/screenshot/map1.png
 )
 
 ## Credits
