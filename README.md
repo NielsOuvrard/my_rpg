@@ -60,5 +60,5 @@ For a better idea of the game, here are some screenshots:
 This game was developed by :
 - [Niels Ouvrard](https://github.com/NielsOuvrard).
 - [Gabriel Morais](https://github.com/gabrielmorais4).
-- [Adam Elmourai](https://github.com/AdamLBS).
+- [Adam Elaoumari](https://github.com/AdamLBS).
 - [Jean-Francois Mileno](https://github.com/JFMINEO).
